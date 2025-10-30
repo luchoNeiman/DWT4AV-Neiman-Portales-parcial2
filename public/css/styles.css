@@ -1,0 +1,1397 @@
+/* ---------------- RESET ---------------- */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:where(body, h1, h2, h3, h4, h5, h6, p, figure, blockquote, dl, dd) {
+    margin: 0;
+}
+
+html:focus-within {
+    scroll-behavior: smooth;
+}
+
+html,
+body {
+    height: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: var(--font-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+    background-color: var(--color-umami-cream);
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+:where(p, h1, h2, h3, h4, h5, h6) {
+    overflow-wrap: break-word;
+}
+
+:where(ul[role="list"], ol[role="list"]) {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+    outline: .2em solid var(--color-umami-cream);
+    outline-offset: .25em;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+    color: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+:disabled {
+    cursor: not-allowed;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+}
+
+
+/* ---------------- VARIABLES ---------------- */
+:root {
+    /* Tipografías */
+    --font-heading: "Souvenir", Georgia, "Times New Roman", serif;
+    --font-subheading: "Sink", sans-serif;
+    --font-body: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+    /* Colores */
+    --color-umami-green: #2B361D;
+    --color-umami-cream: #F9F9BD;
+
+    /* Escala tipográfica */
+    --fs-h1: clamp(2rem, 5vw, 3.5rem);
+    --fs-h2: clamp(1.75rem, 4vw, 3rem);
+    --fs-h3: clamp(1.5rem, 3vw, 2.25rem);
+    --fs-h4: clamp(1.25rem, 2.5vw, 1.75rem);
+    --fs-h5: clamp(1.125rem, 2vw, 1.5rem);
+    --fs-h6: clamp(1rem, 1.5vw, 1.25rem);
+    --fs-body: clamp(0.95rem, 1.2vw, 1.125rem);
+    --fs-small: clamp(0.8rem, 1vw, 0.9rem);
+}
+
+
+/* ---------------- TIPOGRAFÍA ---------------- */
+h1,
+h2 {
+    font-family: var(--font-heading);
+    line-height: 1.2;
+    font-weight: 700;
+    text-transform: uppercase;
+
+}
+
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-subheading);
+    line-height: 1.3;
+    font-weight: 600;
+}
+
+h1 {
+    font-size: var(--fs-h1);
+}
+
+h2 {
+    font-size: var(--fs-h2);
+}
+
+h3 {
+    font-size: var(--fs-h3);
+}
+
+h4 {
+    font-size: var(--fs-h4);
+}
+
+h5 {
+    font-size: var(--fs-h5);
+}
+
+h6 {
+    font-size: var(--fs-h6);
+}
+
+p {
+    font-size: var(--fs-body);
+}
+
+small {
+    font-size: var(--fs-small);
+}
+
+footer {
+    font-size: var(--fs-small);
+
+}
+
+
+/* ---------------- UTILIDADES ---------------- */
+.borde-verde {
+    border: 2px solid var(--color-umami-green);
+}
+
+.borde-cream {
+    border: 3px solid var(--color-umami-cream);
+}
+
+.active {
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: .25em;
+}
+
+.text-umami {
+    color: var(--color-umami-green) !important;
+}
+
+.text-umami-cream {
+    color: var(--color-umami-cream) !important;
+}
+
+.bg-umami {
+    background-color: var(--color-umami-green) !important;
+    color: var(--color-umami-cream);
+}
+
+.bg-cream {
+    background-color: var(--color-umami-cream) !important;
+    color: var(--color-umami-green);
+}
+
+.btn-primario {
+    background-color: var(--color-umami-green);
+    color: var(--color-umami-cream);
+    border: 2px solid var(--color-umami-cream);
+    padding: .5rem 1rem;
+    border-radius: .5rem;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-primario:hover,
+.btn-primario:focus {
+    background-color: var(--color-umami-cream);
+    color: var(--color-umami-green);
+    border: 2px solid var(--color-umami-green);
+    text-decoration: none;
+}
+
+.btn-secundario {
+    background-color: var(--color-umami-cream);
+    color: var(--color-umami-green);
+    border: 2px solid var(--color-umami-cream);
+    padding: .5rem 1rem;
+    border-radius: .5rem;
+    font-weight: 600;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-secundario:hover,
+.btn-secundario:focus {
+    background-color: var(--color-umami-green);
+    color: var(--color-umami-cream);
+    text-decoration: none;
+    border: 2px solid var(--color-umami-cream);
+}
+
+.border-bottom-cream {
+    border-bottom: 1px solid var(--color-umami-cream);
+}
+
+.border-top-cream {
+    border-top: 1px solid var(--color-umami-cream);
+}
+
+
+/* ---------------- NAVBAR ---------------- */
+.navbar .nav-link i {
+    transition: transform 0.2s ease;
+}
+
+.navbar .nav-link:hover i {
+    transform: scale(1.1);
+}
+
+.badge {
+    font-size: 0.7rem;
+    margin-top: 1em;
+    padding: 0.35em 0.5em;
+    border: 1px solid var(--color-umami-green);
+}
+
+.contenedor-logo-header {
+    width: 10rem;
+
+}
+
+
+/* ---------------- LOADER ---------------- */
+#loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-umami-green);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+#loader .hongo img {
+    width: 100px;
+    height: auto;
+}
+
+
+
+/* ---------------- BANNER / HOME ---------------- */
+.banner-home {
+    height: 88vh;
+    background: url("../img/UI/banner-home-umami.webp") center/cover no-repeat;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    padding: 2rem;
+
+}
+
+.ver-menu-home {
+    text-transform: capitalize;
+    font: var(--font-subheading);
+}
+
+
+
+/* ---------------- PRODUCTOS DESTACADOS / HOME ---------------- */
+.grid-destacados {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: "main side1" "main side2";
+    gap: 1rem;
+}
+
+.grid-main {
+    grid-area: main;
+}
+
+.grid-side1 {
+    grid-area: side1;
+}
+
+.grid-side2 {
+    grid-area: side2;
+}
+
+
+/* ---------------- PRODUCTOS COMBO / HOME ---------------- */
+.container-combos-home>[class*="col-"] {
+    display: flex;
+}
+
+.container-combos-home .hover-card {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    overflow: hidden;
+    border-radius: .75em;
+    min-height: 100%;
+}
+
+/* alturas por defecto (móvil) */
+.container-combos-home .hover-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: .75em .75em 0 0;
+}
+
+/* Hacemos que la info sea un bloque estático y que empuje el botón al final */
+/* .container-combos-home .hover-card .hover-info {
+    position: static !important;
+    opacity: 1 !important;
+    transform: none !important;
+    background-color: var(--color-umami-green);
+    color: var(--color-umami-cream);
+    border: 1px solid var(--color-umami-cream);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 140px;
+} */
+
+/* evitar zoom en hover para combos */
+.container-combos-home .hover-card:hover img {
+    transform: none !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* ---------------- HOVER DE LOS PRODUCTOS ---------------- */
+.hover-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: .75em;
+    box-shadow: 0 .25em .75em rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+}
+
+.hover-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .5s ease;
+}
+
+.hover-card .hover-info {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(43, 54, 29, 0.8);
+    color: var(--color-umami-cream);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: all .5s ease;
+    padding: 1rem;
+}
+
+.hover-card:hover img {
+    transform: scale(1.1);
+}
+
+.hover-card:hover .hover-info {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* ---------------- BANNER / MENÚ ---------------- */
+.banner-catalogo {
+    height: 88vh;
+    background: url("../img/UI/menu-fisico-umami.webp") center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+
+.container-titulo-menu {
+    background-color: rgba(43, 54, 29, 0.8);
+    padding: 1rem 2rem;
+    border-radius: .5rem;
+}
+
+
+/* ---------------- PRODUCTOS / MENÚ ---------------- */
+.price {
+    font-size: var(--fs-h5);
+    font-weight: 700;
+    margin-top: .5rem;
+    display: block;
+    color: var(--color-umami-cream);
+}
+
+section article h2 {
+    font-family: var(--font-subheading);
+    letter-spacing: .1rem;
+    font-size: var(--fs-h2);
+    margin-bottom: 1.5rem;
+}
+
+.catalogo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    /* columnas flexibles */
+    grid-auto-rows: 350px;
+    gap: 1.5rem;
+    grid-auto-flow: dense;
+    /* rellena huecos automáticamente */
+}
+
+.catalogo-grid .hover-card {
+    height: 100%;
+}
+
+.catalogo-grid .destacado {
+    grid-column: span 2;
+    /* ocupa el doble de espacio */
+    grid-row: span 2;
+    /* ocupa el doble de espacio */
+}
+
+.catalogo-grid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+
+/* ---------------- BANNER CONTACTO ---------------- */
+.banner-contacto {
+    height: 88vh;
+    background: url("../img/UI/entrega-en-auto-umami.webp") center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.container-titulo-contacto {
+    background-color: rgba(43, 54, 29, 0.8);
+    padding: 1rem 2rem;
+    border-radius: .5rem;
+}
+
+/* ---------------- FORMULARIO CONTACTO ---------------- */
+.contact-form .form-control {
+    border-radius: .5rem;
+    padding: .75rem;
+}
+
+.contact-form button {
+    margin-top: 1rem;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--color-umami-green);
+    opacity: 0.7;
+}
+
+
+/* ---------------- DETALLE ---------------- */
+.detalle-producto h1 {
+    font-size: var(--fs-h2);
+    color: var(--color-umami-green);
+}
+
+.detalle-producto .lead {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.detalle-producto .h4 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+/* Productos de interés */
+.productos-interes h2 {
+    font-size: var(--fs-h2);
+    color: var(--color-umami-green);
+}
+
+
+
+/* ---------------- BANNER NOSOTROS ---------------- */
+.banner-nosotros {
+    height: 88vh;
+    background: url("../img/UI/cartel-luminoso-umami.webp") center /cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+
+/* ---------------- NOSOTROS ---------------- */
+.pilar-box {
+    border: 2px solid;
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+
+.pilar-box:hover {
+    transform: translateY(-5px);
+}
+
+
+/* ---------------- LOGIN ---------------- */
+.login-container {
+    max-width: 420px;
+}
+
+/* ---------------- REGISTRO ---------------- */
+.registro-container {
+    max-width: 420px;
+    padding: 2rem 2.5rem;
+}
+
+
+/* ---------------- PERFIL ---------------- */
+.contenedor-avatar-perfil {
+    width: 4rem;
+    height: 4rem;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.cont-border-miPerfil {
+    border-top: 2px solid var(--color-umami-cream);
+}
+
+.card-perfil-carrito {
+    border: 2px solid var(--color-umami-cream);
+}
+
+.card-perfil-carrito h2,
+.card-perfil-carrito h3 {
+    font-family: var(--font-heading);
+}
+
+.card-perfil-carrito ul li {
+    margin-bottom: 0.5rem;
+}
+
+
+/* ---------------- EDITAR PERFIL ---------------- */
+form .bg-umami {
+    border: 2px solid var(--color-umami-cream);
+}
+
+form label {
+    font-weight: 600;
+}
+
+form input {
+    border-radius: .5rem;
+}
+
+/* ---------------- CARRITO ---------------- */
+.size-img-producto-carrito {
+    width: 5rem;
+    height: auto;
+}
+
+.cont-producto-carrito {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+
+/* ---------------- FOOTER ---------------- */
+footer {
+    padding: 1rem;
+    text-align: center;
+    border-top: #F9F9BD solid 1px;
+    flex-shrink: 0;
+}
+
+/* ---------------- DASHBOARD ---------------- */
+.contenedor-contenido-dashboard {
+    padding: 1.5rem;
+}
+
+.aside-dashboard {
+    width: 25%;
+}
+
+/* ---------------- PRODUCTOS ADMIN ---------------- */
+.badge-acciones-admin {
+    background-color: var(--color-umami-green);
+    color: var(--color-umami-cream);
+    margin-right: 0.25rem;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.badge-acciones-admin:hover {
+    background-color: var(--color-umami-cream);
+    color: var(--color-umami-green);
+}
+
+/* ---------------- Cards de usuarios (responsive admin) ---------------- */
+.card-usuario-admin {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-usuario-admin:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+
+/*  Mobile */
+@media (min-width: 320px) and (max-width: 575px) {
+
+    /* ---------------- PRODUCTOS ---------------- */
+    #carouselDestacados .hover-card {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .hover-card {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .hover-card img {
+        border-radius: .75em .75em 0 0;
+    }
+
+    .hover-card:hover img {
+        transform: none;
+        /* desactivar zoom */
+    }
+
+    .hover-card .hover-info {
+        position: static;
+        opacity: 1;
+        transform: none;
+        background-color: var(--color-umami-green);
+        color: var(--color-umami-cream);
+        border: 1px solid var(--color-umami-cream);
+        border-radius: 0 0 .75em .75em;
+        padding: 3rem;
+        transition: none;
+    }
+
+    .hover-card .hover-info h3 {
+        font-size: 1.2rem;
+    }
+
+    .hover-card .hover-info p {
+        font-size: .9rem;
+    }
+
+    /* ---------------- HOME ---------------- */
+    .grid-destacados {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "main"
+            "side1"
+            "side2";
+    }
+
+    .banner-home {
+        background: url("../img/UI/banner-home-umami.webp") center right/cover no-repeat;
+        height: 40vh;
+        padding: 1rem;
+    }
+
+    /* ---------------- MENÚ ---------------- */
+    .banner-catalogo {
+        background: url("../img/UI/menu-fisico-umami.webp") center/cover no-repeat;
+        height: 40vh;
+        padding: 1rem;
+    }
+
+    .container-titulo-menu {
+        padding: 1rem 1rem;
+    }
+
+    .catalogo-grid {
+        grid-template-columns: 1fr;
+        /* una sola columna */
+        grid-auto-rows: auto;
+        /* altura automática */
+    }
+
+    .catalogo-grid .destacado {
+        grid-column: span 1;
+        /* los destacados no ocupan doble */
+        grid-row: span 1;
+    }
+
+    /* ---------------- NOSOTROS ---------------- */
+    .banner-nosotros {
+        height: 40vh;
+        padding: 1rem;
+    }
+
+    .intro-nosotros img {
+        width: 100%;
+        max-width: 90%;
+        margin: 0 auto;
+    }
+
+    .pilar-box {
+        padding: 1.5rem;
+    }
+
+    .extra-info .row {
+        flex-direction: column;
+    }
+
+    .extra-info img {
+        margin-bottom: 1.5rem;
+    }
+
+    /* ---------------- CONTACTO ---------------- */
+    .banner-contacto {
+        height: 40vh;
+        padding: 1rem;
+    }
+
+    .container-titulo-contacto h1 {
+        font-size: 2rem;
+    }
+
+    .contact-form {
+        margin-bottom: 2rem;
+    }
+
+    .mapa iframe {
+        height: 200px;
+    }
+
+    /* ---------------- LOGIN user---------------- */
+    .login-container {
+        width: 90%;
+        padding: 2rem 1.5rem;
+    }
+
+    .login-container img {
+        width: 70%;
+    }
+
+    .login-container h1 {
+        font-size: 1.5rem;
+    }
+
+    /* ---------------- REGISTRO ---------------- */
+    .registro-container {
+        width: 90%;
+        padding: 2rem 2.5rem;
+    }
+
+    .registro-container img {
+        width: 70%;
+    }
+
+    .registro-container h1 {
+        font-size: 1.5rem;
+    }
+
+    /* ---------------- PERFIL---------------- */
+    .contenedor-avatar-perfil {
+        width: 3rem;
+        height: 3rem;
+        font-size: 1.5rem;
+    }
+
+    .card-perfil-carrito {
+        padding: 1.5rem;
+    }
+
+    .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .table-responsive table {
+        min-width: 500px;
+        /* evita que se aplaste demasiado */
+    }
+
+    .cont-border-miPerfil {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* ---------------- DETALLE ---------------- */
+    .detalle-producto .row {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .detalle-producto img {
+        max-width: 90%;
+        margin: 0 auto;
+    }
+
+    .detalle-producto h1 {
+        font-size: 1.75rem;
+    }
+
+    .detalle-producto p {
+        font-size: 1rem;
+    }
+
+    .detalle-producto ul {
+        text-align: left;
+        /* que las características sigan alineadas */
+        padding-left: 1.5rem;
+    }
+
+    .productos-interes .row {
+        flex-direction: column;
+    }
+
+    .productos-interes .col-md-4 {
+        width: 100%;
+    }
+
+    .productos-interes h2 {
+        font-size: 1.5rem;
+    }
+
+    /* ---------------- CARRITO ---------------- */
+    .size-img-producto-carrito {
+        width: 4rem;
+    }
+
+    .card-perfil-carrito h2 {
+        font-size: 1.25rem;
+    }
+
+    .cont-producto-carrito {
+        flex-direction: column;
+        align-items: flex-start !important;
+        text-align: left;
+    }
+
+    .cont-producto-carrito img {
+        margin-bottom: 0.75rem;
+    }
+
+    /* ---------------- LOGIN ADMIN RESPONSIVE ---------------- */
+    .login-container {
+        width: 90%;
+        padding: 2rem 1.5rem;
+        border-radius: 1rem;
+    }
+
+    .login-container img {
+        width: 60%;
+        margin-bottom: 1rem;
+    }
+
+    .login-container h1 {
+        font-size: 1.25rem;
+    }
+
+    .login-container p {
+        font-size: 0.85rem;
+    }
+
+    .login-container input {
+        font-size: 0.9rem;
+        padding: 0.5rem;
+    }
+
+    .login-container button {
+        font-size: 0.95rem;
+        padding: 0.6rem;
+    }
+
+    /* ---------------- DASHBOARD ---------------- */
+    /* Sidebar oculto, ya manejado por offcanvas */
+    .aside-dashboard {
+        display: none !important;
+    }
+
+    .contenedor-contenido-dashboard {
+        padding: .5rem;
+    }
+
+    /* Cards de métricas en una sola columna */
+    .metricas-rapidas-dashboard {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    /* Accesos directos en una sola columna */
+    .card-acceso-responsive {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    /* ---------------- PRODUCTOS ADMIN ---------------- */
+    .productosAdmin-main {
+        padding: 1rem;
+    }
+
+    .card-producto-admin {
+        background-color: var(--color-umami-cream);
+        border: 2px solid var(--color-umami-green);
+        border-radius: 0.75rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-producto-admin h5 {
+        font-size: 1rem;
+        color: var(--color-umami-green);
+        font-weight: 700;
+    }
+
+    .card-producto-admin p {
+        font-size: 0.9rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .card-producto-admin .badge-acciones-admin {
+        padding: 0.35rem 0.6rem;
+        font-size: 0.85rem;
+        border-radius: 0.5rem;
+    }
+
+    /* ---------------- Cards de usuarios (responsive admin) ---------------- */
+    #cardsUsuariosContainer {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+}
+
+/* Tablet */
+@media (min-width: 576px) and (max-width: 991px) {
+
+    /* ---------------- PRODUCTOS ---------------- */
+    .hover-card {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .hover-card img {
+        border-radius: .75em .75em 0 0;
+    }
+
+    .hover-card .hover-info {
+        position: static;
+        opacity: 1;
+        transform: none;
+        background-color: var(--color-umami-green);
+        color: var(--color-umami-cream);
+        border: 1px solid var(--color-umami-cream);
+        border-radius: 0 0 .75em .75em;
+        padding: 1rem;
+        transition: none;
+        flex-grow: 1;
+        /* hace que todas las descripciones se estiren */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .hover-card:hover img {
+        transform: none;
+        /* desactivar zoom */
+    }
+
+    .hover-card .hover-info h3 {
+        font-size: 1.4rem;
+    }
+
+    /* ---------------- HOME ---------------- */
+    .grid-destacados {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "main main"
+            "side1 side2";
+    }
+
+    .banner-home {
+        height: 60vh;
+    }
+
+    .container-combos-home .hover-card img {
+        height: 200px;
+    }
+
+    .container-combos-home .hover-card .hover-info {
+        min-height: 150px;
+    }
+
+    /* ---------------- MENÚ ---------------- */
+    .banner-catalogo {
+        height: 50vh;
+    }
+
+    .catalogo-grid {
+        grid-template-columns: 1fr 1fr;
+        /* dos columnas */
+        grid-auto-rows: auto;
+    }
+
+    .catalogo-grid .destacado {
+        grid-column: span 2;
+        /* sí se mantiene destacado */
+        grid-row: span 1;
+        /* no duplicar altura */
+    }
+
+    /* ---------------- NOSOTROS ---------------- */
+    .banner-nosotros {
+        height: 50vh;
+    }
+
+    .intro-nosotros img {
+        max-width: 80%;
+    }
+
+    .pilar-box {
+        height: 100%;
+    }
+
+    .extra-info img {
+        max-width: 100%;
+    }
+
+    /* ---------------- CONTACTO ---------------- */
+    .banner-contacto {
+        height: 50vh;
+    }
+
+    .contact-form {
+        margin-bottom: 2rem;
+    }
+
+    .mapa iframe {
+        height: 250px;
+    }
+
+    /* ---------------- LOGIN user---------------- */
+    .login-container {
+        width: 80%;
+        padding: 2.5rem;
+    }
+
+    .login-container img {
+        width: 60%;
+    }
+
+    .login-container h1 {
+        font-size: 1.75rem;
+    }
+
+    /* ---------------- REGISTRO ---------------- */
+    .registro-container {
+        width: 80%;
+        padding: 2.5rem 2rem;
+    }
+
+    .registro-container img {
+        width: 60%;
+    }
+
+    .registro-container h1 {
+        font-size: 1.75rem;
+    }
+
+    /* ---------------- PERFIL---------------- */
+    .contenedor-avatar-perfil {
+        width: 3.5rem;
+        height: 3.5rem;
+        font-size: 1.75rem;
+    }
+
+    .card-perfil-carrito {
+        padding: 2rem;
+    }
+
+    .table-responsive table {
+        min-width: 600px;
+    }
+
+    .cont-border-miPerfil {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* ---------------- DETALLE ---------------- */
+    .detalle-producto h1 {
+        font-size: 2rem;
+    }
+
+    .detalle-producto img {
+        max-width: 100%;
+    }
+
+    .detalle-producto .row {
+        align-items: flex-start;
+    }
+
+    .productos-interes .col-md-4 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+    /* ---------------- CARRITO ---------------- */
+    .size-img-producto-carrito {
+        width: 4.5rem;
+    }
+
+    .card .d-flex.align-items-center {
+        flex-wrap: wrap;
+    }
+
+    /* ---------------- LOGIN ADMIN RESPONSIVE ---------------- */
+    .login-container {
+        width: 80%;
+        padding: 2.5rem 2rem;
+        border-radius: 1.25rem;
+    }
+
+    .login-container img {
+        width: 55%;
+    }
+
+    .login-container h1 {
+        font-size: 1.5rem;
+    }
+
+    .login-container p {
+        font-size: 0.9rem;
+    }
+
+    .login-container button {
+        font-size: 1rem;
+        padding: 0.75rem;
+    }
+
+    /* ---------------- DASHBOARD ---------------- */
+    .aside-dashboard {
+        width: 46%;
+    }
+
+    /* Cards métricas en 2 columnas */
+    .metricas-rapidas-dashboard {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+    /* Accesos directos en 2 columnas */
+    .card-acceso-responsive {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+    /* ---------------- PRODUCTOS ADMIN ---------------- */
+    .card-producto-admin {
+        background-color: var(--color-umami-cream);
+        border: 2px solid var(--color-umami-green);
+        border-radius: 0.75rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-producto-admin h5 {
+        font-size: 1rem;
+        color: var(--color-umami-green);
+        font-weight: 700;
+    }
+
+    .card-producto-admin p {
+        font-size: 0.9rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .card-producto-admin .badge-acciones-admin {
+        padding: 0.35rem 0.6rem;
+        font-size: 0.85rem;
+        border-radius: 0.5rem;
+    }
+
+    /* ---------------- Cards de usuarios (responsive admin) ---------------- */
+    #cardsUsuariosContainer {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+}
+
+/* Desktop chico */
+@media (min-width: 992px) and (max-width: 1199px) {
+
+    /* ---------------- HOME ---------------- */
+    .banner-home {
+        height: 75vh;
+    }
+
+    .container-combos-home .hover-card img {
+        height: 240px;
+    }
+
+    .container-combos-home .hover-card .hover-info {
+        min-height: 170px;
+    }
+
+    /* ---------------- MENÚ ---------------- */
+    .catalogo-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        grid-auto-rows: 350px;
+    }
+
+    .catalogo-grid .destacado {
+        grid-column: span 2;
+        grid-row: span 2;
+    }
+
+    /* ---------------- NOSOTROS ---------------- */
+    .banner-nosotros {
+        height: 75vh;
+    }
+
+    .intro-nosotros img {
+        max-width: 45%;
+    }
+
+    /* ---------------- CONTACTO ---------------- */
+    .banner-contacto {
+        height: 75vh;
+    }
+
+    .mapa iframe {
+        height: 300px;
+    }
+
+    /* ---------------- LOGIN user---------------- */
+    .login-container {
+        width: 420px;
+        /* ya definido */
+        padding: 3rem;
+    }
+
+    .login-container img {
+        width: 50%;
+    }
+
+    /* ---------------- REGISTRO---------------- */
+    .registro-container {
+        width: 420px;
+        padding: 3rem 2.5rem;
+    }
+
+    .registro-container img {
+        width: 50%;
+    }
+
+    /* ---------------- PERFIL---------------- */
+    .contenedor-avatar-perfil {
+        width: 4rem;
+        height: 4rem;
+        font-size: 2rem;
+    }
+
+    .card-perfil-carrito {
+        padding: 2.5rem;
+    }
+
+    .cont-border-miPerfil {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* ---------------- DETALLE ---------------- */
+    .detalle-producto h1 {
+        font-size: 2.5rem;
+    }
+
+    .productos-interes .col-md-4 {
+        flex: 0 0 33.333%;
+        max-width: 33.333%;
+    }
+
+    /* ---------------- CARRITO ---------------- */
+    .size-img-producto-carrito {
+        width: 5rem;
+    }
+
+    /* ---------------- LOGIN ADMIN RESPONSIVE ---------------- */
+    .login-container {
+        max-width: 420px;
+        padding: 3rem 2.5rem;
+    }
+
+    .login-container img {
+        width: 50%;
+    }
+
+    .login-container h1 {
+        font-size: 1.75rem;
+    }
+
+    /* ---------------- DASHBOARD ---------------- */
+    .aside-dashboard {
+        width: 46%;
+    }
+
+    /* Cards métricas en 4 columnas (ya por Bootstrap col-lg-3) */
+    .metricas-rapidas-dashboard {
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+
+    /* Accesos directos en 3 columnas */
+    .card-acceso-responsive {
+        flex: 0 0 33.333%;
+        max-width: 33.333%;
+    }
+
+    /* ---------------- PRODUCTOS ADMIN ---------------- */
+    td {
+        width: 100%;
+    }
+
+    .combos-grid .hover-card img {
+        height: 260px;
+        /* otro valor para desktop, si querés */
+    }
+}
