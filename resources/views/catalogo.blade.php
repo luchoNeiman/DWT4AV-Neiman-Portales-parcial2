@@ -25,7 +25,7 @@
                         <span class="price text-decoration-line-through">$8.200</span>
                         <span class="price">$7.000</span>
                     </div>
-                    <a href="detalle.html" class="btn-secundario">Ver más</a>
+                    <a href="{{ route('producto') }}" class="btn-secundario">Ver más</a>
                 </div>
             </article>
 
@@ -36,7 +36,7 @@
                     <h3>Mediterránea</h3>
                     <p>Hongos de estación con tomates secos, espinaca fresca y aderezo de ajo confitado.</p>
                     <span class="price">$9.200</span>
-                    <a href="detalle.html" class="btn-secundario">Ver más</a>
+                    <a href="{{ route('producto') }}" class="btn-secundario">Ver más</a>
                 </div>
             </article>
 
@@ -47,7 +47,7 @@
                     <p>Hamburguesa de portobellos grillados con salsa barbacoa casera, cebolla caramelizada y
                         rúcula fresca.</p>
                     <span class="price">$9.000</span>
-                    <a href="detalle.html" class="btn-secundario">Ver más</a>
+                    <a href="{{ route('producto') }}" class="btn-secundario">Ver más</a>
                 </div>
             </article>
 
@@ -59,7 +59,7 @@
                     <p>Gírgolas crocantes con salsa picante de chipotle, jalapeños en rodajas y cebolla crispy.
                     </p>
                     <span class="price">$9.500</span>
-                    <a href="detalle.html" class="btn-secundario">Ver más</a>
+                    <a href="{{ route('producto') }}" class="btn-secundario">Ver más</a>
                 </div>
             </article>
 
@@ -71,7 +71,7 @@
                     <p>Medallón de shiitake y gírgolas con crema suave de trufa, rúcula fresca y queso vegano
                         fundido.</p>
                     <span class="price">$9.800</span>
-                    <a href="detalle.html" class="btn-secundario">Ver más</a>
+                    <a href="{{ route('producto') }}" class="btn-secundario">Ver más</a>
                 </div>
             </article>
 
@@ -83,7 +83,7 @@
                     <p>Hongos shiitake y portobellos, acompañada de pepino encurtido, salsa de
                         soja dulce, jengibre fresco y mayonesa de wasabi suave en pan artesanal de sésamo.</p>
                     <span class="price">$9.800</span>
-                    <a href="detalle.html" class="btn-secundario">Ver más</a>
+                    <a href="{{ route('producto') }}" class="btn-secundario">Ver más</a>
                 </div>
             </article>
         </div>
@@ -102,7 +102,7 @@
                     <h3>Combo Papas + Salsa Especial</h3>
                     <p>Papas clásicas con salsa Umami de hongos y hierbas frescas.</p>
                     <span class="price">$4.200</span>
-                    <a href="detalle.html" class="btn-secundario">Ver más</a>
+                    <a href="{{ route('producto') }}" class="btn-secundario">Ver más</a>
                 </div>
             </article>
 
@@ -116,7 +116,7 @@
                         <span class="price text-decoration-line-through">$3.200</span>
                         <span class="price">$2.500</span>
                     </div>
-                    <a href="detalle.html" class="btn-secundario">Ver más</a>
+                    <a href="{{ route('producto') }}" class="btn-secundario">Ver más</a>
                 </div>
             </article>
 
@@ -128,7 +128,7 @@
                     <p>Bastones de hongos shiitake apanados con mix de semillas, acompañados con alioli de ajo
                         asado.</p>
                     <span class="price">$4.500</span>
-                    <a href="detalle.html" class="btn-secundario">Ver más</a>
+                    <a href="{{ route('producto') }}" class="btn-secundario">Ver más</a>
                 </div>
             </article>
 
@@ -138,7 +138,7 @@
                     <h3>Papas Rústicas Umami</h3>
                     <p>Papas cortadas a mano, condimentadas con sal ahumada y romero.</p>
                     <span class="price">$3.500</span>
-                    <a href="detalle.html" class="btn-secundario">Ver más</a>
+                    <a href="{{ route('producto') }}" class="btn-secundario">Ver más</a>
                 </div>
             </article>
 
@@ -151,7 +151,7 @@
                         <span class="price text-decoration-line-through">$7.800</span>
                         <span class="price">$6.500</span>
                     </div>
-                    <a href="detalle.html" class="btn-secundario">Ver más</a>
+                    <a href="{{ route('producto') }}" class="btn-secundario">Ver más</a>
                 </div>
             </article>
         </div>
@@ -170,7 +170,7 @@
                     <h3>Agua Reishi</h3>
                     <p>Infusión refrescante de hongos reishi con toques cítricos, energizante y natural.</p>
                     <span class="price">$5.000</span>
-                    <a href="detalle.html" class="btn-secundario">Ver más</a>
+                    <a href="{{ route('producto') }}" class="btn-secundario">Ver más</a>
                 </div>
             </article>
 
@@ -180,7 +180,7 @@
                     <h3>Agua de Maitake</h3>
                     <p>Agua saborizada con extracto de maitake, con notas herbales y revitalizantes.</p>
                     <span class="price">$5.000</span>
-                    <a href="detalle.html" class="btn-secundario">Ver más</a>
+                    <a href="{{ route('producto') }}" class="btn-secundario">Ver más</a>
                 </div>
             </article>
 
@@ -190,7 +190,7 @@
                     <h3>Limonada Umami</h3>
                     <p>Limonada fresca con un toque de jengibre y albahaca.</p>
                     <span class="price">$4.800</span>
-                    <a href="detalle.html" class="btn-secundario">Ver más</a>
+                    <a href="{{ route('producto') }}" class="btn-secundario">Ver más</a>
                 </div>
             </article>
 
@@ -201,7 +201,7 @@
                     <h3>Cerveza Artesanal Umami</h3>
                     <p>Golden ale infusionada con hongos portobello, suave y equilibrada.</p>
                     <span class="price">$6.800</span>
-                    <a href="detalle.html" class="btn-secundario">Ver más</a>
+                    <a href="{{ route('producto') }}" class="btn-secundario">Ver más</a>
                 </div>
             </article>
 
@@ -220,7 +220,7 @@
                     <h3>Cheesecake Reishi</h3>
                     <p>Cheesecake cremoso con base de galletas integrales y un toque de hongo reishi.</p>
                     <span class="price">$5.200</span>
-                    <a href="detalle.html" class="btn-secundario">Ver más</a>
+                    <a href="{{ route('producto') }}" class="btn-secundario">Ver más</a>
                 </div>
             </article>
 
@@ -230,7 +230,7 @@
                     <h3>Brownie Shiitake</h3>
                     <p>Brownie húmedo con extracto de shiitake, chocolate amargo 70% y nueces.</p>
                     <span class="price">$4.500</span>
-                    <a href="detalle.html" class="btn-secundario">Ver más</a>
+                    <a href="{{ route('producto') }}" class="btn-secundario">Ver más</a>
                 </div>
             </article>
 
@@ -241,7 +241,7 @@
                     <h3>Andina Gluten Free</h3>
                     <p>Medallón de hongos y lentejas, pan de quinoa sin gluten, palta fresca y brotes.</p>
                     <span class="price">$8.500</span>
-                    <a href="detalle.html" class="btn-secundario">Ver más</a>
+                    <a href="{{ route('producto') }}" class="btn-secundario">Ver más</a>
                 </div>
             </article>
 
@@ -251,7 +251,7 @@
                     <h3>Tex Mex Veggie</h3>
                     <p>Portobello especiado, guacamole, maíz asado, pico de gallo y nachos crocantes.</p>
                     <span class="price">$9.200</span>
-                    <a href="detalle.html" class="btn-secundario">Ver más</a>
+                    <a href="{{ route('producto') }}" class="btn-secundario">Ver más</a>
                 </div>
             </article>
         </div>

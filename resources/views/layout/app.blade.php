@@ -14,8 +14,8 @@
     </header>
 
     <main>
-        {{$slot ?? ''}}
-        @yield('content')
+        {{$slot ?? ''}} <!--significa que si hay un slot lo muestre, sino muestre vacio-->
+        @yield('content') <!--significa que si no hay slot, busque en las vistas hijas la seccion content -->
 
     </main>
 

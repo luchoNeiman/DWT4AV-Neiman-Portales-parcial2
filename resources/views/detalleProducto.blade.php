@@ -53,7 +53,7 @@
                         alt="Hamburguesa Mediterránea">
                     <div class="hover-info">
                         <h3>Mediterránea</h3>
-                        <a href="detalle.html" class="btn-secundario">Ver más</a>
+                        <a href="{{ route('producto') }}" class="btn-secundario">Ver más</a>
                     </div>
                 </article>
             </div>
@@ -62,7 +62,7 @@
                     <img src="assets/img/productos/fungi-BBQ-umami-productos.webp" alt="Fungi BBQ">
                     <div class="hover-info">
                         <h3>Fungi BBQ</h3>
-                        <a href="detalle.html" class="btn-secundario">Ver más</a>
+                        <a href="{{ route('producto') }}" class="btn-secundario">Ver más</a>
                     </div>
                 </article>
             </div>
@@ -71,7 +71,7 @@
                     <img src="assets/img/productos/combo-clasico-umami-productos.webp" alt="Combo Clásico">
                     <div class="hover-info">
                         <h3>Combo Clásico</h3>
-                        <a href="detalle.html" class="btn-secundario">Ver más</a>
+                        <a href="{{ route('producto') }}" class="btn-secundario">Ver más</a>
                     </div>
                 </article>
             </div>

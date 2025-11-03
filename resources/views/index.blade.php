@@ -4,7 +4,7 @@
 <!-- Banner -->
 <section class="banner-home text-light">
     <div class="container text-center">
-        <h1 class="ver-menu-home"><a href="catalogo.html" class="btn-primario btn-lg mt-3 fs-4">Ver menú</a>
+        <h1 class="ver-menu-home"><a href="{{ route('catalogo') }}" class="btn-primario btn-lg mt-3 fs-4">Ver menú</a>
         </h1>
     </div>
 </section>
@@ -24,7 +24,7 @@
                     <div class="hover-info">
                         <h3>Hamburguesa Clásica</h3>
                         <p>Preparada con gírgolas frescas y pan artesanal. Saludable y deliciosa.</p>
-                        <a href="detalle.html" class="btn-secundario">Ver más</a>
+                        <a href="{{ route('producto') }}" class="btn-secundario">Ver más</a>
                     </div>
                 </article>
             </div>
@@ -37,7 +37,7 @@
                     <div class="hover-info">
                         <h3>Wrap de Hongos</h3>
                         <p>Ligero, nutritivo y con el sabor umami que buscás.</p>
-                        <a href="detalle.html" class="btn-secundario">Ver más</a>
+                        <a href="{{ route('producto') }}" class="btn-secundario">Ver más</a>
                     </div>
                 </article>
             </div>
@@ -49,7 +49,7 @@
                     <div class="hover-info">
                         <h3>Sal UMAMI</h3>
                         <p>Crocantes, veganos y listos para condimentar.</p>
-                        <a href="detalle.html" class="btn-secundario">Ver más</a>
+                        <a href="{{ route('producto') }}" class="btn-secundario">Ver más</a>
                     </div>
                 </article>
             </div>
@@ -66,7 +66,7 @@
                         <div class="hover-info">
                             <h3>Hamburguesa Clásica</h3>
                             <p>Preparada con gírgolas frescas y pan artesanal. Saludable y deliciosa.</p>
-                            <a href="detalle.html" class="btn-secundario">Ver más</a>
+                            <a href="{{ route('producto') }}" class="btn-secundario">Ver más</a>
                         </div>
                     </article>
                 </div>
@@ -79,7 +79,7 @@
                         <div class="hover-info">
                             <h3>Wrap de Hongos</h3>
                             <p>Ligero, nutritivo y con el sabor umami que buscás.</p>
-                            <a href="detalle.html" class="btn-secundario">Ver más</a>
+                            <a href="{{ route('producto') }}" class="btn-secundario">Ver más</a>
                         </div>
                     </article>
                 </div>
@@ -92,7 +92,7 @@
                         <div class="hover-info">
                             <h3>Sal UMAMI</h3>
                             <p>Crocantes, veganos y listos para condimentar.</p>
-                            <a href="detalle.html" class="btn-secundario">Ver más</a>
+                            <a href="{{ route('producto') }}" class="btn-secundario">Ver más</a>
                         </div>
                     </article>
                 </div>
@@ -127,7 +127,7 @@
             Cada bocado es el resultado de ingredientes seleccionados y un proceso pensado para
             que disfrutes sin culpa, cuidando tu salud y la del planeta.
         </p>
-        <a href="nosotros.html" class="btn-secundario">Conocé más</a>
+        <a href="{{ route('nosotros') }}" class="btn-secundario">Conocé más</a>
     </div>
 </section>
 
@@ -144,7 +144,7 @@
                         <h3>Combo Clásico</h3>
                         <p>Hamburguesa Clásica + Papas Rústicas + Limonada Umami.</p>
                         <span class="price">$11.500</span>
-                        <a href="detalle.html" class="btn-secundario">Ver más</a>
+                        <a href="{{ route('producto') }}" class="btn-secundario">Ver más</a>
                     </div>
                 </article>
             </div>
@@ -158,7 +158,7 @@
                         <h3>Combo Mediterráneo</h3>
                         <p>Hamburguesa Mediterránea + Papas especiadas + Agua Reishi.</p>
                         <span class="price">$12.800</span>
-                        <a href="detalle.html" class="btn-secundario">Ver más</a>
+                        <a href="{{ route('producto') }}" class="btn-secundario">Ver más</a>
                     </div>
                 </article>
             </div>
@@ -171,7 +171,7 @@
                         <h3>Combo Fungi BBQ</h3>
                         <p>Hamburguesa Fungi BBQ + Papas & Salsas + Bebida línea Coca-Cola.</p>
                         <span class="price">$12.600</span>
-                        <a href="detalle.html" class="btn-secundario">Ver más</a>
+                        <a href="{{ route('producto') }}" class="btn-secundario">Ver más</a>
                     </div>
                 </article>
             </div>
@@ -185,7 +185,7 @@
                         <h3>Combo Trufa & Shiitake</h3>
                         <p>Hamburguesa Trufa & Shiitake + Bastones de shiitake crocantes + Agua Maitake.</p>
                         <span class="price">$13.900</span>
-                        <a href="detalle.html" class="btn-secundario">Ver más</a>
+                        <a href="{{ route('producto') }}" class="btn-secundario">Ver más</a>
                     </div>
                 </article>
             </div>
@@ -199,7 +199,7 @@
                         <h3>Combo Spicy Gírgola</h3>
                         <p>Hamburguesa Spicy Gírgola + Bastones de shiitake crocantes + Limonada UMAMI.</p>
                         <span class="price">$12.300</span>
-                        <a href="detalle.html" class="btn-secundario">Ver más</a>
+                        <a href="{{ route('producto') }}" class="btn-secundario">Ver más</a>
                     </div>
                 </article>
             </div>
@@ -213,7 +213,7 @@
                         <h3>Combo Wrap Saludable</h3>
                         <p>Wrap de Hongos + Papas Rústicas + Agua Mineral.</p>
                         <span class="price">$10.900</span>
-                        <a href="detalle.html" class="btn-secundario">Ver más</a>
+                        <a href="{{ route('producto') }}" class="btn-secundario">Ver más</a>
                     </div>
                 </article>
             </div>
@@ -227,7 +227,7 @@
                         <h3>Combo Nuggets Fan</h3>
                         <p>Nuggets de Hongos + Papas & Salsas + Limonada UMAMI.</p>
                         <span class="price">$9.800</span>
-                        <a href="detalle.html" class="btn-secundario">Ver más</a>
+                        <a href="{{ route('producto') }}" class="btn-secundario">Ver más</a>
                     </div>
                 </article>
             </div>
@@ -240,7 +240,7 @@
                         <h3>Combo Dúo</h3>
                         <p>2 Hamburguesas a elección + Papas XL con dips + 2 Bebidas.</p>
                         <span class="price">$22.500</span>
-                        <a href="detalle.html" class="btn-secundario">Ver más</a>
+                        <a href="{{ route('producto') }}" class="btn-secundario">Ver más</a>
                     </div>
                 </article>
             </div>
@@ -255,7 +255,7 @@
                         <p>Wrap de hongos deliciosos, condimentados con sal umami y una cerveza para acompañar.
                             Luego de eso un tiramisú umami de postre.</p>
                         <span class="price">$13.500</span>
-                        <a href="detalle.html" class="btn-secundario">Ver más</a>
+                        <a href="{{ route('producto') }}" class="btn-secundario">Ver más</a>
                     </div>
                 </article>
             </div>
