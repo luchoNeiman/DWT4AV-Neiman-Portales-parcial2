@@ -1,7 +1,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>@yield('titulo', 'UMAMI')</title>
+
+    <meta name="description" content="Descubre UMAMI, la hamburguesería plant-based que redefine el sabor. Ingredientes frescos, recetas únicas y un compromiso con la sostenibilidad.">
+    <meta name="keywords" content="UMAMI, hamburguesas plant-based, comida vegana, restaurante sostenible, gírgolas, shiitake, portobello, fast food saludable">
+
+    <link rel="icon" href="{{ asset('img/UI/logo-umami-green.svg') }}" type="image/svg+xml">
     
     <!-- Bootstrap CSS local -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">

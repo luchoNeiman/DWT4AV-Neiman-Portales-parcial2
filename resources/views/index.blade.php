@@ -4,10 +4,21 @@
 
 @section('content')
 <!-- Banner -->
-<section class="banner-home text-light">
+<!-- <section class="banner-home text-light">
     <div class="container text-center">
         <h1 class="ver-menu-home"><a href="{{ route('catalogo') }}" class="btn-primario btn-lg mt-3 fs-4">Ver menú</a>
         </h1>
+    </div>
+</section> -->
+<section class="banner-home text-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7 col-lg-6">
+                <h1 class="text-umami-cream">EL SABOR <span class="text-umami-cream">UMAMI</span>, <br> AHORA <span class="text-umami-cream">PLANT-BASED</span></h1>
+                <p class="lead my-4 text-umami-cream">Redefinimos la comida rápida. Ingredientes frescos, recetas únicas y un compromiso con la sostenibilidad. <span class="d-none d-md-inline">Descubre el quinto sabor en cada bocado.</span></p>
+                <a href="{{ route('catalogo') }}" class="btn-primario btn-lg">Ver Menú</a>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -19,7 +30,7 @@
         <!-- Grid normal para tablet y desktop -->
         <div class="grid-destacados mx-2 d-none d-sm-grid">
             <!-- Hamburguesa Clásica -->
-          
+
             <div class="grid-main">
                 <article class="hover-card h-100">
                     <img src="assets/img/productos/hamburguesa-clasica-umami-destacados.webp"
@@ -46,7 +57,7 @@
             </div>
 
             <!-- Sal UMAMI -->
-            <!-- <div class="grid-side2">
+            <div class="grid-side2">
                 <article class="hover-card h-100">
                     <img src="assets/img/productos/sal-umami-productos.webp" alt="Sal umami">
                     <div class="hover-info">
@@ -55,7 +66,7 @@
                         <a href="{{ route('producto', 3) }}" class="btn-secundario">Ver más</a>
                     </div>
                 </article>
-            </div> -->
+            </div>
         </div>
 
         <!-- Carousel para mobile -->
@@ -110,6 +121,42 @@
                 data-bs-slide="next">
                 <span class="carousel-control-next-icon"></span>
             </button>
+        </div>
+    </div>
+</section>
+
+<section class="destacados py-5">
+    <div class="container">
+        <div class="row align-items-center mb-4">
+            <div class="col-md-6">
+                <h2 class="titulo-seccion">Destacados de la Semana</h2>
+                <p class="subtitulo-seccion">Nuestros productos estrella, elegidos por vos.</p>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <a href="{{ route('catalogo') }}" class="btn-ver-mas">Ver todo el menú
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <div class="destacados-grid">
+
+            {{-- Bucle 1: Productos Destacados --}}
+            @foreach($destacados as $producto)
+            <article class="card-destacado">
+                <a href="{{ route('producto', ['id' => $producto->producto_id]) }}">
+                    <img src="{{ asset('img/productos/' . $producto->imagen) }}" alt="{{ $producto->nombre }}">
+                    <div class="card-destacado-body">
+                        <h3>{{ $producto->nombre }}</h3>
+                        <span class="btn-secundario-sm">Ver más</span>
+                    </div>
+                </a>
+            </article>
+            @endforeach
+
         </div>
     </div>
 </section>
