@@ -9,7 +9,7 @@
             <!-- Imagen -->
             <figure class="col-md-5">
                 <img src="assets/img/productos/hamburguesa-clasica-umami-destacados.webp"
-                    alt="Hamburguesa Clásica UMAMI" class="img-fluid rounded-4">
+                    alt="Hamburguesa Clásica umami" class="img-fluid rounded-4">
             </figure>
 
             <!-- Información -->

@@ -14,13 +14,17 @@ return new class extends Migration
         Schema::create('productos', function (Blueprint $table) {
             $table->id('producto_id');
             $table->string('nombre', 100);
-            $table->text('descripcion')->nullable(); // nullable() si puede ser opcional
-            $table->unsignedInteger('precio'); // O decimal('precio', 8, 2) si prefieres decimales
-            $table->integer('stock')->default(0); // Valor por defecto
-            // Para claves foráneas (ej: categoría)
-            // $table->foreignId('categoria_id')->constrained('categorias', 'categoria_id');
-            $table->string('imagen')->nullable();
-            $table->timestamps(); // Crea created_at y updated_at automáticamente
+            $table->text('descripcion');
+            $table->unsignedInteger('precio'); // (en centavos para evitar decimales)
+            $table->unsignedInteger('stock')->default(0);
+            
+            // Relación con Categoría (Clave Foránea)
+            $table->foreignId('categoria_id')->constrained('categorias', 'categoria_id');
+
+            $table->string('imagen', 255)->nullable();
+            $table->string('etiqueta', 50)->nullable();
+
+            $table->timestamps(); // Fecha de alta
         });
     }
 

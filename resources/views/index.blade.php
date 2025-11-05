@@ -20,7 +20,7 @@
             <div class="grid-main">
                 <article class="hover-card h-100">
                     <img src="assets/img/productos/hamburguesa-clasica-umami-destacados.webp"
-                        alt="Hamburguesa de hongos clásica UMAMI" class="img-fluid">
+                        alt="Hamburguesa de hongos clásica umami" class="img-fluid">
                     <div class="hover-info">
                         <h3>Hamburguesa Clásica</h3>
                         <p>Preparada con gírgolas frescas y pan artesanal. Saludable y deliciosa.</p>
@@ -45,9 +45,9 @@
             <!-- Sal UMAMI -->
             <div class="grid-side2">
                 <article class="hover-card h-100">
-                    <img src="assets/img/productos/sal-umami-productos.webp" alt="Sal UMAMI">
+                    <img src="assets/img/productos/sal-umami-productos.webp" alt="Sal umami">
                     <div class="hover-info">
-                        <h3>Sal UMAMI</h3>
+                        <h3>Sal umami</h3>
                         <p>Crocantes, veganos y listos para condimentar.</p>
                         <a href="{{ route('producto') }}" class="btn-secundario">Ver más</a>
                     </div>
@@ -62,7 +62,7 @@
                 <div class="carousel-item active">
                     <article class="hover-card">
                         <img src="assets/img/productos/hamburguesa-clasica-umami-destacados.webp"
-                            alt="Hamburguesa Clásica UMAMI" class="d-block w-100">
+                            alt="Hamburguesa Clásica umami" class="d-block w-100">
                         <div class="hover-info">
                             <h3>Hamburguesa Clásica</h3>
                             <p>Preparada con gírgolas frescas y pan artesanal. Saludable y deliciosa.</p>
@@ -87,10 +87,10 @@
                 <!-- Item 3 -->
                 <div class="carousel-item">
                     <article class="hover-card">
-                        <img src="assets/img/productos/sal-umami-productos.webp" alt="Sal UMAMI"
+                        <img src="assets/img/productos/sal-umami-productos.webp" alt="Sal umami"
                             class="d-block w-100">
                         <div class="hover-info">
-                            <h3>Sal UMAMI</h3>
+                            <h3>Sal umami</h3>
                             <p>Crocantes, veganos y listos para condimentar.</p>
                             <a href="{{ route('producto') }}" class="btn-secundario">Ver más</a>
                         </div>
@@ -133,13 +133,13 @@
 
 <section class="py-5">
     <div class="container">
-        <h2 class="text-center mb-5 text-umami">Combos UMAMI</h2>
+        <h2 class="text-center mb-5 text-umami">Combos umami</h2>
         <div class="row g-4 container-combos-home">
             <!-- Combo Clásico -->
             <div class="col-12 col-sm-6 col-md-4">
                 <article class="hover-card">
                     <img src="assets/img/productos/combo-clasico-umami-productos.webp"
-                        alt="Combo Clásico UMAMI">
+                        alt="Combo Clásico umami">
                     <div class="hover-info">
                         <h3>Combo Clásico</h3>
                         <p>Hamburguesa Clásica + Papas Rústicas + Limonada Umami.</p>
@@ -153,7 +153,7 @@
             <div class="col-12 col-sm-6 col-md-4">
                 <article class="hover-card">
                     <img src="assets/img/productos/combo-mediterraneo-umami-productos.webp"
-                        alt="Combo Mediterráneo UMAMI">
+                        alt="Combo Mediterráneo umami">
                     <div class="hover-info">
                         <h3>Combo Mediterráneo</h3>
                         <p>Hamburguesa Mediterránea + Papas especiadas + Agua Reishi.</p>
@@ -197,7 +197,7 @@
                         alt="Combo Spicy Gírgola">
                     <div class="hover-info">
                         <h3>Combo Spicy Gírgola</h3>
-                        <p>Hamburguesa Spicy Gírgola + Bastones de shiitake crocantes + Limonada UMAMI.</p>
+                        <p>Hamburguesa Spicy Gírgola + Bastones de shiitake crocantes + Limonada umami.</p>
                         <span class="price">$12.300</span>
                         <a href="{{ route('producto') }}" class="btn-secundario">Ver más</a>
                     </div>
@@ -225,7 +225,7 @@
                         alt="Combo Nuggets Fan">
                     <div class="hover-info">
                         <h3>Combo Nuggets Fan</h3>
-                        <p>Nuggets de Hongos + Papas & Salsas + Limonada UMAMI.</p>
+                        <p>Nuggets de Hongos + Papas & Salsas + Limonada umami.</p>
                         <span class="price">$9.800</span>
                         <a href="{{ route('producto') }}" class="btn-secundario">Ver más</a>
                     </div>

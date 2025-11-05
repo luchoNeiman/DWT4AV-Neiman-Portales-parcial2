@@ -17,9 +17,9 @@
             que une
             personas, respeta la naturaleza y potencia el sabor real de los ingredientes.</p>
         <div class="d-flex justify-content-center gap-4 flex-wrap">
-            <img src="assets/img/UI/remera-cocinero-umami.webp" alt="Hongos UMAMI"
+            <img src="assets/img/UI/remera-cocinero-umami.webp" alt="Hongos umami"
                 class="img-fluid rounded-5 shadow mt-4">
-            <img src="assets/img/UI/recibos-umami.webp" alt="Recibos UMAMI"
+            <img src="assets/img/UI/recibos-umami.webp" alt="Recibos umami"
                 class="img-fluid rounded-5 shadow mt-4">
         </div>
     </div>
@@ -62,7 +62,7 @@
     <div class="container text-umami">
         <div class="row g-5 align-items-center">
             <div class="col-md-6">
-                <img src="assets/img/UI/comedor-umami.webp" alt="Comedor UMAMI"
+                <img src="assets/img/UI/comedor-umami.webp" alt="Comedor umami"
                     class="img-fluid rounded-5 shadow">
             </div>
             <div class="col-md-6 text-center">
