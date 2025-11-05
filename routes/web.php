@@ -11,9 +11,13 @@ Route::get('/', [PaginaController::class, 'index'])->name('index');
 
 Route::get('/catalogo', [PaginaController::class, 'catalogo'])->name('catalogo');
 
-Route::get('/producto', [PaginaController::class, 'producto'])  //si no funciona, tratar de poner producto/{id}
+Route::get('/producto', [PaginaController::class, 'producto'])
     ->name('producto')
     ->whereNumber('id');
+
+// Route::get('/producto/{id}', [PaginaController::class, 'producto'])
+//     ->name('producto.detalle')
+//     ->whereNumber('id'); // Asegura que el ID sea un número
 
 Route::get('/nosotros', [PaginaController::class, 'nosotros'])->name('nosotros');
 

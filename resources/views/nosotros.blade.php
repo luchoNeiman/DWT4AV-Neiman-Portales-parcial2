@@ -1,5 +1,8 @@
 @extends('layout.app')
 
+@section('titulo', 'Nosotros - UMAMI')
+
+
 @section('content')
 <!-- Banner -->
 <section class="banner-nosotros text-light">

@@ -18,6 +18,7 @@ class Producto extends Model
      */
     protected $fillable = [
         'nombre',
+        'descripcion_corta',
         'descripcion',
         'precio',
         'stock',

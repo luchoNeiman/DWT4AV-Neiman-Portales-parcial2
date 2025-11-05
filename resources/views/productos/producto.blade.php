@@ -1,5 +1,7 @@
 @extends('layout.app')
 
+@section('titulo', $producto->nombre . ' - UMAMI')
+
 @section('content')
 
 <!-- Detalle del producto -->

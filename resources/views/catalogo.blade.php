@@ -1,5 +1,7 @@
 @extends('layout.app')
 
+@section('title', 'Catálogo de Productos - UMAMI')
+
 @section('content')
 
 <!-- Banner -->

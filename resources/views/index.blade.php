@@ -1,5 +1,7 @@
 @extends('layout.app')
 
+@section('titulo', 'Inicio - Sabor Plant-Based - UMAMI')
+
 @section('content')
 <!-- Banner -->
 <section class="banner-home text-light">

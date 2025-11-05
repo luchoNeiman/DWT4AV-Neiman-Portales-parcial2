@@ -1,7 +1,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $title ?? 'UMAMI' }}</title>
+    <title>@yield('titulo', 'UMAMI')</title>
     
     <!-- Bootstrap CSS local -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">

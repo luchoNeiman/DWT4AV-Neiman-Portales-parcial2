@@ -17,6 +17,7 @@ class ProductoSeeder extends Seeder
             // Hamburguesas (categoria_id: 1)
             [
                 'nombre' => 'Clásica Umami',
+                'descripcion_corta' => 'Medallón de gírgolas, cheddar vegano, lechuga, tomate y salsa especial.',
                 'descripcion' => 'Preparada con gírgolas frescas, pan artesanal y condimentos naturales. La versión más equilibrada y sabrosa de una burger plant-based.',
                 'precio' => 7000,
                 'stock' => 25,
@@ -28,6 +29,7 @@ class ProductoSeeder extends Seeder
             ],
             [
                 'nombre' => 'Mediterránea',
+                'descripcion_corta' => 'Hongos sazonados con hierbas mediterráneas, tomate seco y aceitunas.',
                 'descripcion' => 'Inspirada en sabores del Mediterráneo, con tomate seco, aceitunas y especias naturales. Fresca, aromática y ligera.',
                 'precio' => 9200,
                 'stock' => 20,
@@ -39,6 +41,8 @@ class ProductoSeeder extends Seeder
             ],
             [
                 'nombre' => 'Fungi BBQ',
+                'descripcion_corta' => 'Hamburguesa de portobellos grillados con salsa barbacoa casera, cebolla caramelizada y
+                rúcula fresca.',
                 'descripcion' => 'Hongos a la parrilla con salsa barbacoa artesanal. Textura jugosa y sabor ahumado que conquista.',
                 'precio' => 9000,
                 'stock' => 18,
