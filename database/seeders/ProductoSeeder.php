@@ -17,7 +17,7 @@ class ProductoSeeder extends Seeder
             // Hamburguesas (categoria_id: 1)
             [
                 'nombre' => 'Clásica Umami',
-                'descripcion_corta' => 'Medallón de gírgolas, cheddar vegano, lechuga, tomate y salsa especial.',
+                'descripcion_corta' => 'Medallón de gírgolas frescas, queso cheddar vegano, lechuga, tomate, cebolla morada y salsa especial Umami, en pan artesanal de papa.',
                 'descripcion' => 'Preparada con gírgolas frescas, pan artesanal y condimentos naturales. La versión más equilibrada y sabrosa de una burger plant-based.',
                 'precio' => 7000,
                 'stock' => 25,
@@ -29,7 +29,7 @@ class ProductoSeeder extends Seeder
             ],
             [
                 'nombre' => 'Mediterránea',
-                'descripcion_corta' => 'Hongos sazonados con hierbas mediterráneas, tomate seco y aceitunas.',
+                'descripcion_corta' => 'Hongos de estación con tomates secos, espinaca fresca y aderezo de ajo confitado.',
                 'descripcion' => 'Inspirada en sabores del Mediterráneo, con tomate seco, aceitunas y especias naturales. Fresca, aromática y ligera.',
                 'precio' => 9200,
                 'stock' => 20,
@@ -41,8 +41,7 @@ class ProductoSeeder extends Seeder
             ],
             [
                 'nombre' => 'Fungi BBQ',
-                'descripcion_corta' => 'Hamburguesa de portobellos grillados con salsa barbacoa casera, cebolla caramelizada y
-                rúcula fresca.',
+                'descripcion_corta' => 'Hamburguesa de portobellos grillados con salsa barbacoa casera, cebolla caramelizada y rúcula fresca.',
                 'descripcion' => 'Hongos a la parrilla con salsa barbacoa artesanal. Textura jugosa y sabor ahumado que conquista.',
                 'precio' => 9000,
                 'stock' => 18,
@@ -54,6 +53,7 @@ class ProductoSeeder extends Seeder
             ],
             [
                 'nombre' => 'Spicy Gírgola',
+                'descripcion_corta' => 'Gírgolas crocantes con salsa picante de chipotle, jalapeños en rodajas y cebolla crispy.',
                 'descripcion' => 'Gírgolas marinadas en especias picantes y toque ahumado. Energética, audaz y sabrosa.',
                 'precio' => 9500,
                 'stock' => 22,
@@ -65,6 +65,7 @@ class ProductoSeeder extends Seeder
             ],
             [
                 'nombre' => 'Trufa & Shiitake',
+                'descripcion_corta' => 'Medallón de shiitake y gírgolas con crema suave de trufa, rúcula fresca y queso vegano fundido.',
                 'descripcion' => 'Shiitakes salteados y aceite de trufa negra. Una experiencia gourmet intensa y sofisticada.',
                 'precio' => 9.800,
                 'stock' => 15,
@@ -76,6 +77,7 @@ class ProductoSeeder extends Seeder
             ],
             [
                 'nombre' => 'Umami Oriental',
+                'descripcion_corta' => 'Hongos shiitake y portobellos, acompañada de pepino encurtido, salsa de soja dulce, jengibre fresco y mayonesa de wasabi suave en pan artesanal de sésamo.',
                 'descripcion' => 'Gírgolas salteadas con salsa miso y jengibre, cebolla caramelizada, pickles de pepino y una mayonesa umami con toque de sésamo; textura jugosa y perfil claramente oriental pero 100% plant-based.',
                 'precio' => 9800,
                 'stock' => 20,
@@ -87,6 +89,7 @@ class ProductoSeeder extends Seeder
             ],
             [
                 'nombre' => 'Andina Gluten Free',
+                'descripcion_corta' => 'Medallón de hongos y lentejas, pan de quinoa sin gluten, palta fresca y brotes.',
                 'descripcion' => 'Medallón de hongos y lentejas, pan de quinoa sin gluten, palta fresca y brotes. Una opción nutritiva y libre de gluten.',
                 'precio' => 8500,
                 'stock' => 50,
@@ -98,6 +101,7 @@ class ProductoSeeder extends Seeder
             ],
             [
                 'nombre' => 'Tex Mex Veggie',
+                'descripcion_corta' => 'Portobello especiado, guacamole, maíz asado, pico de gallo y nachos crocantes.',
                 'descripcion' => 'Portobello especiado, guacamole, maíz asado, pico de gallo y nachos crocantes. Sabores intensos y vibrantes.',
                 'precio' => 9200,
                 'stock' => 60,
@@ -111,6 +115,7 @@ class ProductoSeeder extends Seeder
             // Wraps (categoria_id: 2)
             [
                 'nombre' => 'Wrap de Hongos',
+                'descripcion_corta' => 'Gírgolas salteadas al wok, vegetales de estación y nuestra salsa especial de hongos que realza cada bocado.',
                 'descripcion' => 'Mix de hongos, vegetales y aderezo de limón y sésamo envueltos en pan integral. Ligero y nutritivo.',
                 'precio' => 6500,
                 'stock' => 25,
@@ -124,6 +129,7 @@ class ProductoSeeder extends Seeder
             // acompañamientos (categoria_id: 3)
             [
                 'nombre' => 'Combo Papas + Salsa Especial',
+                'descripcion_corta' => 'Papas clásicas con salsa Umami de hongos y hierbas frescas.',
                 'descripcion' => 'Porción grande de papas rústicas cortadas a mano servidas con nuestra Salsa Especial UMAMI (base cremosa, ajo rostizado, reducción de miso y toque cítrico). Perfecto para compartir o como acompañamiento premium.',
                 'precio' => 4200,
                 'stock' => 100,
@@ -135,6 +141,7 @@ class ProductoSeeder extends Seeder
             ],
             [
                 'nombre' => 'Papas Rústicas',
+                'descripcion_corta' => 'Papas cortadas a mano, condimentadas con sal ahumada y romero.',
                 'descripcion' => 'Cortadas a mano, cocidas al horno y sazonadas con sal UMAMI. Crocantes por fuera, suaves por dentro.',
                 'precio' => 3500,
                 'stock' => 40,
@@ -146,6 +153,7 @@ class ProductoSeeder extends Seeder
             ],
             [
                 'nombre' => 'Bastones de Shiitake Crocantes',
+                'descripcion_corta' => 'Bastones de hongos shiitake apanados con mix de semillas, acompañados con alioli de ajo asado.',
                 'descripcion' => 'Shiitakes empanizados y crocantes. Perfectos para acompañar o picar solo.',
                 'precio' => 4500,
                 'stock' => 30,
@@ -159,6 +167,7 @@ class ProductoSeeder extends Seeder
             //condimentos (categoria_id: 4)
             [
                 'nombre' => 'Sal umami',
+                'descripcion_corta' => 'Sal marina infusionada con hongos deshidratados, diseñada para potenciar el sabor natural de cada plato con un toque único y sofisticado.',
                 'descripcion' => 'Mezcla artesanal de sales marinas y hongos deshidratados. Potencia cualquier plato naturalmente.',
                 'precio' => 2500,
                 'stock' => 50,
@@ -172,6 +181,7 @@ class ProductoSeeder extends Seeder
             // Bebidas (categoria_id: 5)
             [
                 'nombre' => 'Limonada umami',
+                'descripcion_corta' => 'Limonada fresca con un toque de jengibre y albahaca.',
                 'descripcion' => 'Refrescante, casera y herbal. Ideal para equilibrar sabores intensos.',
                 'precio' => 4800,
                 'stock' => 45,
@@ -183,6 +193,7 @@ class ProductoSeeder extends Seeder
             ],
             [
                 'nombre' => 'Agua Reishi',
+                'descripcion_corta' => 'Infusión refrescante de hongos reishi con toques cítricos, energizante y natural.',
                 'descripcion' => 'Agua funcional con extracto de Reishi, antioxidante y relajante.',
                 'precio' => 5000,
                 'stock' => 40,
@@ -194,6 +205,7 @@ class ProductoSeeder extends Seeder
             ],
             [
                 'nombre' => 'Agua Maitake',
+                'descripcion_corta' => 'Agua saborizada con extracto de maitake, con notas herbales y revitalizantes.',
                 'descripcion' => 'Bebida infusionada con Maitake, ideal para fortalecer el sistema inmune.',
                 'precio' => 5000,
                 'stock' => 40,
@@ -205,6 +217,7 @@ class ProductoSeeder extends Seeder
             ],
             [
                 'nombre' => 'Cerveza Artesanal Umami',
+                'descripcion_corta' => 'Golden ale infusionada con hongos portobello, suave y equilibrada.',
                 'descripcion' => 'Cerveza ligera y fresca que complementa perfectamente los sabores de hongos.',
                 'precio' => 6800,
                 'stock' => 25,
@@ -218,6 +231,7 @@ class ProductoSeeder extends Seeder
             //postres (categoria_id: 6)
             [
                 'nombre' => 'Brownie shiitake',
+                'descripcion_corta' => 'Brownie húmedo con extracto de shiitake, chocolate amargo 70% y nueces.',
                 'descripcion' => 'Delicioso brownie vegano con polvo de hongos adaptógenos. Dulce, saludable y nutritivo.',
                 'precio' => 4500,
                 'stock' => 30,
@@ -229,6 +243,7 @@ class ProductoSeeder extends Seeder
             ],
             [
                 'nombre' => 'Cheesecake de anacardos y reishi',
+                'descripcion_corta' => 'Cheesecake cremoso con base de galletas integrales y un toque de hongo reishi.',
                 'descripcion' => 'Postre cremoso y sin lácteos, infusionado con Reishi. Sabor suave y textura aterciopelada.',
                 'precio' => 5200,
                 'stock' => 20,
@@ -242,6 +257,7 @@ class ProductoSeeder extends Seeder
             // Combos (categoria_id: 7)
             [
                 'nombre' => 'Combo Clásico umami',
+                'descripcion_corta' => 'Hamburguesa Clásica + Papas Rústicas + Limonada Umami.',
                 'descripcion' => 'Hamburguesa Clásica + Papas Rústicas + Limonada UMAMI. La experiencia base de UMAMI.',
                 'precio' => 11500,
                 'stock' => 25,
@@ -253,6 +269,7 @@ class ProductoSeeder extends Seeder
             ],
             [
                 'nombre' => 'Combo Mediterráneo',
+                'descripcion_corta' => 'Hamburguesa Mediterránea + Papas especiadas + Agua Reishi.',
                 'descripcion' => 'Hamburguesa Mediterránea + Papas especiadas + Agua Reishi. Ligero y fresco.',
                 'precio' => 12800,
                 'stock' => 20,
@@ -264,6 +281,7 @@ class ProductoSeeder extends Seeder
             ],
             [
                 'nombre' => 'Combo Fungi BBQ',
+                'descripcion_corta' => 'Hamburguesa Fungi BBQ + Papas & Salsas + Bebida línea Coca-Cola.',
                 'descripcion' => 'Hamburguesa Fungi BBQ + Papas & Salsas + Bebida línea Coca-Cola. Intenso y ahumado.',
                 'precio' => 12600,
                 'stock' => 22,
@@ -275,6 +293,7 @@ class ProductoSeeder extends Seeder
             ],
             [
                 'nombre' => 'Combo Trufa & Shiitake',
+                'descripcion_corta' => 'Hamburguesa Trufa & Shiitake + Bastones de shiitake crocantes + Agua Maitake.',
                 'descripcion' => 'Hamburguesa Trufa & Shiitake + Bastones Crocantes + Agua Maitake. Gourmet y sofisticado.',
                 'precio' => 13900,
                 'stock' => 18,
@@ -286,6 +305,7 @@ class ProductoSeeder extends Seeder
             ],
             [
                 'nombre' => 'Combo Spicy Gírgola',
+                'descripcion_corta' => 'Hamburguesa Spicy Gírgola + Bastones de shiitake crocantes + Limonada umami.',
                 'descripcion' => 'Hamburguesa Spicy Gírgola + Bastones Crocantes + Limonada UMAMI. Picante y energético.',
                 'precio' => 12300,
                 'stock' => 20,
@@ -297,6 +317,7 @@ class ProductoSeeder extends Seeder
             ],
             [
                 'nombre' => 'Combo Wrap Saludable',
+                'descripcion_corta' => 'Wrap de Hongos + Papas Rústicas + Agua Mineral.',
                 'descripcion' => 'Wrap de Hongos + Papas Rústicas + Agua Mineral. Liviano y fresco.',
                 'precio' => 10900,
                 'stock' => 28,
@@ -308,6 +329,7 @@ class ProductoSeeder extends Seeder
             ],
             [
                 'nombre' => 'Combo Nuggets Fan',
+                'descripcion_corta' => 'Nuggets de Hongos + Papas & Salsas + Limonada umami.',
                 'descripcion' => 'Nuggets de Hongos + Papas & Salsas + Limonada UMAMI. Divertido y crocante.',
                 'precio' => 9800,
                 'stock' => 30,
@@ -319,6 +341,7 @@ class ProductoSeeder extends Seeder
             ],
             [
                 'nombre' => 'Combo Dúo',
+                'descripcion_corta' => '2 Hamburguesas a elección + Papas XL con dips + 2 Bebidas.',
                 'descripcion' => '2 Hamburguesas a elección + Papas XL + 2 bebidas. Ideal para compartir.',
                 'precio' => 22500,
                 'stock' => 15,
@@ -330,7 +353,8 @@ class ProductoSeeder extends Seeder
             ],
             [
                 'nombre' => 'Combo Wrap y Sal',
-                'descripcion' => 'Wrap de Hongos + Sal UMAMI + Cerveza + Tiramisú. Completo y equilibrado.',
+                'descripcion_corta' => 'Wrap de hongos deliciosos, condimentados con sal umami y una cerveza para acompañar. Luego de eso un brownie umami de postre.',
+                'descripcion' => 'Wrap de Hongos + Sal UMAMI + Cerveza + Brownie. Completo y equilibrado.',
                 'precio' => 13500,
                 'stock' => 18,
                 'categoria_id' => 7,

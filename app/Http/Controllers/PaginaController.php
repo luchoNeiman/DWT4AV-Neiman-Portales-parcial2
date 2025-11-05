@@ -54,18 +54,17 @@ class PaginaController extends Controller
         return view('contacto');
     }
 
-    // Renombrado de 'detalleProducto' a 'productoDetalle' por consistencia
     public function producto(int $id)
     {
         // Busca el producto por ID o falla con 404
         $producto = Producto::with('categoria')->findOrFail($id);
-
+        
         // Buscar productos relacionados (ej: de la misma categoría, excluyendo el actual)
         $relacionados = Producto::where('categoria_id', $producto->categoria_id)
-            ->where('producto_id', '!=', $id)
-            ->limit(3)
-            ->get();
-
+        ->where('producto_id', '!=', $id)
+        ->limit(3)
+        ->get();
+        
         // Renombra la vista a la nueva estructura
         return view('productos.producto', [
             'producto' => $producto,
