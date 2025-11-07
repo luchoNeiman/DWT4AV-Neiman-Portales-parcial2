@@ -310,7 +310,7 @@ class ProductoSeeder extends Seeder
                 'precio' => 12300,
                 'stock' => 20,
                 'categoria_id' => 7,
-                'imagen' => 'combo-spicy-girgola-umami-productos.webp',
+                'imagen' => 'combo-spicy-gírgola-umami-productos.webp',
                 'etiqueta' => 'Picante',
                 'created_at' => now(),
                 'updated_at' => now(),

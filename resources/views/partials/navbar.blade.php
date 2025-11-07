@@ -19,12 +19,7 @@
                 <li class="nav-item"><a class="nav-link btn-secundario rounded mx-2" href="login.html">Iniciar
                         sesión</a></li>
 
-                <!-- Perfil -->
-                <li class="nav-item ms-2">
-                    <a class="nav-link text-umami-cream" href="perfil.html" aria-label="Perfil">
-                        <i class="bi bi-person-circle fs-5"></i>
-                    </a>
-                </li>
+
                 <!-- Separador -->
                 <li class="vr mx-2 d-none d-lg-block"> </li>
 
@@ -37,6 +32,13 @@
                             class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-cream text-umami">
                             0
                         </span>
+                    </a>
+                </li>
+
+                <!-- Perfil -->
+                <li class="nav-item ms-2">
+                    <a class="nav-link text-umami-cream" href="perfil.html" aria-label="Perfil">
+                        <i class="bi bi-person-circle fs-5"></i>
                     </a>
                 </li>
             </ul>

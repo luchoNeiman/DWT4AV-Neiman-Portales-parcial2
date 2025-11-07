@@ -374,15 +374,6 @@ footer {
 }
 
 
-
-
-
-
-
-
-
-
-
 /* ---------------- HOVER DE LOS PRODUCTOS ---------------- */
 .hover-card {
     position: relative;
@@ -1052,12 +1043,13 @@ footer {
         height: 60vh;
     }
 
-    .container-combos-home .hover-card img {
-        height: 200px;
+    .banner-home .banner-content h1 {
+        font-size: clamp(1.1rem, 2.2vw + 0.2rem, 2.4rem);
     }
 
-    .container-combos-home .hover-card .hover-info {
-        min-height: 150px;
+    .banner-home .banner-content p {
+        font-size: clamp(0.85rem, 1.2vw + 0.05rem, 1rem);
+        margin-bottom: 0.6rem;
     }
 
     /* ---------------- MENÚ ---------------- */

@@ -4,17 +4,12 @@
 
 @section('content')
 <!-- Banner -->
-<!-- <section class="banner-home text-light">
-    <div class="container text-center">
-        <h1 class="ver-menu-home"><a href="{{ route('catalogo') }}" class="btn-primario btn-lg mt-3 fs-4">Ver menú</a>
-        </h1>
-    </div>
-</section> -->
-<section class="banner-home text-light">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-7 col-lg-6">
-                <h1 class="text-umami-cream">EL SABOR <span class="text-umami-cream">UMAMI</span>, <br> AHORA <span class="text-umami-cream">PLANT-BASED</span></h1>
+<section class="banner-home text-light align-items-center">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <!-- oculto en mobile: texto y botón -->
+            <div class="col-md-7 col-lg-6 d-none d-md-block banner-content">
+                <h1 class="text-umami-cream">EL SABOR <span class="text-umami-cream">UMAMI</span>, AHORA <span class="text-umami-cream">PLANT-BASED</span></h1>
                 <p class="lead my-4 text-umami-cream">Redefinimos la comida rápida. Ingredientes frescos, recetas únicas y un compromiso con la sostenibilidad. <span class="d-none d-md-inline">Descubre el quinto sabor en cada bocado.</span></p>
                 <a href="{{ route('catalogo') }}" class="btn-primario btn-lg">Ver Menú</a>
             </div>
@@ -29,87 +24,37 @@
 
         <!-- Grid normal para tablet y desktop -->
         <div class="grid-destacados mx-2 d-none d-sm-grid">
-            <!-- Hamburguesa Clásica -->
-
-            <div class="grid-main">
+            @foreach($destacados as $index => $producto)
+            <div class="{{ $index === 0 ? 'grid-main' : ($index === 1 ? 'grid-side1' : 'grid-side2') }}">
                 <article class="hover-card h-100">
-                    <img src="assets/img/productos/hamburguesa-clasica-umami-destacados.webp"
-                        alt="Hamburguesa de hongos clásica umami" class="img-fluid">
+                    <img src="{{ asset('img/productos/' . $producto->imagen) }}"
+                        alt="{{ $producto->nombre }}" class="img-fluid">
                     <div class="hover-info">
-                        <h3>Hamburguesa Clásica</h3>
-                        <p>Preparada con gírgolas frescas y pan artesanal. Saludable y deliciosa.</p>
-                        <a href="{{ route('producto', 1) }}" class="btn-secundario">Ver más</a>
+                        <h3>{{ $producto->nombre }}</h3>
+                        <p>{{ $producto->descripcion_corta ?: \Illuminate\Support\Str::limit($producto->descripcion, 120) }}</p>
+                        <a href="{{ route('producto', $producto->producto_id) }}" class="btn-secundario">Ver más</a>
                     </div>
                 </article>
             </div>
-
-            <!-- wrap de hongos -->
-            <div class="grid-side1">
-                <article class="hover-card h-100">
-                    <img src="assets/img/productos/wrap-de-hongos-umami-productos.webp"
-                        alt="Wrap vegetariano de hongos">
-                    <div class="hover-info">
-                        <h3>Wrap de Hongos</h3>
-                        <p>Ligero, nutritivo y con el sabor umami que buscás.</p>
-                        <a href="{{ route('producto', 2) }}" class="btn-secundario">Ver más</a>
-                    </div>
-                </article>
-            </div>
-
-            <!-- Sal UMAMI -->
-            <div class="grid-side2">
-                <article class="hover-card h-100">
-                    <img src="assets/img/productos/sal-umami-productos.webp" alt="Sal umami">
-                    <div class="hover-info">
-                        <h3>Sal umami</h3>
-                        <p>Crocantes, veganos y listos para condimentar.</p>
-                        <a href="{{ route('producto', 3) }}" class="btn-secundario">Ver más</a>
-                    </div>
-                </article>
-            </div>
+            @endforeach
         </div>
 
         <!-- Carousel para mobile -->
         <div id="carouselDestacados" class="carousel slide d-sm-none" data-bs-ride="carousel">
             <div class="carousel-inner">
-                <!-- Item 1 -->
-                <div class="carousel-item active">
+                @foreach($destacados as $index => $producto)
+                <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
                     <article class="hover-card">
-                        <img src="assets/img/productos/hamburguesa-clasica-umami-destacados.webp"
-                            alt="Hamburguesa Clásica umami" class="d-block w-100">
+                        <img src="{{ asset('img/productos/' . $producto->imagen) }}"
+                            alt="{{ $producto->nombre }}" class="d-block w-100">
                         <div class="hover-info">
-                            <h3>Hamburguesa Clásica</h3>
-                            <p>Preparada con gírgolas frescas y pan artesanal. Saludable y deliciosa.</p>
-                            <a href="{{ route('producto', 4) }}" class="btn-secundario">Ver más</a>
+                            <h3>{{ $producto->nombre }}</h3>
+                            <p>{{ $producto->descripcion_corta ?: \Illuminate\Support\Str::limit($producto->descripcion, 120) }}</p>
+                            <a href="{{ route('producto', $producto->producto_id) }}" class="btn-secundario">Ver más</a>
                         </div>
                     </article>
                 </div>
-
-                <!-- Item 2 -->
-                <div class="carousel-item">
-                    <article class="hover-card">
-                        <img src="assets/img/productos/wrap-de-hongos-umami-productos.webp" alt="Wrap de Hongos"
-                            class="d-block w-100">
-                        <div class="hover-info">
-                            <h3>Wrap de Hongos</h3>
-                            <p>Ligero, nutritivo y con el sabor umami que buscás.</p>
-                            <a href="{{ route('producto', 5) }}" class="btn-secundario">Ver más</a>
-                        </div>
-                    </article>
-                </div>
-
-                <!-- Item 3 -->
-                <div class="carousel-item">
-                    <article class="hover-card">
-                        <img src="assets/img/productos/sal-umami-productos.webp" alt="Sal umami"
-                            class="d-block w-100">
-                        <div class="hover-info">
-                            <h3>Sal umami</h3>
-                            <p>Crocantes, veganos y listos para condimentar.</p>
-                            <a href="{{ route('producto', 6) }}" class="btn-secundario">Ver más</a>
-                        </div>
-                    </article>
-                </div>
+                @endforeach
             </div>
 
             <!-- Controles -->
@@ -121,42 +66,6 @@
                 data-bs-slide="next">
                 <span class="carousel-control-next-icon"></span>
             </button>
-        </div>
-    </div>
-</section>
-
-<section class="destacados py-5">
-    <div class="container">
-        <div class="row align-items-center mb-4">
-            <div class="col-md-6">
-                <h2 class="titulo-seccion">Destacados de la Semana</h2>
-                <p class="subtitulo-seccion">Nuestros productos estrella, elegidos por vos.</p>
-            </div>
-            <div class="col-md-6 text-md-end">
-                <a href="{{ route('catalogo') }}" class="btn-ver-mas">Ver todo el menú
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                        <polyline points="12 5 19 12 12 19"></polyline>
-                    </svg>
-                </a>
-            </div>
-        </div>
-
-        <div class="destacados-grid">
-
-            {{-- Bucle 1: Productos Destacados --}}
-            @foreach($destacados as $producto)
-            <article class="card-destacado">
-                <a href="{{ route('producto', ['id' => $producto->producto_id]) }}">
-                    <img src="{{ asset('img/productos/' . $producto->imagen) }}" alt="{{ $producto->nombre }}">
-                    <div class="card-destacado-body">
-                        <h3>{{ $producto->nombre }}</h3>
-                        <span class="btn-secundario-sm">Ver más</span>
-                    </div>
-                </a>
-            </article>
-            @endforeach
-
         </div>
     </div>
 </section>
@@ -181,11 +90,11 @@
     </div>
 </section>
 
-<section class="py-5">
+<!-- <section class="py-5">
     <div class="container">
         <h2 class="text-center mb-5 text-umami">Combos umami</h2>
         <div class="row g-4 container-combos-home">
-            <!-- Combo Clásico -->
+            Combo Clásico
             <div class="col-12 col-sm-6 col-md-4">
                 <article class="hover-card">
                     <img src="assets/img/productos/combo-clasico-umami-productos.webp"
@@ -199,7 +108,7 @@
                 </article>
             </div>
 
-            <!-- Combo Mediterráneo -->
+            Combo Mediterráneo
             <div class="col-12 col-sm-6 col-md-4">
                 <article class="hover-card">
                     <img src="assets/img/productos/combo-mediterraneo-umami-productos.webp"
@@ -213,7 +122,7 @@
                 </article>
             </div>
 
-            <!-- Combo Fungi BBQ -->
+            Combo Fungi BBQ
             <div class="col-12 col-sm-6 col-md-4">
                 <article class="hover-card">
                     <img src="assets/img/productos/combo-fungi-bbq-umami-productos.webp" alt="Combo Fungi BBQ">
@@ -226,7 +135,7 @@
                 </article>
             </div>
 
-            <!-- Combo Trufa & Shiitake -->
+            Combo Trufa & Shiitake
             <div class="col-12 col-sm-6 col-md-4">
                 <article class="hover-card">
                     <img src="assets/img/productos/combo-trufa-shiitake-umami-productos.webp"
@@ -240,7 +149,7 @@
                 </article>
             </div>
 
-            <!-- Combo Spicy Gírgola -->
+            Combo Spicy Gírgola
             <div class="col-12 col-sm-6 col-md-4">
                 <article class="hover-card">
                     <img src="assets/img/productos/combo-spicy-gírgola-umami-productos.webp"
@@ -254,7 +163,7 @@
                 </article>
             </div>
 
-            <!-- Combo Wrap Saludable -->
+            Combo Wrap Saludable
             <div class="col-12 col-sm-6 col-md-4">
                 <article class="hover-card">
                     <img src="assets/img/productos/combo-wrap-saludable-umami-productos.webp"
@@ -268,7 +177,7 @@
                 </article>
             </div>
 
-            <!-- Combo Nuggets Fan -->
+            Combo Nuggets Fan
             <div class="col-12 col-sm-6 col-md-4">
                 <article class="hover-card">
                     <img src="assets/img/productos/combo-nuggets-fan-umami-productos.webp"
@@ -282,7 +191,7 @@
                 </article>
             </div>
 
-            <!-- Combo Dúo -->
+            Combo Dúo
             <div class="col-12 col-sm-6 col-md-4">
                 <article class="hover-card">
                     <img src="assets/img/productos/combo-duo-umami-productos.webp" alt="Combo Dúo">
@@ -295,7 +204,7 @@
                 </article>
             </div>
 
-            <!-- Combo sal y wrap (texto corregido) -->
+            Combo sal y wrap (texto corregido)
             <div class="col-12 col-sm-6 col-md-4">
                 <article class="hover-card">
                     <img src="assets/img/productos/combo-sobres-cerveza-postre-umami-productos.webp"
@@ -309,6 +218,35 @@
                     </div>
                 </article>
             </div>
+        </div>
+    </div>
+</section> -->
+
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5 text-umami">Combos umami</h2>
+        <div class="row g-4 container-combos-home">
+            @foreach($combos as $combo)
+            <div class="col-12 col-sm-6 col-md-4">
+                <article class="hover-card">
+                    @php
+                        $imgName = $combo->imagen ?? 'placeholder.webp';
+                        $imgPath = public_path('img/productos/' . $imgName);
+                        $imgUrl = file_exists($imgPath)
+                            ? asset('img/productos/' . $imgName)
+                            : asset('img/productos/placeholder.webp');
+                    @endphp
+
+                    <img src="{{ $imgUrl }}" alt="{{ $combo->nombre }}">
+                    <div class="hover-info">
+                        <h3>{{ $combo->nombre }}</h3>
+                        <p>{{ trim($combo->descripcion_corta) !== '' ? $combo->descripcion_corta : \Illuminate\Support\Str::limit($combo->descripcion, 120) }}</p>
+                        <span class="price">${{ number_format($combo->precio, 0, ',', '.') }}</span>
+                        <a href="{{ route('producto', $combo->producto_id) }}" class="btn-secundario">Ver más</a>
+                    </div>
+                </article>
+            </div>
+            @endforeach
         </div>
     </div>
 </section>
