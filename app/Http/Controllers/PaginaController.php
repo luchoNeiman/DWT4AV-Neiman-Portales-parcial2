@@ -15,12 +15,6 @@ class PaginaController extends Controller
             ->orderByRaw('FIELD(producto_id,' . implode(',', $destacadoIds) . ')')
             ->get();
 
-        // // Combos (IDs que estaban en la maqueta)
-        // $comboIds = [20, 21, 22, 23, 24, 25, 26, 27, 28];
-        // $combos = Producto::whereIn('producto_id', $comboIds)
-        //     ->orderByRaw('FIELD(producto_id,' . implode(',', $comboIds) . ')')
-        //     ->get();
-
         // Obtener combos por categoría (7), manteniendo orden por nombre o id si necesitás
         $combos = Producto::where('categoria_id', 7)->orderBy('producto_id')->get();
 

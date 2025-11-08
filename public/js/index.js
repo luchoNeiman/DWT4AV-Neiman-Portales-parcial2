@@ -184,10 +184,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-
-
-
-
 // Loader con animación de hongo rebotando
 document.addEventListener("DOMContentLoaded", () => {
     const loader = document.getElementById("loader");
@@ -215,3 +211,78 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+
+// * Función global para mostrar mensajes flotantes (usa Bootstrap classes) */
+window.showFloatingMessage = window.showFloatingMessage || function (message, type = 'success') {
+    try {
+        const container = document.getElementById('floating-messages');
+        if (!container || !message) return;
+
+        const alert = document.createElement('div');
+        alert.className = `alert alert-${type} alert-dismissible fade show`;
+        alert.setAttribute('role', 'alert');
+        alert.innerHTML = `
+            <div>${message}</div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        `;
+
+        // insertar al inicio (para que los más recientes queden arriba)
+        container.insertBefore(alert, container.firstChild);
+
+        // auto cierre a los 5 segundos
+        setTimeout(() => {
+            try {
+                // usar clases de bootstrap para animar el cierre
+                alert.classList.remove('show');
+                alert.classList.add('fade');
+                // remover después de la transición
+                setTimeout(() => alert.remove(), 200);
+            } catch (e) { alert.remove(); }
+        }, 5000);
+    } catch (e) {
+        console.error('showFloatingMessage error:', e);
+    }
+};
+
+// Mostrar mensajes de sesión (si existieron) — ejecuta cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', function () {
+    try {
+        if (window.__flash) {
+            if (window.__flash.message) {
+                // showFloatingMessage debe estar definido globalmente (en app.blade o aquí)
+                if (typeof showFloatingMessage === 'function') {
+                    showFloatingMessage(window.__flash.message, 'success');
+                } else {
+                    // fallback sencillo si no existe la función
+                    const fm = document.getElementById('floating-messages');
+                    if (fm) {
+                        const d = document.createElement('div');
+                        d.className = 'alert alert-success';
+                        d.innerText = window.__flash.message;
+                        fm.appendChild(d);
+                        setTimeout(() => d.remove(), 5000);
+                    }
+                }
+            }
+            if (window.__flash.error) {
+                if (typeof showFloatingMessage === 'function') {
+                    showFloatingMessage(window.__flash.error, 'danger');
+                } else {
+                    const fm = document.getElementById('floating-messages');
+                    if (fm) {
+                        const d = document.createElement('div');
+                        d.className = 'alert alert-danger';
+                        d.innerText = window.__flash.error;
+                        fm.appendChild(d);
+                        setTimeout(() => d.remove(), 5000);
+                    }
+                }
+            }
+            // limpiar para evitar duplicados en navegación JS
+            window.__flash = null;
+        }
+    } catch (e) {
+        // no romper la app por si hay error
+        console.error('Flash render error:', e);
+    }
+});

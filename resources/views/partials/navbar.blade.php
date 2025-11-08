@@ -10,36 +10,49 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto align-items-center">
-                <li class="nav-item"><a class="nav-link text-umami-cream {{ request()->routeIs('index') ? 'active' : '' }} " href="{{ route('index') }}">Inicio</a>
-                </li>
+                <li class="nav-item"><a class="nav-link text-umami-cream {{ request()->routeIs('index') ? 'active' : '' }}" href="{{ route('index') }}">Inicio</a></li>
                 <li class="nav-item"><a class="nav-link text-umami-cream {{ request()->routeIs('catalogo') ? 'active' : '' }}" href="{{ route('catalogo') }}">Menú</a></li>
                 <li class="nav-item"><a class="nav-link text-umami-cream {{ request()->routeIs('nosotros') ? 'active' : '' }}" href="{{ route('nosotros') }}">Nosotros</a></li>
                 <li class="nav-item"><a class="nav-link text-umami-cream {{ request()->routeIs('contacto') ? 'active' : '' }}" href="{{ route('contacto') }}">Contacto</a></li>
                 <li class="nav-item"><a class="nav-link text-umami-cream" href="admin/login.html">Admin</a></li>
-                <li class="nav-item"><a class="nav-link btn-secundario rounded mx-2" href="login.html">Iniciar
-                        sesión</a></li>
 
+                <!-- Mostrar "Iniciar sesión" si no está autenticado, sino dropdown con Perfil + Cerrar sesión -->
+                @guest
+                <li class="nav-item"><a class="nav-link btn-secundario rounded mx-2" href="{{ route('auth.showLogin') }}">Iniciar sesión</a></li>
+                @endguest
+
+                @auth
+                <li class="nav-item dropdown ms-2">
+                    <a class="nav-link dropdown-toggle text-umami-cream d-flex align-items-center" href="#" id="navbarPerfil" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-person-circle fs-5 me-1"></i>
+                        <span class="d-none d-lg-inline">{{ Auth::user()->name }}</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarPerfil">
+                        <li><a class="dropdown-item" href="perfil.html">Mi perfil</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <form method="POST" action="{{ route('auth.logout') }}">
+                                @csrf
+                                <button type="submit" class="dropdown-item">Cerrar sesión</button>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+                @endauth
 
                 <!-- Separador -->
                 <li class="vr mx-2 d-none d-lg-block"> </li>
 
                 <!-- Carrito -->
                 <li class="nav-item position-relative">
-                    <a class="nav-link text-umami-cream" href="carrito.html" aria-label="Carrito">
-                        <i class="bi bi-cart fs-5"></i>
-                        <!-- Contador del carrito -->
-                        <span
-                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-cream text-umami">
-                            0
-                        </span>
-                    </a>
-                </li>
 
-                <!-- Perfil -->
+                    <!-- Perfil
                 <li class="nav-item ms-2">
                     <a class="nav-link text-umami-cream" href="perfil.html" aria-label="Perfil">
                         <i class="bi bi-person-circle fs-5"></i>
-                    </a>
+                    </a> -->
                 </li>
             </ul>
         </div>

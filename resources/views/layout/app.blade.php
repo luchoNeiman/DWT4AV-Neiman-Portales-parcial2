@@ -13,13 +13,23 @@
         @include('partials.navbar')
     </header>
 
-    <main>
-        {{$slot ?? ''}} <!--significa que si hay un slot lo muestre, sino muestre vacio-->
-        @yield('content') <!--significa que si no hay slot, busque en las vistas hijas la seccion content -->
+    <!-- Contenedor para mensajes flotantes -->
+    <div id="floating-messages" style="position: fixed; top: 20px; right: 20px; z-index: 1050;"></div>
 
+    <main>
+        {{$slot ?? ''}}
+        @yield('content')
     </main>
 
     @include('partials.footer')
+
+    {{-- Pasar mensajes de sesión a JS de forma segura --}}
+    <script>
+        window.__flash = {
+            message: {!! json_encode(session('feedback.message')) !!},
+            error: {!! json_encode(session('feedback.error')) !!}
+        };
+    </script>
 </body>
 
 </html>

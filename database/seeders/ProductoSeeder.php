@@ -8,14 +8,12 @@ use Illuminate\Support\Facades\DB;
 
 class ProductoSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         DB::table('productos')->insert([
             // Hamburguesas (categoria_id: 1)
             [
+                'producto_id' => 1,
                 'nombre' => 'Clásica Umami',
                 'descripcion_corta' => 'Medallón de gírgolas frescas, queso cheddar vegano, lechuga, tomate, cebolla morada y salsa especial Umami, en pan artesanal de papa.',
                 'descripcion' => 'Preparada con gírgolas frescas, pan artesanal y condimentos naturales. La versión más equilibrada y sabrosa de una burger plant-based.',
@@ -28,6 +26,7 @@ class ProductoSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'producto_id' => 2,
                 'nombre' => 'Mediterránea',
                 'descripcion_corta' => 'Hongos de estación con tomates secos, espinaca fresca y aderezo de ajo confitado.',
                 'descripcion' => 'Inspirada en sabores del Mediterráneo, con tomate seco, aceitunas y especias naturales. Fresca, aromática y ligera.',
@@ -40,6 +39,7 @@ class ProductoSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'producto_id' => 3,
                 'nombre' => 'Fungi BBQ',
                 'descripcion_corta' => 'Hamburguesa de portobellos grillados con salsa barbacoa casera, cebolla caramelizada y rúcula fresca.',
                 'descripcion' => 'Hongos a la parrilla con salsa barbacoa artesanal. Textura jugosa y sabor ahumado que conquista.',
@@ -52,18 +52,20 @@ class ProductoSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'producto_id' => 4,
                 'nombre' => 'Spicy Gírgola',
                 'descripcion_corta' => 'Gírgolas crocantes con salsa picante de chipotle, jalapeños en rodajas y cebolla crispy.',
                 'descripcion' => 'Gírgolas marinadas en especias picantes y toque ahumado. Energética, audaz y sabrosa.',
                 'precio' => 9500,
                 'stock' => 22,
                 'categoria_id' => 1,
-                'imagen' => 'hamburguesa-spicy-girgola-umami-productos.webp',
+                'imagen' => 'spicy-girgola-umami-productos.webp',
                 'etiqueta' => 'Picante',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
+                'producto_id' => 5,
                 'nombre' => 'Trufa & Shiitake',
                 'descripcion_corta' => 'Medallón de shiitake y gírgolas con crema suave de trufa, rúcula fresca y queso vegano fundido.',
                 'descripcion' => 'Shiitakes salteados y aceite de trufa negra. Una experiencia gourmet intensa y sofisticada.',
@@ -76,6 +78,7 @@ class ProductoSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'producto_id' => 6,
                 'nombre' => 'Umami Oriental',
                 'descripcion_corta' => 'Hongos shiitake y portobellos, acompañada de pepino encurtido, salsa de soja dulce, jengibre fresco y mayonesa de wasabi suave en pan artesanal de sésamo.',
                 'descripcion' => 'Gírgolas salteadas con salsa miso y jengibre, cebolla caramelizada, pickles de pepino y una mayonesa umami con toque de sésamo; textura jugosa y perfil claramente oriental pero 100% plant-based.',
@@ -88,6 +91,7 @@ class ProductoSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'producto_id' => 7,
                 'nombre' => 'Andina Gluten Free',
                 'descripcion_corta' => 'Medallón de hongos y lentejas, pan de quinoa sin gluten, palta fresca y brotes.',
                 'descripcion' => 'Medallón de hongos y lentejas, pan de quinoa sin gluten, palta fresca y brotes. Una opción nutritiva y libre de gluten.',
@@ -100,6 +104,7 @@ class ProductoSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'producto_id' => 8,
                 'nombre' => 'Tex Mex Veggie',
                 'descripcion_corta' => 'Portobello especiado, guacamole, maíz asado, pico de gallo y nachos crocantes.',
                 'descripcion' => 'Portobello especiado, guacamole, maíz asado, pico de gallo y nachos crocantes. Sabores intensos y vibrantes.',
@@ -114,6 +119,7 @@ class ProductoSeeder extends Seeder
 
             // Wraps (categoria_id: 2)
             [
+                'producto_id' => 9,
                 'nombre' => 'Wrap de Hongos',
                 'descripcion_corta' => 'Gírgolas salteadas al wok, vegetales de estación y nuestra salsa especial de hongos que realza cada bocado.',
                 'descripcion' => 'Mix de hongos, vegetales y aderezo de limón y sésamo envueltos en pan integral. Ligero y nutritivo.',
@@ -128,6 +134,7 @@ class ProductoSeeder extends Seeder
 
             // acompañamientos (categoria_id: 3)
             [
+                'producto_id' => 10,
                 'nombre' => 'Combo Papas + Salsa Especial',
                 'descripcion_corta' => 'Papas clásicas con salsa Umami de hongos y hierbas frescas.',
                 'descripcion' => 'Porción grande de papas rústicas cortadas a mano servidas con nuestra Salsa Especial UMAMI (base cremosa, ajo rostizado, reducción de miso y toque cítrico). Perfecto para compartir o como acompañamiento premium.',
@@ -140,6 +147,7 @@ class ProductoSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'producto_id' => 11,
                 'nombre' => 'Papas Rústicas',
                 'descripcion_corta' => 'Papas cortadas a mano, condimentadas con sal ahumada y romero.',
                 'descripcion' => 'Cortadas a mano, cocidas al horno y sazonadas con sal UMAMI. Crocantes por fuera, suaves por dentro.',
@@ -152,6 +160,7 @@ class ProductoSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'producto_id' => 12,
                 'nombre' => 'Bastones de Shiitake Crocantes',
                 'descripcion_corta' => 'Bastones de hongos shiitake apanados con mix de semillas, acompañados con alioli de ajo asado.',
                 'descripcion' => 'Shiitakes empanizados y crocantes. Perfectos para acompañar o picar solo.',
@@ -166,6 +175,7 @@ class ProductoSeeder extends Seeder
 
             //condimentos (categoria_id: 4)
             [
+                'producto_id' => 13,
                 'nombre' => 'Sal umami',
                 'descripcion_corta' => 'Sal marina infusionada con hongos deshidratados, diseñada para potenciar el sabor natural de cada plato con un toque único y sofisticado.',
                 'descripcion' => 'Mezcla artesanal de sales marinas y hongos deshidratados. Potencia cualquier plato naturalmente.',
@@ -180,6 +190,7 @@ class ProductoSeeder extends Seeder
 
             // Bebidas (categoria_id: 5)
             [
+                'producto_id' => 14,
                 'nombre' => 'Limonada umami',
                 'descripcion_corta' => 'Limonada fresca con un toque de jengibre y albahaca.',
                 'descripcion' => 'Refrescante, casera y herbal. Ideal para equilibrar sabores intensos.',
@@ -192,6 +203,7 @@ class ProductoSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'producto_id' => 15,
                 'nombre' => 'Agua Reishi',
                 'descripcion_corta' => 'Infusión refrescante de hongos reishi con toques cítricos, energizante y natural.',
                 'descripcion' => 'Agua funcional con extracto de Reishi, antioxidante y relajante.',
@@ -204,6 +216,7 @@ class ProductoSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'producto_id' => 16,
                 'nombre' => 'Agua Maitake',
                 'descripcion_corta' => 'Agua saborizada con extracto de maitake, con notas herbales y revitalizantes.',
                 'descripcion' => 'Bebida infusionada con Maitake, ideal para fortalecer el sistema inmune.',
@@ -216,6 +229,7 @@ class ProductoSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'producto_id' => 17,
                 'nombre' => 'Cerveza Artesanal Umami',
                 'descripcion_corta' => 'Golden ale infusionada con hongos portobello, suave y equilibrada.',
                 'descripcion' => 'Cerveza ligera y fresca que complementa perfectamente los sabores de hongos.',
@@ -230,6 +244,7 @@ class ProductoSeeder extends Seeder
 
             //postres (categoria_id: 6)
             [
+                'producto_id' => 18,
                 'nombre' => 'Brownie shiitake',
                 'descripcion_corta' => 'Brownie húmedo con extracto de shiitake, chocolate amargo 70% y nueces.',
                 'descripcion' => 'Delicioso brownie vegano con polvo de hongos adaptógenos. Dulce, saludable y nutritivo.',
@@ -242,6 +257,7 @@ class ProductoSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'producto_id' => 19,
                 'nombre' => 'Cheesecake de anacardos y reishi',
                 'descripcion_corta' => 'Cheesecake cremoso con base de galletas integrales y un toque de hongo reishi.',
                 'descripcion' => 'Postre cremoso y sin lácteos, infusionado con Reishi. Sabor suave y textura aterciopelada.',
@@ -256,6 +272,7 @@ class ProductoSeeder extends Seeder
 
             // Combos (categoria_id: 7)
             [
+                'producto_id' => 20,
                 'nombre' => 'Combo Clásico umami',
                 'descripcion_corta' => 'Hamburguesa Clásica + Papas Rústicas + Limonada Umami.',
                 'descripcion' => 'Hamburguesa Clásica + Papas Rústicas + Limonada UMAMI. La experiencia base de UMAMI.',
@@ -268,6 +285,7 @@ class ProductoSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'producto_id' => 21,
                 'nombre' => 'Combo Mediterráneo',
                 'descripcion_corta' => 'Hamburguesa Mediterránea + Papas especiadas + Agua Reishi.',
                 'descripcion' => 'Hamburguesa Mediterránea + Papas especiadas + Agua Reishi. Ligero y fresco.',
@@ -280,6 +298,7 @@ class ProductoSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'producto_id' => 22,
                 'nombre' => 'Combo Fungi BBQ',
                 'descripcion_corta' => 'Hamburguesa Fungi BBQ + Papas & Salsas + Bebida línea Coca-Cola.',
                 'descripcion' => 'Hamburguesa Fungi BBQ + Papas & Salsas + Bebida línea Coca-Cola. Intenso y ahumado.',
@@ -292,6 +311,7 @@ class ProductoSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'producto_id' => 23,
                 'nombre' => 'Combo Trufa & Shiitake',
                 'descripcion_corta' => 'Hamburguesa Trufa & Shiitake + Bastones de shiitake crocantes + Agua Maitake.',
                 'descripcion' => 'Hamburguesa Trufa & Shiitake + Bastones Crocantes + Agua Maitake. Gourmet y sofisticado.',
@@ -304,18 +324,20 @@ class ProductoSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'producto_id' => 24,
                 'nombre' => 'Combo Spicy Gírgola',
                 'descripcion_corta' => 'Hamburguesa Spicy Gírgola + Bastones de shiitake crocantes + Limonada umami.',
                 'descripcion' => 'Hamburguesa Spicy Gírgola + Bastones Crocantes + Limonada UMAMI. Picante y energético.',
                 'precio' => 12300,
                 'stock' => 20,
                 'categoria_id' => 7,
-                'imagen' => 'combo-spicy-gírgola-umami-productos.webp',
+                'imagen' => 'combo-spicy-girgola-umami-productos.webp',
                 'etiqueta' => 'Picante',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
+                'producto_id' => 25,
                 'nombre' => 'Combo Wrap Saludable',
                 'descripcion_corta' => 'Wrap de Hongos + Papas Rústicas + Agua Mineral.',
                 'descripcion' => 'Wrap de Hongos + Papas Rústicas + Agua Mineral. Liviano y fresco.',
@@ -328,6 +350,7 @@ class ProductoSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'producto_id' => 26,
                 'nombre' => 'Combo Nuggets Fan',
                 'descripcion_corta' => 'Nuggets de Hongos + Papas & Salsas + Limonada umami.',
                 'descripcion' => 'Nuggets de Hongos + Papas & Salsas + Limonada UMAMI. Divertido y crocante.',
@@ -340,6 +363,7 @@ class ProductoSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'producto_id' => 27,
                 'nombre' => 'Combo Dúo',
                 'descripcion_corta' => '2 Hamburguesas a elección + Papas XL con dips + 2 Bebidas.',
                 'descripcion' => '2 Hamburguesas a elección + Papas XL + 2 bebidas. Ideal para compartir.',
@@ -352,6 +376,7 @@ class ProductoSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'producto_id' => 28,
                 'nombre' => 'Combo Wrap y Sal',
                 'descripcion_corta' => 'Wrap de hongos deliciosos, condimentados con sal umami y una cerveza para acompañar. Luego de eso un brownie umami de postre.',
                 'descripcion' => 'Wrap de Hongos + Sal UMAMI + Cerveza + Brownie. Completo y equilibrado.',

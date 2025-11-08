@@ -666,6 +666,14 @@ footer {
 }
 
 
+/* ---------------- Mensajes flotantes ---------------- */
+#floating-messages .alert {
+    margin-bottom: 10px;
+    /* Espacio entre mensajes */
+    transition: opacity 0.5s ease;
+}
+
+
 /*  Mobile */
 @media (min-width: 320px) and (max-width: 575px) {
 
