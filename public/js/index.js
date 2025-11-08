@@ -20,6 +20,34 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+// --- Read server-passed JSON data placed in <script type="application/json"> tags ---
+(function() {
+    function readJSONScript(id) {
+        const el = document.getElementById(id);
+        if (!el) return null;
+        try {
+            return JSON.parse(el.textContent || el.innerText || null);
+        } catch (e) {
+            console.warn('Invalid JSON in #' + id, e);
+            return null;
+        }
+    }
+
+    // populate window globals if present
+    if (!window.__flash) {
+        const flash = readJSONScript('__flash-data');
+        if (flash) window.__flash = flash;
+    }
+    if (typeof window.__auth === 'undefined') {
+        const auth = readJSONScript('__auth-data');
+        if (auth !== null) window.__auth = auth;
+    }
+    if (!window.__routes) {
+        const routes = readJSONScript('__routes-data');
+        if (routes) window.__routes = routes;
+    }
+})();
+
 
 //Tabla a Cards Productos - Admin 
 document.addEventListener("DOMContentLoaded", () => {
@@ -285,4 +313,33 @@ document.addEventListener('DOMContentLoaded', function () {
         // no romper la app por si hay error
         console.error('Flash render error:', e);
     }
+});
+
+// Actualizar contador del carrito (se ejecuta si el usuario está autenticado)
+function updateCarritoCount() {
+    try {
+        if (!window.__routes || !window.__routes.carritoCount) return;
+        fetch(window.__routes.carritoCount)
+            .then(response => response.json())
+            .then(data => {
+                const badge = document.getElementById('carrito-count');
+                if (badge && data.count > 0) {
+                    badge.textContent = data.count;
+                    badge.style.display = 'inline-block';
+                } else if (badge) {
+                    badge.style.display = 'none';
+                }
+            })
+            .catch(error => console.error('Error al actualizar carrito:', error));
+    } catch (e) {
+        console.error('updateCarritoCount error:', e);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    try {
+        if (window.__auth) {
+            updateCarritoCount();
+        }
+    } catch (e) { /* no break */ }
 });

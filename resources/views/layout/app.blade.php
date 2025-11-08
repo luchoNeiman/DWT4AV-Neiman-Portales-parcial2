@@ -23,13 +23,10 @@
 
     @include('partials.footer')
 
-    {{-- Pasar mensajes de sesión a JS de forma segura --}}
-    <script>
-        window.__flash = {
-            message: {!! json_encode(session('feedback.message')) !!},
-            error: {!! json_encode(session('feedback.error')) !!}
-        };
-    </script>
+    {{-- Pasar mensajes de sesión y flags a JS de forma segura usando JSON script tags para evitar que el editor/TS procese Blade directives dentro de JS --}}
+    <script type="application/json" id="__flash-data">@json(['message' => session('feedback.message'), 'error' => session('feedback.error')])</script>
+    <script type="application/json" id="__auth-data">@json(Auth::check())</script>
+    <script type="application/json" id="__routes-data">@json(['carritoCount' => route('carrito.count')])</script>
 </body>
 
 </html>

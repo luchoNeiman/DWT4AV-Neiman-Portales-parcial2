@@ -12,90 +12,50 @@
 </section>
 
 <!-- Hamburguesas -->
+@if($hamburguesas->isNotEmpty())
 <section class="py-5">
     <div class="container">
         <h2 class="text-center mb-5 text-umami">Hamburguesas</h2>
         <div class="catalogo-grid">
-            <article class="hover-card destacado">
-                <img src="assets/img/productos/hamburguesa-clasica-umami-productos.webp"
-                    alt="Hamburguesa clásica Umami">
+            @foreach($hamburguesas as $producto)
+            <article class="hover-card {{ $producto->etiqueta ? 'destacado' : '' }}">
+                @if($producto->imagen)
+                    <img src="{{ asset('storage/productos/' . $producto->imagen) }}" alt="{{ $producto->nombre }}">
+                @else
+                    <img src="{{ asset('storage/productos/placeholder.webp') }}" alt="{{ $producto->nombre }}">
+                @endif
                 <div class="hover-info">
-                    <h3>Clásica Umami</h3>
-                    <p>Medallón de gírgolas frescas, queso cheddar vegano, lechuga, tomate, cebolla morada y
-                        salsa especial Umami, en pan artesanal de papa.</p>
-                    <div class="d-flex align-items-center gap-2">
-                        <span class="price text-decoration-line-through">$8.200</span>
-                        <span class="price">$7.000</span>
+                    <h3>{{ $producto->nombre }}</h3>
+                    <p>{{ $producto->descripcion_corta }}</p>
+                    <span class="price">${{ number_format($producto->precio / 100, 2, ',', '.') }}</span>
+                    <div class="d-flex gap-2 mt-3">
+                        <a href="{{ route('producto', $producto->producto_id) }}" class="btn-secundario">Ver más</a>
+                        @auth
+                            @if($producto->stock > 0)
+                                <form action="{{ route('carrito.agregar') }}" method="POST" class="d-inline">
+                                    @csrf
+                                    <input type="hidden" name="producto_id" value="{{ $producto->producto_id }}">
+                                    <button type="submit" class="btn-primario">
+                                        <i class="bi bi-cart-plus"></i>
+                                    </button>
+                                </form>
+                            @endif
+                        @endauth
                     </div>
-                    <a href="{{ route('producto', 1 ) }}" class="btn-secundario">Ver más</a>
                 </div>
             </article>
+            @endforeach
 
-            <article class="hover-card">
-                <img src="assets/img/productos/mediterranea-umami-productos.webp"
-                    alt="Hamburguesa Mediterránea">
-                <div class="hover-info">
-                    <h3>Mediterránea</h3>
-                    <p>Hongos de estación con tomates secos, espinaca fresca y aderezo de ajo confitado.</p>
-                    <span class="price">$9.200</span>
-                    <a href="{{ route('producto', 2) }}" class="btn-secundario">Ver más</a>
-                </div>
-            </article>
-
-            <article class="hover-card destacado">
-                <img src="assets/img/productos/fungi-BBQ-umami-productos.webp" alt="Hamburguesa Fungi BBQ">
-                <div class="hover-info">
-                    <h3>Fungi BBQ</h3>
-                    <p>Hamburguesa de portobellos grillados con salsa barbacoa casera, cebolla caramelizada y
-                        rúcula fresca.</p>
-                    <span class="price">$9.000</span>
-                    <a href="{{ route('producto', 3) }}" class="btn-secundario">Ver más</a>
-                </div>
-            </article>
-
-            <article class="hover-card ">
-                <img src="assets/img/productos/spicy-girgola-umami-productos.webp"
-                    alt="Hamburguesa Spicy Gírgola">
-                <div class="hover-info">
-                    <h3>Spicy Gírgola</h3>
-                    <p>Gírgolas crocantes con salsa picante de chipotle, jalapeños en rodajas y cebolla crispy.
-                    </p>
-                    <span class="price">$9.500</span>
-                    <a href="{{ route('producto', 4) }}" class="btn-secundario">Ver más</a>
-                </div>
-            </article>
-
-            <article class="hover-card">
-                <img src="assets/img/productos/hamburguesa-trufa-shiitake-umami-productos.webp"
-                    alt="Hamburguesa Trufa & Shiitake">
-                <div class="hover-info">
-                    <h3>Trufa & Shiitake</h3>
-                    <p>Medallón de shiitake y gírgolas con crema suave de trufa, rúcula fresca y queso vegano
-                        fundido.</p>
-                    <span class="price">$9.800</span>
-                    <a href="{{ route('producto', 5) }}" class="btn-secundario">Ver más</a>
-                </div>
-            </article>
-
-            <article class="hover-card">
-                <img src="assets/img/productos/hamburguesa-umami-oriental-umami-productos.webp"
-                    alt="Umami Oriental">
-                <div class="hover-info">
-                    <h3>Umami Oriental</h3>
-                    <p>Hongos shiitake y portobellos, acompañada de pepino encurtido, salsa de
-                        soja dulce, jengibre fresco y mayonesa de wasabi suave en pan artesanal de sésamo.</p>
-                    <span class="price">$9.800</span>
-                    <a href="{{ route('producto', 6) }}" class="btn-secundario">Ver más</a>
-                </div>
-            </article>
         </div>
     </div>
 </section>
+@endif
 
-<!-- Papas Fritas -->
+<!-- Acompañamientos y Condimentos -->
+@if($acompañamientos->isNotEmpty() || $condimentos->isNotEmpty())
 <section class="py-5 bg-umami">
     <div class="container">
-        <h2 class="text-center mb-5">Papas Fritas y condimentos</h2>
+        <h2 class="text-center mb-5">Acompañamientos y Condimentos</h2>
         <div class="catalogo-grid">
             <article class="hover-card">
                 <img src="assets/img/productos/combo-papas-salsaUmami-umami-productos.webp"
@@ -159,6 +119,7 @@
         </div>
     </div>
 </section>
+@endif
 
 <!-- Bebidas -->
 <section class="py-5">

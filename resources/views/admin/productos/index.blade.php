@@ -32,7 +32,7 @@
                             <td>{{ $producto->producto_id }}</td>
                             <td>
                                 @if($producto->imagen)
-                                <img src="{{ asset('img/productos/' . $producto->imagen) }}" alt="{{ $producto->nombre }}" class="img-thumbnail-admin">
+                                <img src="{{ asset('storage/productos/' . $producto->imagen) }}" alt="{{ $producto->nombre }}" class="img-thumbnail-admin">
                                 @else
                                 <img src="{{ asset('img/UI/logo-umami-green.svg') }}" alt="Sin imagen" class="img-thumbnail-admin p-2">
                                 @endif

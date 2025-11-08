@@ -32,6 +32,17 @@ Route::post('/registro', [AuthController::class, 'doRegistro'])->name('auth.doRe
 Route::post('/cerrar-sesion', [AuthController::class, 'logout'])->name('auth.logout');
 
 
+// RUTAS DEL CARRITO (Protegidas - Solo usuarios autenticados)
+Route::middleware(['auth'])->group(function () {
+    Route::get('/carrito', [App\Http\Controllers\CarritoController::class, 'index'])->name('carrito.index');
+    Route::post('/carrito/agregar', [App\Http\Controllers\CarritoController::class, 'agregar'])->name('carrito.agregar');
+    Route::put('/carrito/actualizar/{id}', [App\Http\Controllers\CarritoController::class, 'actualizar'])->name('carrito.actualizar');
+    Route::delete('/carrito/eliminar/{id}', [App\Http\Controllers\CarritoController::class, 'eliminar'])->name('carrito.eliminar');
+    Route::post('/carrito/finalizar', [App\Http\Controllers\CarritoController::class, 'finalizarCompra'])->name('carrito.finalizar');
+    Route::get('/carrito/count', [App\Http\Controllers\CarritoController::class, 'getCount'])->name('carrito.count');
+});
+
+
 // RUTAS DE ADMINISTRACIÓN (Protegidas)
 Route::prefix('admin')
     ->name('admin.')

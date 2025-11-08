@@ -27,7 +27,7 @@
             @foreach($destacados as $index => $producto)
             <div class="{{ $index === 0 ? 'grid-main' : ($index === 1 ? 'grid-side1' : 'grid-side2') }}">
                 <article class="hover-card h-100">
-                    <img src="{{ asset('img/productos/' . $producto->imagen) }}"
+                    <img src="{{ asset('storage/productos/' . $producto->imagen) }}"
                         alt="{{ $producto->nombre }}" class="img-fluid">
                     <div class="hover-info">
                         <h3>{{ $producto->nombre }}</h3>
@@ -45,7 +45,7 @@
                 @foreach($destacados as $index => $producto)
                 <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
                     <article class="hover-card">
-                        <img src="{{ asset('img/productos/' . $producto->imagen) }}"
+                        <img src="{{ asset('storage/productos/' . $producto->imagen) }}"
                             alt="{{ $producto->nombre }}" class="d-block w-100">
                         <div class="hover-info">
                             <h3>{{ $producto->nombre }}</h3>
@@ -57,13 +57,11 @@
                 @endforeach
             </div>
 
-            <!-- Controles -->
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselDestacados"
-                data-bs-slide="prev">
+            <!-- Controles carousel -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselDestacados" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon"></span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselDestacados"
-                data-bs-slide="next">
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselDestacados" data-bs-slide="next">
                 <span class="carousel-control-next-icon"></span>
             </button>
         </div>
@@ -90,6 +88,7 @@
     </div>
 </section>
 
+<!-- Combos umami -->
 <section class="py-5">
     <div class="container">
         <h2 class="text-center mb-5 text-umami">Combos umami</h2>
@@ -97,18 +96,11 @@
             @foreach($combos as $combo)
             <div class="col-12 col-sm-6 col-md-4">
                 <article class="hover-card">
-                    @php
-                    $imgName = $combo->imagen ?? 'placeholder.webp';
-                    $imgPath = public_path('img/productos/' . $imgName);
-                    $imgUrl = file_exists($imgPath)
-                    ? asset('img/productos/' . $imgName)
-                    : asset('img/productos/placeholder.webp');
-                    @endphp
-
-                    <img src="{{ $imgUrl }}" alt="{{ $combo->nombre }}">
+                    <img src="{{ asset('storage/productos/' . $combo->imagen) }}"
+                        alt="{{ $combo->nombre }}">
                     <div class="hover-info">
                         <h3>{{ $combo->nombre }}</h3>
-                        <p>{{ trim($combo->descripcion_corta) !== '' ? $combo->descripcion_corta : \Illuminate\Support\Str::limit($combo->descripcion, 120) }}</p>
+                        <p>{{ $combo->descripcion_corta ?: \Illuminate\Support\Str::limit($combo->descripcion, 120) }}</p>
                         <span class="price">${{ number_format($combo->precio, 0, ',', '.') }}</span>
                         <a href="{{ route('producto', $combo->producto_id) }}" class="btn-secundario">Ver más</a>
                     </div>

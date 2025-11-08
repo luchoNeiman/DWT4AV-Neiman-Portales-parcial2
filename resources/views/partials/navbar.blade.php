@@ -47,14 +47,20 @@
                 <li class="vr mx-2 d-none d-lg-block"> </li>
 
                 <!-- Carrito -->
+                @auth
                 <li class="nav-item position-relative">
-
-                    <!-- Perfil
-                <li class="nav-item ms-2">
-                    <a class="nav-link text-umami-cream" href="perfil.html" aria-label="Perfil">
-                        <i class="bi bi-person-circle fs-5"></i>
-                    </a> -->
+                    <a class="nav-link text-umami-cream {{ request()->routeIs('carrito.index') ? 'active' : '' }}" 
+                       href="{{ route('carrito.index') }}" 
+                       aria-label="Carrito">
+                        <i class="bi bi-cart3 fs-5"></i>
+                        <span id="carrito-count" 
+                              class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                              style="display: none;">
+                            0
+                        </span>
+                    </a>
                 </li>
+                @endauth
             </ul>
         </div>
     </div>
