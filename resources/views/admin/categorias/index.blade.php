@@ -1,10 +1,8 @@
 @extends('admin.layout.admin')
-
 @section('titulo', 'Gestión de Categorías - Admin UMAMI')
 @section('titulo-seccion', 'Gestión de Categorías')
 
 @section('content')
-
 <div class="container-fluid">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h2 class="h4 text-umami">Listado de Categorías</h2>
@@ -21,6 +19,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Nombre</th>
+                            <th>Descripción</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -29,13 +28,12 @@
                         <tr>
                             <td>{{ $categoria->categoria_id }}</td>
                             <td>{{ $categoria->nombre }}</td>
+                            <td>{{ $categoria->descripcion ?? 'Sin descripción' }}</td>
                             <td>
-                                <button class="btn-icono-admin btn-editar" title="Editar" data-bs-toggle="modal"
-                                    data-bs-target="#modalEditar-{{ $categoria->categoria_id }}">
+                                <button class="btn-icono-admin btn-editar" title="Editar" data-bs-toggle="modal" data-bs-target="#modalEditar-{{ $categoria->categoria_id }}">
                                     <i class="bi bi-pencil"></i>
                                 </button>
-                                <button class="btn-icono-admin btn-eliminar" title="Eliminar" data-bs-toggle="modal"
-                                    data-bs-target="#modalEliminar-{{ $categoria->categoria_id }}">
+                                <button class="btn-icono-admin btn-eliminar" title="Eliminar" data-bs-toggle="modal" data-bs-target="#modalEliminar-{{ $categoria->categoria_id }}">
                                     <i class="bi bi-trash"></i>
                                 </button>
                             </td>
@@ -116,7 +114,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                <p>¿Estás seguro de que deseas eliminar la categoría <strong>"{{ $categoria->nombre }}"</strong>? Esta acción no se puede deshacer.</p>
+                <p>¿Estás seguro de que deseas eliminar la categoría <strong>"{{ $categoria->nombre }}"</strong>? Si tiene productos asociados, esto podría fallar.</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn-secundario" data-bs-dismiss="modal">Cancelar</button>
@@ -130,5 +128,4 @@
     </div>
 </div>
 @endforeach
-
 @endsection

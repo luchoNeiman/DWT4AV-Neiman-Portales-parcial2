@@ -1,10 +1,8 @@
 @extends('admin.layout.admin')
-
 @section('titulo', 'Mi Perfil - Admin UMAMI')
 @section('titulo-seccion', 'Mi Perfil')
 
 @section('content')
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-8 mx-auto">
@@ -31,34 +29,7 @@
                     </form>
                 </div>
             </div>
-
-            <div class="card shadow-sm">
-                <div class="card-header bg-umami text-umami-cream">
-                    Cambiar Contraseña
-                </div>
-                <div class="card-body p-4">
-                    <form action="#" method="POST"> {{-- (Ruta de cambio de pass) --}}
-                        @csrf
-                        <div class="mb-3">
-                            <label for="password_actual" class="form-label">Contraseña actual</label>
-                            <input type="password" id="password_actual" name="password_actual" class="form-control">
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Nueva contraseña</label>
-                            <input type="password" id="password" name="password" class="form-control">
-                        </div>
-                        <div class="mb-3">
-                            <label for="password_confirmation" class="form-label">Confirmar nueva contraseña</label>
-                            <input type="password" id="password_confirmation" name="password_confirmation" class="form-control">
-                        </div>
-                        <div class="text-end mt-3">
-                            <button type="submit" class="btn-primario">Cambiar Contraseña</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
         </div>
     </div>
 </div>
-
 @endsection

@@ -37,20 +37,23 @@ Route::prefix('admin')
     ->name('admin.')
     ->middleware(['auth', 'admin']) // Protegidas por Login y Rol de Admin
     ->group(function () {
+        
+    // Dashboard ( /admin/dashboard )
+    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
 
-        // Dashboard
-        Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+    // CRUD de Productos ( /admin/productos )
+    Route::resource('productos', AdminProductoController::class);
 
-        // CRUD de Productos (usa un controlador Resource)
-        Route::resource('productos', AdminProductoController::class);
+    // CRUD de Categorías ( /admin/categorias )
+    // 'except' significa que no crea la ruta 'show' (no la necesitamos)
+    Route::resource('categorias', AdminCategoriaController::class)->except(['show']); 
 
-        // CRUD de Categorías (usa un controlador Resource)
-        Route::resource('categorias', AdminCategoriaController::class)->except(['show']); // No necesitamos 'show'
+    // CRUD de Usuarios ( /admin/usuarios )
+    // 'except' quita 'create' y 'store' (porque el registro es público)
+    Route::resource('usuarios', AdminUsuarioController::class)->except(['create', 'store']); 
 
-        // CRUD de Usuarios (usa un controlador Resource)
-        Route::resource('usuarios', AdminUsuarioController::class)->except(['create', 'store']); // El registro es público
-
-        // Perfil de Admin
-        Route::get('/perfil', [AdminPerfilController::class, 'index'])->name('perfil.index');
-        Route::post('/perfil/actualizar', [AdminPerfilController::class, 'update'])->name('perfil.update');
-    });
+    // Perfil de Admin ( /admin/perfil )
+    Route::get('/perfil', [AdminPerfilController::class, 'index'])->name('perfil.index');
+    Route::post('/perfil/actualizar', [AdminPerfilController::class, 'update'])->name('perfil.update');
+    
+});

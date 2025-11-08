@@ -1,10 +1,8 @@
 @extends('admin.layout.admin')
-
 @section('titulo', 'Gestión de Productos - Admin UMAMI')
 @section('titulo-seccion', 'Gestión de Productos')
 
 @section('content')
-
 <div class="container-fluid">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h2 class="h4 text-umami">Listado de Productos</h2>
@@ -34,10 +32,9 @@
                             <td>{{ $producto->producto_id }}</td>
                             <td>
                                 @if($producto->imagen)
-                                {{-- Más adelante usaremos Storage::url() --}}
-                                <img src="{{ asset('img/productos/'."/" . $producto->imagen) }}" alt="{{ $producto->nombre }}" class="img-thumbnail-admin">
+                                <img src="{{ asset('img/productos/' . $producto->imagen) }}" alt="{{ $producto->nombre }}" class="img-thumbnail-admin">
                                 @else
-                                <img src="{{ asset('img/productos/placeholder.jpg') }}" alt="Sin imagen" class="img-thumbnail-admin">
+                                <img src="{{ asset('img/UI/logo-umami-green.svg') }}" alt="Sin imagen" class="img-thumbnail-admin p-2">
                                 @endif
                             </td>
                             <td>{{ $producto->nombre }}</td>
@@ -51,8 +48,7 @@
                                 <a href="{{ route('admin.productos.edit', $producto) }}" class="btn-icono-admin btn-editar" title="Editar">
                                     <i class="bi bi-pencil"></i>
                                 </a>
-                                <button class="btn-icono-admin btn-eliminar" title="Eliminar" data-bs-toggle="modal"
-                                    data-bs-target="#modalEliminar-{{ $producto->producto_id }}">
+                                <button class="btn-icono-admin btn-eliminar" title="Eliminar" data-bs-toggle="modal" data-bs-target="#modalEliminar-{{ $producto->producto_id }}">
                                     <i class="bi bi-trash"></i>
                                 </button>
                             </td>
@@ -94,5 +90,4 @@
     </div>
 </div>
 @endforeach
-
 @endsection

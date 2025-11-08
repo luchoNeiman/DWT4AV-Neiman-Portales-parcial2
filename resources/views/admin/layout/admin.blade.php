@@ -7,12 +7,12 @@
     <main class="d-flex">
 
         {{-- Incluimos el Sidebar del Admin --}}
-        @include('admin.layout.partials.sidebar')
+        @include('admin.partials.sidebar')
 
         <div class="flex-grow-1">
 
             {{-- 3. Incluimos el Topbar del Admin --}}
-            @include('admin.layout.partials.topbar')
+            @include('admin.partials.topbar')
 
             <section class="content-wrapper p-4">
 
@@ -49,7 +49,7 @@
     </main>
 
     {{-- Incluimos el Sidebar Offcanvas (para mobile) --}}
-    @include('admin.layout.partials.sidebar-mobile')
+    @include('admin.partials.sidebar-mobile')
 
 </body>
 

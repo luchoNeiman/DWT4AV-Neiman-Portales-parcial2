@@ -1,15 +1,9 @@
 @extends('admin.layout.admin')
-
 @section('titulo', 'Gestión de Usuarios - Admin UMAMI')
 @section('titulo-seccion', 'Gestión de Usuarios')
 
 @section('content')
-
 <div class="container-fluid">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h2 class="h4 text-umami">Listado de Usuarios</h2>
-    </div>
-
     <div class="card shadow-sm">
         <div class="card-body p-0">
             <div class="table-responsive">
@@ -37,9 +31,6 @@
                                 @endif
                             </td>
                             <td>
-                                <a href="{{ route('admin.usuarios.show', $usuario) }}" class="btn-icono-admin btn-ver" title="Ver Pedidos">
-                                    <i class="bi bi-journal-text"></i>
-                                </a>
                                 <a href="{{ route('admin.usuarios.edit', $usuario) }}" class="btn-icono-admin btn-editar" title="Editar Rol">
                                     <i class="bi bi-pencil"></i>
                                 </a>
@@ -49,6 +40,11 @@
                     </tbody>
                 </table>
             </div>
+            @if($usuarios->hasPages())
+            <div class="card-footer bg-cream p-3">
+                {{ $usuarios->links() }}
+            </div>
+            @endif
         </div>
     </div>
 </div>
