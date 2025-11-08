@@ -1,0 +1,7 @@
+ADMIN:
+mail:admin@umami.com
+contraseña: 123456
+
+USER NORMAL:
+mail:luciano.neiman@davinci.edu.ar
+contraseña: 123456

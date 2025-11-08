@@ -13,7 +13,6 @@ class AdminDashboardController extends Controller
     public function index()
     {
         // Por ahora, solo muestra la vista.
-        // Más adelante, aquí cargarías los datos para las métricas.
         return view('admin.dashboard');
     }
 }

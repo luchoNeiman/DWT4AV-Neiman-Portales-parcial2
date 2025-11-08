@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Producto;  // Importamos Producto
-use App\Models\Categoria; // Importamos Categoria
+use App\Models\Producto;
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 
 class AdminProductoController extends Controller
@@ -33,7 +33,6 @@ class AdminProductoController extends Controller
     public function store(Request $request)
     {
         // Lógica de validación y guardado (Clase 05 y 10)
-        // Lo haremos en el siguiente paso
     }
 
     /**

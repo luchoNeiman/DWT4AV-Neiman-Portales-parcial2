@@ -68,7 +68,6 @@ class PaginaController extends Controller
             ->limit(3)
             ->get();
 
-        // Renombra la vista a la nueva estructura
         return view('productos.producto', [
             'producto' => $producto,
             'relacionados' => $relacionados
