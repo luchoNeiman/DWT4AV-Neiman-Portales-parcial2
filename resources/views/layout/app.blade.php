@@ -6,7 +6,7 @@
     <!-- Loader -->
     <div id="loader">
         <div class="hongo">
-            <img src="{{asset('img/UI/logo-umami.svg')}}" alt="Loader Hongo" class="w-100">
+            <img src="{{asset('storage/UI/logo-umami.svg')}}" alt="Loader Hongo" class="w-100">
         </div>
     </div>
     <header>

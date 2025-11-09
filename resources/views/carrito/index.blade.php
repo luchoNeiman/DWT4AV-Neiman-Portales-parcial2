@@ -35,7 +35,7 @@
                         <div class="card-body p-0">
                             <div class="table-responsive">
                                 <table class="table table-hover mb-0">
-                                    <thead class="table-light">
+                                    <thead class="table-light text-umami">
                                         <tr>
                                             <th>Producto</th>
                                             <th>Precio</th>
@@ -50,13 +50,13 @@
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         @if ($item->producto->imagen)
-                                                            <img src="{{ asset($item->producto->imagen) }}" 
+                                                            <img src="{{ asset('storage/productos/' . $item->producto->imagen) }}" 
                                                                  alt="{{ $item->producto->nombre }}" 
                                                                  class="rounded me-3"
                                                                  style="width: 60px; height: 60px; object-fit: cover;">
                                                         @endif
                                                         <div>
-                                                            <h6 class="mb-0">{{ $item->producto->nombre }}</h6>
+                                                            <h6 class="mb-0 text-umami">{{ $item->producto->nombre }}</h6>
                                                             <small class="text-muted">{{ $item->producto->categoria->nombre }}</small>
                                                         </div>
                                                     </div>

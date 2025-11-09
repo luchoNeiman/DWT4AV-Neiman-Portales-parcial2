@@ -293,7 +293,7 @@ footer {
 /* ---------------- BANNER / HOME ---------------- */
 .banner-home {
     height: 88vh;
-    background: url("../img/UI/banner-home-umami.webp") center/cover no-repeat;
+    background: url("../storage/UI/banner-home-umami.webp") center/cover no-repeat;
     display: flex;
     align-items: end;
     justify-content: center;
@@ -419,7 +419,7 @@ footer {
 /* ---------------- BANNER / MENÚ ---------------- */
 .banner-catalogo {
     height: 88vh;
-    background: url("../img/UI/menu-fisico-umami.webp") center/cover no-repeat;
+    background: url("../storage/UI/menu-fisico-umami.webp") center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -482,7 +482,7 @@ section article h2 {
 /* ---------------- BANNER CONTACTO ---------------- */
 .banner-contacto {
     height: 88vh;
-    background: url("../img/UI/entrega-en-auto-umami.webp") center/cover no-repeat;
+    background: url("../storage/UI/entrega-en-auto-umami.webp") center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -539,7 +539,7 @@ textarea::placeholder {
 /* ---------------- BANNER NOSOTROS ---------------- */
 .banner-nosotros {
     height: 88vh;
-    background: url("../img/UI/cartel-luminoso-umami.webp") center /cover no-repeat;
+    background: url("../storage/UI/cartel-luminoso-umami.webp") center /cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -728,14 +728,14 @@ footer {
     }
 
     .banner-home {
-        background: url("../img/UI/banner-home-umami.webp") center right/cover no-repeat;
+        background: url("../storage/UI/banner-home-umami.webp") center right/cover no-repeat;
         height: 40vh;
         padding: 1rem;
     }
 
     /* ---------------- MENÚ ---------------- */
     .banner-catalogo {
-        background: url("../img/UI/menu-fisico-umami.webp") center/cover no-repeat;
+        background: url("../storage/UI/menu-fisico-umami.webp") center/cover no-repeat;
         height: 40vh;
         padding: 1rem;
     }

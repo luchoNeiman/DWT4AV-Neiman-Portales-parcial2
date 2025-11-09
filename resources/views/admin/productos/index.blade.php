@@ -34,7 +34,7 @@
                                 @if($producto->imagen)
                                 <img src="{{ asset('storage/productos/' . $producto->imagen) }}" alt="{{ $producto->nombre }}" class="img-thumbnail-admin">
                                 @else
-                                <img src="{{ asset('img/UI/logo-umami-green.svg') }}" alt="Sin imagen" class="img-thumbnail-admin p-2">
+                                <img src="{{ asset('storage/UI/logo-umami-green.svg') }}" alt="Sin imagen" class="img-thumbnail-admin p-2">
                                 @endif
                             </td>
                             <td>{{ $producto->nombre }}</td>

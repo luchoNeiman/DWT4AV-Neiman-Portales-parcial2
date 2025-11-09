@@ -1,7 +1,7 @@
 <div class="offcanvas offcanvas-start bg-umami text-light" tabindex="-1" id="offcanvasSidebar">
     <div class="offcanvas-header">
         <a href="{{ route('index') }}" class="text-center mb-4">
-            <img src="{{ asset('img/UI/logo-umami.svg') }}" alt="Logo UMAMI" class="w-50">
+            <img src="{{ asset('storage/UI/logo-umami.svg') }}" alt="Logo UMAMI" class="w-50">
         </a>
         <button class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
     </div>
@@ -14,8 +14,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-umami-cream {{-- request()->routeIs('admin.productos.*') ? 'active' : '' --}}"
-                    href="{{-- route('admin.productos.index') --}}">
+                <a class="nav-link text-umami-cream {{ request()->routeIs('admin.productos.*') ? 'active' : '' }}"
+                    href="{{ route('admin.productos.index') }}">
                     <i class="bi bi-box-seam me-2"></i> Productos
                 </a>
             </li>

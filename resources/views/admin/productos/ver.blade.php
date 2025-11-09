@@ -11,9 +11,9 @@
         <div class="row g-0">
             <div class="col-md-5">
                 @if($producto->imagen)
-                <img src="{{ asset('img/productos/' . $producto->imagen) }}" alt="{{ $producto->nombre }}" class="img-fluid rounded-start w-100" style="object-fit: cover; height: 100%;">
+                <img src="{{ asset('storage/productos/' . $producto->imagen) }}" alt="{{ $producto->nombre }}" class="img-fluid rounded-start w-100" style="object-fit: cover; height: 100%;">
                 @else
-                <img src="{{ asset('img/UI/logo-umami-green.svg') }}" alt="Sin imagen" class="img-fluid rounded-start w-100 p-5">
+                <img src="{{ asset('storage/UI/logo-umami-green.svg') }}" alt="Sin imagen" class="img-fluid rounded-start w-100 p-5">
                 @endif
             </div>
             <div class="col-md-7">

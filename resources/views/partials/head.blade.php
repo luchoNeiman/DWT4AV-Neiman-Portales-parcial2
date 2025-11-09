@@ -7,7 +7,7 @@
     <meta name="description" content="Descubre UMAMI, la hamburguesería plant-based que redefine el sabor. Ingredientes frescos, recetas únicas y un compromiso con la sostenibilidad.">
     <meta name="keywords" content="UMAMI, hamburguesas plant-based, comida vegana, restaurante sostenible, gírgolas, shiitake, portobello, fast food saludable">
 
-    <link rel="icon" href="{{ asset('img/UI/logo-umami-green.svg') }}" type="image/svg+xml">
+    <link rel="icon" href="{{ asset('storage/UI/logo-umami-green.svg') }}" type="image/svg+xml">
     
     <!-- Bootstrap CSS local -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">

@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-umami fixed-top shadow">
     <div class="container">
         <a class="navbar-brand contenedor-logo-header" href="{{ route('index') }}">
-            <img src="{{asset('img/UI/logo-umami.svg')}}" alt="Logo de UMAMI" class="me-2">
+            <img src="{{asset('storage/UI/logo-umami.svg')}}" alt="Logo de UMAMI" class="me-2">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Menú de navegación">

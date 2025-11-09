@@ -7,7 +7,7 @@
     <form action="{{ route('auth.doLogin') }}" method="POST" class="login-container bg-cream p-5 rounded-5 shadow-lg text-center">
         @csrf
 
-        <img src="{{ asset('img/UI/logo-umami-green.svg') }}" alt="Logo UMAMI" class="mb-4 w-50 mx-auto">
+        <img src="{{ asset('storage/UI/logo-umami-green.svg') }}" alt="Logo UMAMI" class="mb-4 w-50 mx-auto">
         <h1 class="h3 mb-4">Iniciar sesión</h1>
 
         {{-- Errores generales de validación --}}
