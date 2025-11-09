@@ -39,7 +39,7 @@
                             </td>
                             <td>{{ $producto->nombre }}</td>
                             <td>{{ $producto->categoria->nombre }}</td>
-                            <td>${{ number_format($producto->precio, 0, ',', '.') }}</td>
+                            <td>${{ number_format($producto->precio / 100, 2, ',', '.') }}</td>
                             <td>{{ $producto->stock }}</td>
                             <td>
                                 <a href="{{ route('admin.productos.show', $producto) }}" class="btn-icono-admin btn-ver" title="Ver">

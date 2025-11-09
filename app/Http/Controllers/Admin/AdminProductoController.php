@@ -41,7 +41,7 @@ class AdminProductoController extends Controller
     public function show(string $id)
     {
         $producto = Producto::with('categoria')->findOrFail($id);
-        return view('admin.productos.show', ['producto' => $producto]);
+        return view('admin.productos.ver', ['producto' => $producto]);
     }
 
     /**

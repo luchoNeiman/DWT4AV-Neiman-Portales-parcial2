@@ -26,14 +26,19 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
+            // Registrar última conexión
+            $user = Auth::user();
+            $user->last_login_at = now();
+            $user->save();
+
             // Redirigir al dashboard si es admin, sino al index.
-            if (Auth::user()->rol === 'admin') {
+            if ($user->rol === 'admin') {
                 return redirect()->intended(route('admin.dashboard'))
-                    ->with('feedback.message', '¡Sesión iniciada como Admin! Bienvenido, ' . Auth::user()->name . '.');
+                    ->with('feedback.message', '¡Sesión iniciada como Admin! Bienvenido, ' . $user->name . '.');
             }
 
             return redirect()->route('index') // O a 'perfil.index' cuando exista
-                ->with('feedback.message', '¡Sesión iniciada con éxito! Bienvenido de nuevo, ' . Auth::user()->name . '.');
+                ->with('feedback.message', '¡Sesión iniciada con éxito! Bienvenido de nuevo, ' . $user->name . '.');
         }
 
         return back()

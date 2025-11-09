@@ -35,7 +35,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <h5 class="fw-bold text-umami">Precio</h5>
-                            <p class="h4 text-umami-dark fw-bold">${{ number_format($producto->precio, 0, ',', '.') }}</p>
+                            <p class="h4 text-umami-dark fw-bold">${{ number_format($producto->precio / 100, 2, ',', '.') }}</p>
                         </div>
                         <div class="col-md-6">
                             <h5 class="fw-bold text-umami">Stock</h5>
