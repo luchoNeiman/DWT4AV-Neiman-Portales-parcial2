@@ -25,7 +25,8 @@
                 <p class="text-umami">{{ $producto->descripcion }}</p>
                 
                 <div class="d-flex align-items-center gap-3 mb-3">
-                    <p class="h4 text-umami fw-bold mb-0">${{ number_format($producto->precio / 100, 2, '.', ',') }}</p>
+                    <p class="h4 text-umami fw-bold mb-0">${{ number_format($producto->precio, 0, ',', '.') }}</p>
+
                     @if($producto->stock > 0)
                         <span class="badge bg-success">Disponible ({{ $producto->stock }} unidades)</span>
                     @else
