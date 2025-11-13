@@ -28,12 +28,28 @@ class PaginaController extends Controller
     {
         // Obtener productos por categoría
         // with('categoria') carga la relación para evitar N+1 queries (Clase 08)
-        $hamburguesas = Producto::where('categoria_id', 1)->with('categoria')->get();
+        // Excluir productos especiales que queremos mostrar en "postres" (IDs 7 y 8)
+        $excludeFromHamburguesas = [7, 8];
+        $hamburguesas = Producto::where('categoria_id', 1)
+            ->whereNotIn('producto_id', $excludeFromHamburguesas)
+            ->with('categoria')
+            ->get();
+
         $wraps = Producto::where('categoria_id', 2)->with('categoria')->get();
         $acompaniamientos = Producto::where('categoria_id', 3)->with('categoria')->get();
         $condimentos = Producto::where('categoria_id', 4)->with('categoria')->get();
+
+        // Sección 2: Acompañamientos y condimentos en el orden de la maqueta
+        $sec2Ids = [10, 11, 12, 9, 13]; // combo papas, papas rústicas, bastones, wrap, sal
+        $acom_y_condimentos = Producto::whereIn('producto_id', $sec2Ids)
+            ->orderByRaw('FIELD(producto_id, ' . implode(',', $sec2Ids) . ')')
+            ->get();
         $bebidas = Producto::where('categoria_id', 5)->with('categoria')->get();
-        $postres = Producto::where('categoria_id', 6)->with('categoria')->get();
+                // Incluir además los productos específicos (Andina, Tex Mex) en postres
+                $postres = Producto::where(function ($q) {
+                        $q->where('categoria_id', 6)
+                            ->orWhereIn('producto_id', [7, 8]);
+                })->with('categoria')->get();
         $combos = Producto::where('categoria_id', 7)->with('categoria')->get();
 
         return view('catalogo', [
@@ -41,6 +57,7 @@ class PaginaController extends Controller
             'wraps' => $wraps,
             'acompañamientos' => $acompaniamientos,
             'condimentos' => $condimentos,
+            'acom_y_condimentos' => $acom_y_condimentos,
             'bebidas' => $bebidas,
             'postres' => $postres,
             'combos' => $combos

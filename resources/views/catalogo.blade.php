@@ -16,13 +16,13 @@
         <h2 class="text-center mb-5 text-umami">Hamburguesas</h2>
         <div class="catalogo-grid">
             @foreach($hamburguesas as $hamburguesa)
-            <article class="hover-card {{ $hamburguesa->etiqueta === 'destacado' ? 'destacado' : '' }}">
-                <img src="{{ asset('storage/productos/' . $hamburguesa->imagen) }}"
-                    alt="{{ $hamburguesa->nombre }}">
+            {{-- Mantener el look de la maqueta: marcar como destacado el primer y tercer item, o cuando tenga etiqueta --}}
+            <article class="hover-card {{ ($loop->first || $loop->iteration == 3 || $hamburguesa->etiqueta) ? 'destacado' : '' }}">
+                <img src="{{ asset('storage/productos/' . $hamburguesa->imagen) }}" alt="{{ $hamburguesa->nombre }}">
                 <div class="hover-info">
                     <h3>{{ $hamburguesa->nombre }}</h3>
                     <p>{{ $hamburguesa->descripcion_corta }}</p>
-                    @if($hamburguesa->precio_anterior)
+                    @if(isset($hamburguesa->precio_anterior) && $hamburguesa->precio_anterior)
                     <div class="d-flex align-items-center gap-2">
                         <span class="price text-decoration-line-through">${{ number_format($hamburguesa->precio_anterior, 0, ',', '.') }}</span>
                         <span class="price">${{ number_format($hamburguesa->precio, 0, ',', '.') }}</span>
@@ -51,19 +51,18 @@
     </div>
 </section>
 
-<!-- Acompañamientos y Condimentos -->
+<!-- Acompañamientos y Condimentos (sección 2 según maqueta) -->
 <section class="py-5 bg-umami">
     <div class="container">
-        <h2 class="text-center mb-5">Acompañamientos y Condimentos</h2>
+        <h2 class="text-center mb-5">Acompañamientos y condimentos</h2>
         <div class="catalogo-grid">
-            @foreach($acompañamientos as $producto)
+            @foreach($acom_y_condimentos as $producto)
             <article class="hover-card {{ $producto->etiqueta === 'destacado' ? 'destacado' : '' }}">
-                <img src="{{ asset('storage/productos/' . $producto->imagen) }}"
-                    alt="{{ $producto->nombre }}">
+                <img src="{{ asset('storage/productos/' . $producto->imagen) }}" alt="{{ $producto->nombre }}">
                 <div class="hover-info">
                     <h3>{{ $producto->nombre }}</h3>
                     <p>{{ $producto->descripcion_corta }}</p>
-                    @if($producto->precio_anterior)
+                    @if(isset($producto->precio_anterior) && $producto->precio_anterior)
                     <div class="d-flex align-items-center gap-2">
                         <span class="price text-decoration-line-through">${{ number_format($producto->precio_anterior, 0, ',', '.') }}</span>
                         <span class="price">${{ number_format($producto->precio, 0, ',', '.') }}</span>
