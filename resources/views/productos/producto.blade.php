@@ -25,7 +25,7 @@
                 <p class="text-umami">{{ $producto->descripcion }}</p>
                 
                 <div class="d-flex align-items-center gap-3 mb-3">
-                    <p class="h4 text-umami fw-bold mb-0">${{ number_format($producto->precio / 100, 2, ',', '.') }}</p>
+                    <p class="h4 text-umami fw-bold mb-0">${{ number_format($producto->precio / 100, 2, '.', ',') }}</p>
                     @if($producto->stock > 0)
                         <span class="badge bg-success">Disponible ({{ $producto->stock }} unidades)</span>
                     @else
@@ -96,7 +96,7 @@
                     <div class="hover-info">
                         <h3>{{ $relacionado->nombre }}</h3>
                         <p>{{ $relacionado->descripcion_corta }}</p>
-                        <span class="price">${{ number_format($relacionado->precio / 100, 2, ',', '.') }}</span>
+                        <span class="price">${{ number_format($relacionado->precio / 100, 2, '.', ',') }}</span>
                         <a href="{{ route('producto', $relacionado->producto_id) }}" class="btn-secundario">Ver más</a>
                     </div>
                 </article>

@@ -62,7 +62,7 @@
                                                     </div>
                                                 </td>
                                                 <td class="align-middle">
-                                                    ${{ number_format($item->precio_unitario / 100, 2, ',', '.') }}
+                                                    ${{ number_format($item->precio_unitario / 100, 2, '.', ',') }}
                                                 </td>
                                                 <td class="align-middle">
                                                     <form action="{{ route('carrito.actualizar', $item->carrito_item_id) }}" 
@@ -98,7 +98,7 @@
                                                     </small>
                                                 </td>
                                                 <td class="align-middle fw-bold">
-                                                    ${{ number_format($item->subtotal / 100, 2, ',', '.') }}
+                                                    ${{ number_format($item->subtotal / 100, 2, '.', ',') }}
                                                 </td>
                                                 <td class="align-middle">
                                                     <form action="{{ route('carrito.eliminar', $item->carrito_item_id) }}" 
@@ -135,12 +135,12 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-between mb-3">
                                 <span>Subtotal:</span>
-                                <span class="fw-bold">${{ number_format($total / 100, 2, ',', '.') }}</span>
+                                <span class="fw-bold">${{ number_format($total / 100, 2, '.', ',') }}</span>
                             </div>
                             <hr>
                             <div class="d-flex justify-content-between mb-3">
                                 <span class="h5 mb-0">Total:</span>
-                                <span class="h5 mb-0 text-umami fw-bold">${{ number_format($total / 100, 2, ',', '.') }}</span>
+                                <span class="h5 mb-0 text-umami fw-bold">${{ number_format($total / 100, 2, '.', ',') }}</span>
                             </div>
                             
                             <form action="{{ route('carrito.finalizar') }}" method="POST">

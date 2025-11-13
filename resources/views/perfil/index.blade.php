@@ -67,8 +67,12 @@
                         <li><strong>Nombre:</strong> {{ $usuario->name }}</li>
                         <li><strong>Email:</strong> {{ $usuario->email }}</li>
                         <li><strong>Ubicación:</strong> {{ $usuario->ubicacion ?? '—' }}</li>
+                        <li><strong>Rol:</strong> {{ $usuario->rol }}</li>
+                        <li><strong>Email verificado:</strong> {{ $usuario->email_verified_at?->format('d/m/Y H:i') ?? '—' }}</li>
+                        <li><strong>ID usuario:</strong> {{ $usuario->id }}</li>
                         <li><strong>Se unió:</strong> {{ $usuario->created_at?->format('d/m/Y') }}</li>
                         <li><strong>Última conexión:</strong> {{ $usuario->last_login_at?->format('d/m/Y H:i') ?? '—' }}</li>
+                        <li><strong>Actualizado:</strong> {{ $usuario->updated_at?->format('d/m/Y H:i') }}</li>
                     </ul>
                 </div>
             </div>

@@ -29,7 +29,7 @@
                     </a>
                     <!-- perfil -->
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarPerfil">
-                        <li><a class="dropdown-item" href="perfil.html">Mi perfil</a></li>
+                        <li><a class="dropdown-item" href="{{ route('perfil.index') }}">Mi perfil</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
