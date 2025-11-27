@@ -11,16 +11,17 @@
         </a>
     </div>
 
-    <div class="card shadow-sm">
+    <div class="card shadow-sm p-3 bg-umami ">
         <div class="card-body p-0">
-            <div class="table-responsive">
-                <table class="table table-admin table-hover align-middle m-0">
+            <div class="table-responsive rounded">
+                <table class="table table-admin table-hover table-striped align-middle m-0">
                     <thead class="bg-umami text-umami-cream">
                         <tr>
                             <th>ID</th>
                             <th>Imagen</th>
                             <th>Nombre</th>
                             <th>Categoría</th>
+                            <th>Etiqueta</th>
                             <th>Precio</th>
                             <th>Stock</th>
                             <th>Acciones</th>
@@ -30,16 +31,23 @@
                         @foreach($productos as $producto)
                         <tr>
                             <td>{{ $producto->producto_id }}</td>
-                            <td>
+                            <td class="img-adminProducto">
                                 @if($producto->imagen)
-                                <img src="{{ asset('storage/productos/' . $producto->imagen) }}" alt="{{ $producto->nombre }}" class="img-thumbnail-admin">
+                                <img src="{{ asset('storage/productos/' . $producto->imagen) }}" alt="{{ $producto->nombre }}" class="img-thumbnail-admin rounded">
                                 @else
-                                <img src="{{ asset('storage/UI/logo-umami-green.svg') }}" alt="Sin imagen" class="img-thumbnail-admin p-2">
+                                <img src="{{ asset('storage/UI/logo-umami-green.svg') }}" alt="Sin imagen" class="img-thumbnail-admin p-2 rounded">
                                 @endif
                             </td>
                             <td>{{ $producto->nombre }}</td>
                             <td>{{ $producto->categoria->nombre }}</td>
-                            <td>${{ number_format($producto->precio / 100, 2, ',', '.') }}</td>
+                            <td class="">
+                                @if($producto->etiqueta)
+                                <span class="badge bg-umami-green text-umami">{{ ucfirst($producto->etiqueta) }}</span>
+                                @else
+                                <span class="text-muted">Ninguna</span>
+                                @endif
+                            </td>
+                            <td>${{ number_format($producto->precio, 0, ',', '.') }}</td>
                             <td>{{ $producto->stock }}</td>
                             <td>
                                 <a href="{{ route('admin.productos.show', $producto) }}" class="btn-icono-admin btn-ver" title="Ver">
@@ -59,7 +67,7 @@
             </div>
 
             @if($productos->hasPages())
-            <div class="card-footer bg-cream p-3">
+            <div class="card-footer bg-cream text-umami-cream p-3">
                 {{ $productos->links() }}
             </div>
             @endif

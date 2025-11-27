@@ -643,6 +643,10 @@ footer {
 }
 
 /* ---------------- PRODUCTOS ADMIN ---------------- */
+.img-adminProducto {
+    width: 12%;
+}
+
 .badge-acciones-admin {
     background-color: var(--color-umami-green);
     color: var(--color-umami-cream);
