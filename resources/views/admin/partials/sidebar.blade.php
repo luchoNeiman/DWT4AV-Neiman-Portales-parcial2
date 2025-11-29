@@ -1,11 +1,12 @@
 <aside class="aside-dashboard bg-umami d-none d-md-flex flex-column p-3 min-vh-100">
+    
     <a href="{{ route('index') }}" class="text-center mb-4">
         <img src="{{ asset('storage/UI/logo-umami.svg') }}" alt="Logo UMAMI" class="w-50">
     </a>
 
     <nav class="flex-grow-1 d-flex flex-column">
         
-        <ul class="nav flex-column h-100">
+        <ul class="nav flex-column flex-grow-1">
             
             <li class="nav-item">
                 <a class="nav-link text-umami-cream {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}"

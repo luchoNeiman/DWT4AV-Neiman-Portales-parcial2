@@ -636,10 +636,18 @@ footer {
 /* ---------------- DASHBOARD ---------------- */
 .contenedor-contenido-dashboard {
     padding: 1.5rem;
+    overflow-x: hidden;
 }
 
 .aside-dashboard {
     width: 25%;
+    /* Ancho base */
+    flex: 0 0 25%;
+    /* 0 crecer, 0 encoger, 25% base -> */
+    max-width: 25%;
+    /* Límite duro para que nada lo expanda */
+    overflow-y: auto;
+    /* Si el menú es muy alto, que tenga scroll interno */
 }
 
 /* ---------------- PRODUCTOS ADMIN ---------------- */
@@ -1214,6 +1222,9 @@ footer {
     /* ---------------- DASHBOARD ---------------- */
     .aside-dashboard {
         width: 46%;
+        flex: 0 0 46%;
+        /* Bloqueamos el flex en 46% */
+        max-width: 46%;
     }
 
     /* Cards métricas en 2 columnas */
@@ -1375,6 +1386,9 @@ footer {
     /* ---------------- DASHBOARD ---------------- */
     .aside-dashboard {
         width: 46%;
+        flex: 0 0 46%;
+        /* Bloqueamos el flex en 46% */
+        max-width: 46%;
     }
 
     /* Cards métricas en 4 columnas (ya por Bootstrap col-lg-3) */
