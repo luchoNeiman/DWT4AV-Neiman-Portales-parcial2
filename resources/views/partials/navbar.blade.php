@@ -14,7 +14,6 @@
                 <li class="nav-item"><a class="nav-link text-umami-cream {{ request()->routeIs('catalogo') ? 'active' : '' }}" href="{{ route('catalogo') }}">Menú</a></li>
                 <li class="nav-item"><a class="nav-link text-umami-cream {{ request()->routeIs('nosotros') ? 'active' : '' }}" href="{{ route('nosotros') }}">Nosotros</a></li>
                 <li class="nav-item"><a class="nav-link text-umami-cream {{ request()->routeIs('contacto') ? 'active' : '' }}" href="{{ route('contacto') }}">Contacto</a></li>
-                <li class="nav-item"><a class="nav-link text-umami-cream" href="{{ route('auth.showLogin') }}">Admin</a></li>
 
                 <!-- Mostrar "Iniciar sesión" si no está autenticado, sino dropdown con Perfil + Cerrar sesión -->
                 @guest

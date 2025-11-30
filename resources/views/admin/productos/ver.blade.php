@@ -4,16 +4,16 @@
 
 @section('content')
 <div class="container-fluid">
-    <a href="{{ route('admin.productos.index') }}" class="btn-secundario mb-3">
+    <a href="{{ route('admin.productos.index') }}" class="btn-secundario">
         <i class="bi bi-arrow-left me-2"></i> Volver al listado
     </a>
-    <div class="card shadow-sm">
+    <div class="card shadow-sm mt-3">
         <div class="row g-0">
-            <div class="col-md-5">
+            <div class="col-md-5 rounded">
                 @if($producto->imagen)
-                <img src="{{ asset('storage/' . $producto->imagen) }}" alt="{{ $producto->nombre }}" class="img-fluid rounded-start w-100" style="object-fit: cover; height: 100%;">
+                <img src="{{ asset('storage/' . $producto->imagen) }}" alt="{{ $producto->nombre }}" class="img-fluid rounded w-100" style="object-fit: cover; height: 100%;">
                 @else
-                <img src="{{ asset('storage/UI/logo-umami-green.svg') }}" alt="Sin imagen" class="img-fluid rounded-start w-100 p-5">
+                <img src="{{ asset('storage/UI/logo-umami-green.svg') }}" alt="Sin imagen" class="img-fluid rounded w-100 p-5">
                 @endif
             </div>
             <div class="col-md-7">
@@ -24,22 +24,22 @@
                     @endif
                     <h2 class="card-title text-umami mb-3">{{ $producto->nombre }}</h2>
                     <div class="mb-3">
-                        <h5 class="fw-bold text-umami">Descripción Corta</h5>
+                        <h5 class="text-umami">Descripción Corta</h5>
                         <p>{{ $producto->descripcion_corta }}</p>
                     </div>
                     <div class="mb-3">
-                        <h5 class="fw-bold text-umami">Descripción Larga</h5>
+                        <h5 class="text-umami">Descripción Larga</h5>
                         <p>{{ $producto->descripcion }}</p>
                     </div>
                     <hr>
                     <div class="row">
                         <div class="col-md-6">
-                            <h5 class="fw-bold text-umami">Precio</h5>
-                            <p class="h4 text-umami-dark fw-bold">${{ number_format($producto->precio / 100, 2, ',', '.') }}</p>
+                            <h5 class="text-umami">Precio</h5>
+                            <p class="h4 text-umami">${{ number_format($producto->precio, 0, ',', '.') }}</p>
                         </div>
                         <div class="col-md-6">
-                            <h5 class="fw-bold text-umami">Stock</h5>
-                            <p class="h4 text-umami-dark fw-bold">{{ $producto->stock }} unidades</p>
+                            <h5 class="text-umami">Stock</h5>
+                            <p class="h4 text-umami">{{ $producto->stock }} unidades</p>
                         </div>
                     </div>
                     <hr>
