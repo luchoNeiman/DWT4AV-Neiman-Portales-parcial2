@@ -1221,10 +1221,15 @@ footer {
 
     /* ---------------- DASHBOARD ---------------- */
     .aside-dashboard {
-        width: 46%;
-        flex: 0 0 46%;
+        width: 20%;
+        flex: 0 0 20%;
         /* Bloqueamos el flex en 46% */
-        max-width: 46%;
+        max-width: 20%;
+    }
+    .aside-dashboard .nav-link {
+        font-size: 0.9rem; 
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
     }
 
     /* Cards métricas en 2 columnas */
@@ -1385,10 +1390,10 @@ footer {
 
     /* ---------------- DASHBOARD ---------------- */
     .aside-dashboard {
-        width: 46%;
-        flex: 0 0 46%;
+        width: 20%;
+        flex: 0 0 20%;
         /* Bloqueamos el flex en 46% */
-        max-width: 46%;
+        max-width: 20%;
     }
 
     /* Cards métricas en 4 columnas (ya por Bootstrap col-lg-3) */
@@ -1401,11 +1406,6 @@ footer {
     .card-acceso-responsive {
         flex: 0 0 33.333%;
         max-width: 33.333%;
-    }
-
-    /* ---------------- PRODUCTOS ADMIN ---------------- */
-    td {
-        width: 100%;
     }
 
     .combos-grid .hover-card img {

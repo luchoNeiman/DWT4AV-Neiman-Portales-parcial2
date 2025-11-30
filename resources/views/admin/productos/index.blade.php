@@ -143,9 +143,6 @@
         {{ $productos->links() }}
     </div>
     @endif
-
-
-
 </section>
 
 @foreach($productos as $producto)
