@@ -37,4 +37,22 @@ class AdminUsuarioController extends Controller
             ->route('admin.usuarios.index')
             ->with('feedback.message', 'Usuario actualizado correctamente.');
     }
+
+    public function destroy(string $id)
+    {
+        $usuario = Usuario::findOrFail($id);
+
+        // Evitar que un admin se borre a sí mismo
+        if (auth()->id() == $usuario->id) {
+            return redirect()
+                ->route('admin.usuarios.index')
+                ->with('feedback.error', 'No puedes eliminar tu propia cuenta mientras estás logueado.');
+        }
+
+        $usuario->delete();
+
+        return redirect()
+            ->route('admin.usuarios.index')
+            ->with('feedback.message', 'Usuario eliminado correctamente.');
+    }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Producto;
 use App\Models\Categoria;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AdminProductoController extends Controller
 {
@@ -32,7 +33,34 @@ class AdminProductoController extends Controller
      */
     public function store(Request $request)
     {
-        // Lógica de validación y guardado (Clase 05 y 10)
+        // Validar
+        $request->validate([
+            'nombre'            => 'required|min:3|max:100',
+            'categoria_id'      => 'required|exists:categorias,categoria_id',
+            'precio'            => 'required|numeric|min:0',
+            'stock'             => 'required|integer|min:0',
+            'descripcion_corta' => 'required|max:255',
+            'descripcion'       => 'required',
+            'imagen'            => 'nullable|image|mimes:jpg,png,jpeg,webp|max:2048',
+            'etiqueta'          => 'nullable|string|max:50',
+        ]);
+
+        // Preparar datos
+        $data = $request->except(['_token']);
+
+        // Subir Imagen (si existe)
+        if ($request->hasFile('imagen')) {
+            // Guarda en storage/app/public/productos
+            $data['imagen'] = $request->file('imagen')->store('productos', 'public');
+        }
+
+        // Crear
+        Producto::create($data);
+
+        // Redirigir
+        return redirect()
+            ->route('admin.productos.index')
+            ->with('feedback.message', '¡Producto creado con éxito!');
     }
 
     /**
@@ -62,7 +90,38 @@ class AdminProductoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // Lógica de validación y actualización (Clase 06 y 10)
+        $producto = Producto::findOrFail($id);
+
+        // Validar
+        $request->validate([
+            'nombre'            => 'required|min:3|max:100',
+            'categoria_id'      => 'required|exists:categorias,categoria_id',
+            'precio'            => 'required|numeric|min:0',
+            'stock'             => 'required|integer|min:0',
+            'descripcion_corta' => 'required|max:255',
+            'descripcion'       => 'required',
+            'imagen'            => 'nullable|image|mimes:jpg,png,jpeg,webp|max:2048',
+            'etiqueta'          => 'nullable|string|max:50',
+        ]);
+
+        $data = $request->except(['_token', '_method']);
+
+        // Manejo de Imagen
+        if ($request->hasFile('imagen')) {
+            // Borrar imagen anterior si existe
+            if ($producto->imagen && Storage::disk('public')->exists($producto->imagen)) {
+                Storage::disk('public')->delete($producto->imagen);
+            }
+            // Subir nueva
+            $data['imagen'] = $request->file('imagen')->store('productos', 'public');
+        }
+
+        // Actualizar
+        $producto->update($data);
+
+        return redirect()
+            ->route('admin.productos.index')
+            ->with('feedback.message', '¡Producto actualizado correctamente!');
     }
 
     /**
@@ -70,6 +129,18 @@ class AdminProductoController extends Controller
      */
     public function destroy(string $id)
     {
-        // Lógica de eliminación (Clase 06)
+        $producto = Producto::findOrFail($id);
+
+        // Borrar imagen asociada
+        if ($producto->imagen && Storage::disk('public')->exists($producto->imagen)) {
+            Storage::disk('public')->delete($producto->imagen);
+        }
+
+        // Borrar registro
+        $producto->delete();
+
+        return redirect()
+            ->route('admin.productos.index')
+            ->with('feedback.message', 'Producto eliminado.');
     }
 }
