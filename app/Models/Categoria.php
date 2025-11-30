@@ -12,6 +12,9 @@ class Categoria extends Model
     protected $table = 'categorias'; // Indica el nombre de la tabla
     protected $primaryKey = 'categoria_id'; // Indica la clave primaria
 
+    // Define qué campos se pueden guardar masivamente
+    protected $fillable = ['nombre', 'descripcion'];
+
     /**
      * Una categoría tiene muchos productos.
      */

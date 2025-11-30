@@ -43,15 +43,95 @@
                             </td>
                             <td class="text-end pe-4">
                                 <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-sm btn-outline-umami badge-acciones-admin rounded"
+                                        title="Ver Compras/Carrito"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#modalCarrito-{{ $usuario->id }}">
+                                        <i class="bi bi-cart3"></i>
+                                    </button>
+
                                     <a href="{{ route('admin.usuarios.edit', $usuario) }}" class="btn btn-sm btn-outline-umami badge-acciones-admin rounded" title="Editar Rol">
                                         <i class="bi bi-pencil"></i>
                                     </a>
+
                                     <button class="btn btn-sm btn-danger rounded" title="Eliminar" data-bs-toggle="modal" data-bs-target="#modalEliminar-{{ $usuario->id }}">
                                         <i class="bi bi-trash"></i>
                                     </button>
                                 </div>
                             </td>
                         </tr>
+                        <div class="modal fade" id="modalCarrito-{{ $usuario->id }}" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                <div class="modal-content bg-cream border-0 shadow">
+                                    <div class="modal-header border-bottom-0">
+                                        <h5 class="modal-title text-umami fw-bold">
+                                            <i class="bi bi-clock-history me-2"></i>Historial de Compras: {{ $usuario->name }}
+                                        </h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+
+                                    <div class="modal-body p-4">
+                                        @if($usuario->pedidos->isEmpty())
+                                        <div class="text-center py-5">
+                                            <i class="bi bi-bag-x display-1 text-umami opacity-25 mb-3"></i>
+                                            <p class="text-muted fw-semibold">Este usuario aún no ha realizado compras.</p>
+                                        </div>
+                                        @else
+                                        <div class="accordion" id="accordionPedidos-{{ $usuario->id }}">
+                                            @foreach($usuario->pedidos as $pedido)
+                                            <div class="accordion-item border-umami mb-3 rounded overflow-hidden">
+                                                <h2 class="accordion-header" id="heading-{{ $pedido->pedido_id }}">
+                                                    <button class="accordion-button collapsed bg-white text-umami fw-bold shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ $pedido->pedido_id }}">
+                                                        <div class="d-flex justify-content-between w-100 me-3 align-items-center">
+                                                            <span>
+                                                                <i class="bi bi-receipt me-2"></i>Pedido #{{ $pedido->pedido_id }}
+                                                                <small class="text-muted ms-2 fw-normal">{{ $pedido->fecha }}</small>
+                                                            </span>
+                                                            <span>
+                                                                <span class="badge {{ $pedido->estado == 'entregado' ? 'bg-success' : 'bg-warning text-dark' }} me-3">
+                                                                    {{ ucfirst($pedido->estado) }}
+                                                                </span>
+                                                                ${{ number_format($pedido->total, 0, ',', '.') }}
+                                                            </span>
+                                                        </div>
+                                                    </button>
+                                                </h2>
+                                                <div id="collapse-{{ $pedido->pedido_id }}" class="accordion-collapse collapse" data-bs-parent="#accordionPedidos-{{ $usuario->id }}">
+                                                    <div class="accordion-body bg-light">
+                                                        <table class="table table-sm mb-0">
+                                                            <thead class="text-muted small">
+                                                                <tr>
+                                                                    <th>Producto</th>
+                                                                    <th class="text-center">Cant.</th>
+                                                                    <th class="text-end">Precio Unit.</th>
+                                                                    <th class="text-end">Subtotal</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach($pedido->items as $item)
+                                                                <tr>
+                                                                    <td class="text-umami fw-semibold">{{ $item->nombre_producto }}</td>
+                                                                    <td class="text-center">{{ $item->cantidad }}</td>
+                                                                    <td class="text-end text-muted">${{ number_format($item->precio_unitario, 0, ',', '.') }}</td>
+                                                                    <td class="text-end fw-bold">${{ number_format($item->precio_unitario * $item->cantidad, 0, ',', '.') }}</td>
+                                                                </tr>
+                                                                @endforeach
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @endforeach
+                                        </div>
+                                        @endif
+                                    </div>
+
+                                    <div class="modal-footer border-top-0 bg-light">
+                                        <button type="button" class="btn btn-secundario" data-bs-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         @endforeach
                     </tbody>
                 </table>
@@ -77,6 +157,14 @@
                                     <a class="dropdown-item text-umami" href="{{ route('admin.usuarios.edit', $usuario) }}">
                                         <i class="bi bi-pencil me-2"></i> Editar Rol
                                     </a>
+                                </li>
+                                <li>
+                                    <button class="dropdown-item text-umami" 
+                                        type="button"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#modalCarrito-{{ $usuario->id }}">
+                                        <i class="bi bi-cart3 me-2"></i> Ver Compras/Carrito
+                                    </button>
                                 </li>
                                 <li>
                                     <hr class="dropdown-divider bg-umami opacity-25">

@@ -11,8 +11,10 @@ class AdminUsuarioController extends Controller
 {
     public function index()
     {
-        // Usamos paginación para que la vista pueda renderizar correctamente el paginador
-        $usuarios = Usuario::orderByDesc('id')->paginate(10);
+        // cargamos 'pedidos' y sus 'items'
+        $usuarios = Usuario::with(['pedidos.items'])
+            ->paginate(10);
+
         return view('admin.usuarios.index', ['usuarios' => $usuarios]);
     }
 
