@@ -18,7 +18,7 @@
             @foreach($hamburguesas as $hamburguesa)
             {{-- Mantener el look de la maqueta: marcar como destacado el primer y tercer item, o cuando tenga etiqueta --}}
             <article class="hover-card {{ ($loop->first || $loop->iteration == 3 || $hamburguesa->etiqueta) ? 'destacado' : '' }}">
-                <img src="{{ asset('storage/productos/' . $hamburguesa->imagen) }}" alt="{{ $hamburguesa->nombre }}">
+                <img src="{{ asset('storage/' . $hamburguesa->imagen) }}" alt="{{ $hamburguesa->nombre }}">
                 <div class="hover-info">
                     <h3>{{ $hamburguesa->nombre }}</h3>
                     <p>{{ $hamburguesa->descripcion_corta }}</p>
@@ -58,7 +58,7 @@
         <div class="catalogo-grid">
             @foreach($acom_y_condimentos as $producto)
             <article class="hover-card {{ $producto->etiqueta === 'destacado' ? 'destacado' : '' }}">
-                <img src="{{ asset('storage/productos/' . $producto->imagen) }}" alt="{{ $producto->nombre }}">
+                <img src="{{ asset('storage/' . $producto->imagen) }}" alt="{{ $producto->nombre }}">
                 <div class="hover-info">
                     <h3>{{ $producto->nombre }}</h3>
                     <p>{{ $producto->descripcion_corta }}</p>
@@ -98,7 +98,7 @@
         <div class="catalogo-grid">
             @foreach($bebidas as $bebida)
             <article class="hover-card {{ $bebida->etiqueta === 'destacado' ? 'destacado' : '' }}">
-                <img src="{{ asset('storage/productos/' . $bebida->imagen) }}"
+                <img src="{{ asset('storage/' . $bebida->imagen) }}"
                     alt="{{ $bebida->nombre }}">
                 <div class="hover-info">
                     <h3>{{ $bebida->nombre }}</h3>
@@ -132,7 +132,7 @@
         <div class="catalogo-grid">
             @foreach($postres as $postre)
             <article class="hover-card {{ $postre->etiqueta === 'destacado' ? 'destacado' : '' }}">
-                <img src="{{ asset('storage/productos/' . $postre->imagen) }}"
+                <img src="{{ asset('storage/' . $postre->imagen) }}"
                     alt="{{ $postre->nombre }}">
                 <div class="hover-info">
                     <h3>{{ $postre->nombre }}</h3>

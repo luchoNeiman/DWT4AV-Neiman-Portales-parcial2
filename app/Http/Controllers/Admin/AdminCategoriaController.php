@@ -48,7 +48,7 @@ class AdminCategoriaController extends Controller
     {
         $categoria = Categoria::findOrFail($id);
 
-        // Opcional: Verificar si tiene productos antes de borrar
+        // Verificar si tiene productos antes de borrar
         if ($categoria->productos()->exists()) {
             return redirect()
                 ->route('admin.categorias.index')

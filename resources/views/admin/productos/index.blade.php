@@ -33,7 +33,7 @@
                             <td>{{ $producto->producto_id }}</td>
                             <td class="img-adminProducto" style="width: 80px;">
                                 @if($producto->imagen)
-                                <img src="{{ asset('storage/productos/' . $producto->imagen) }}" alt="{{ $producto->nombre }}" class="img-thumbnail-admin rounded" style="width: 60px; height: 60px; object-fit: cover;">
+                                <img src="{{ asset('storage/' . $producto->imagen) }}" alt="{{ $producto->nombre }}" class="img-thumbnail-admin rounded" style="width: 60px; height: 60px; object-fit: cover;">
                                 @else
                                 <img src="{{ asset('storage/UI/logo-umami-green.svg') }}" alt="Sin imagen" class="img-thumbnail-admin p-2 rounded" style="width: 60px; height: 60px; object-fit: contain;">
                                 @endif
@@ -104,7 +104,7 @@
                         <div class="d-flex align-items-start mb-3">
                             <div class="me-3 flex-shrink-0">
                                 @if($producto->imagen)
-                                <img src="{{ asset('storage/productos/' . $producto->imagen) }}" alt="{{ $producto->nombre }}" class="rounded border border-umami" style="width: 80px; height: 80px; object-fit: cover;">
+                                <img src="{{ asset('storage/' . $producto->imagen) }}" alt="{{ $producto->nombre }}" class="rounded border border-umami" style="width: 80px; height: 80px; object-fit: cover;">
                                 @else
                                 <div class="bg-light rounded d-flex align-items-center justify-content-center border border-umami" style="width: 80px; height: 80px;">
                                     <i class="bi bi-image text-muted fs-2"></i>

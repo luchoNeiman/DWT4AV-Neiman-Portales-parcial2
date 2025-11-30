@@ -59,7 +59,7 @@
                             <label class="form-label">Imagen Actual</label>
                             <div>
                                 @if($producto->imagen)
-                                <img src="{{ asset('storage/productos/' . $producto->imagen) }}" alt="{{ $producto->nombre }}" class="img-thumbnail-admin">
+                                <img src="{{ asset('storage/' . $producto->imagen) }}" alt="{{ $producto->nombre }}" class="img-thumbnail-admin">
                                 @else
                                 <p class="text-muted">No hay imagen cargada.</p>
                                 @endif

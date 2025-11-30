@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminUsuarioController extends Controller
 {
@@ -43,7 +44,7 @@ class AdminUsuarioController extends Controller
         $usuario = Usuario::findOrFail($id);
 
         // Evitar que un admin se borre a sí mismo
-        if (auth()->id() == $usuario->id) {
+        if (Auth::id() == $usuario->id) {
             return redirect()
                 ->route('admin.usuarios.index')
                 ->with('feedback.error', 'No puedes eliminar tu propia cuenta mientras estás logueado.');

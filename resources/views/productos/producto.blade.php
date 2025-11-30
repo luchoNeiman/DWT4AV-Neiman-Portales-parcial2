@@ -11,10 +11,10 @@
             <!-- Imagen -->
             <figure class="col-md-5">
                 @if($producto->imagen)
-                    <img src="{{ asset('storage/productos/' . $producto->imagen) }}"
+                    <img src="{{ asset('storage/' . $producto->imagen) }}"
                         alt="{{ $producto->nombre }}" class="img-fluid rounded-4">
                 @else
-                    <img src="{{ asset('storage/productos/placeholder.webp') }}"
+                    <img src="{{ asset('storage/placeholder.webp') }}"
                         alt="{{ $producto->nombre }}" class="img-fluid rounded-4">
                 @endif
             </figure>
@@ -90,9 +90,9 @@
             <div class="col-md-4">
                 <article class="hover-card">
                     @if($relacionado->imagen)
-                        <img src="{{ asset('storage/productos/' . $relacionado->imagen) }}" alt="{{ $relacionado->nombre }}">
+                        <img src="{{ asset('storage/' . $relacionado->imagen) }}" alt="{{ $relacionado->nombre }}">
                     @else
-                        <img src="{{ asset('storage/productos/placeholder.webp') }}" alt="{{ $relacionado->nombre }}">
+                        <img src="{{ asset('storage/placeholder.webp') }}" alt="{{ $relacionado->nombre }}">
                     @endif
                     <div class="hover-info">
                         <h3>{{ $relacionado->nombre }}</h3>

@@ -27,7 +27,7 @@
             @foreach($destacados as $index => $producto)
             <div class="{{ $index === 0 ? 'grid-main' : ($index === 1 ? 'grid-side1' : 'grid-side2') }}">
                 <article class="hover-card h-100">
-                    <img src="{{ asset('storage/productos/' . $producto->imagen) }}"
+                    <img src="{{ asset('storage/' . $producto->imagen) }}"
                         alt="{{ $producto->nombre }}" class="img-fluid">
                     <div class="hover-info">
                         <h3>{{ $producto->nombre }}</h3>
@@ -45,7 +45,7 @@
                 @foreach($destacados as $index => $producto)
                 <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
                     <article class="hover-card">
-                        <img src="{{ asset('storage/productos/' . $producto->imagen) }}"
+                        <img src="{{ asset('storage/' . $producto->imagen) }}"
                             alt="{{ $producto->nombre }}" class="d-block w-100">
                         <div class="hover-info">
                             <h3>{{ $producto->nombre }}</h3>
@@ -96,7 +96,7 @@
             @foreach($combos as $combo)
             <div class="col-12 col-sm-6 col-md-4">
                 <article class="hover-card">
-                    <img src="{{ asset('storage/productos/' . $combo->imagen) }}"
+                    <img src="{{ asset('storage/' . $combo->imagen) }}"
                         alt="{{ $combo->nombre }}">
                     <div class="hover-info">
                         <h3>{{ $combo->nombre }}</h3>
