@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Producto;
 use App\Models\Categoria;
 use App\Models\Usuario;
@@ -13,9 +14,8 @@ class AdminPerfilController extends Controller
 {
     public function index()
     {
-        $usuario = Auth::user(); // Obtenemos el admin logueado
+        $usuario = Auth::user();
 
-        // Métricas del sistema (podemos refinar a métricas por usuario si se agregan campos de auditoría)
         $metricas = [
             'productos' => Producto::count(),
             'categorias' => Categoria::count(),
@@ -33,23 +33,34 @@ class AdminPerfilController extends Controller
     {
         $user = Auth::user();
 
-        $validated = $request->validate([
+        $rules = [
             'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255|unique:usuarios,email,' . $user->id,
             'ubicacion' => 'nullable|string|max:255',
-            'password' => 'nullable|string|min:8|confirmed',
+        ];
+
+        // Validación de contraseña (si intenta cambiarla)
+        if ($request->filled('password') || $request->filled('current_password')) {
+            $rules['current_password'] = 'required|current_password'; // Verifica la pass actual
+            $rules['password'] = 'required|string|min:8|confirmed';   // Verifica la nueva
+        }
+
+        $validated = $request->validate($rules, [
+            'current_password.current_password' => 'La contraseña actual es incorrecta.',
+            'password.confirmed' => 'La confirmación de la nueva contraseña no coincide.',
         ]);
 
+        // Actualizar datos básicos
         $user->name = $validated['name'];
-        $user->email = $validated['email'];
         $user->ubicacion = $validated['ubicacion'] ?? null;
 
-        if (!empty($validated['password'])) {
-            $user->password = bcrypt($validated['password']);
+        // Actualizar contraseña si corresponde
+        if ($request->filled('password')) {
+            $user->password = Hash::make($validated['password']);
         }
 
         $user->save();
 
-        return back()->with('feedback.message', 'Perfil actualizado correctamente.');
+        return redirect()->route('admin.perfil.index')
+            ->with('feedback.message', 'Perfil actualizado correctamente.');
     }
 }

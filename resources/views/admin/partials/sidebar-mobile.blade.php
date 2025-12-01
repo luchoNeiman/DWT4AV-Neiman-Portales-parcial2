@@ -37,7 +37,7 @@
             <li class="nav-item mt-3">
                 <form action="{{ route('auth.logout') }}" method="POST">
                     @csrf
-                    <button type="submit" class="btn-secundario w-100">Cerrar sesión</button>
+                    <button type="submit" class="btn-secundario w-100"><i class="bi bi-box-arrow-right me-2"></i>Cerrar sesión</button>
                 </form>
             </li>
         </ul>

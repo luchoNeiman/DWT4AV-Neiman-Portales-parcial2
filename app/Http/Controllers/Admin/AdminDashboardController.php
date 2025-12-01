@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Producto; 
 use App\Models\Usuario; 
+use App\Models\Pedido;
 use Carbon\Carbon; //lo agregue para manejar fechas
 
 class AdminDashboardController extends Controller
@@ -35,7 +36,7 @@ class AdminDashboardController extends Controller
 
         // Ventas Totales
         // $ventasTotales = Pedido::where('estado', 'completado')->sum('total');
-        $ventasTotales = 0;
+        $ventasTotales = Pedido::where('estado', '!=', 'cancelado')->sum('total');
 
         return view('admin.dashboard', [
             'productosActivos' => $productosActivos,

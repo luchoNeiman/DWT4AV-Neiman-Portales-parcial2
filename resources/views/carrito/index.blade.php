@@ -146,7 +146,7 @@
                         <form action="{{ route('carrito.finalizar') }}" method="POST">
                             @csrf
                             <button type="submit"
-                                class="btn btn-umami w-100 mb-3"
+                                class="btn bg-umami w-100 mb-3 hover: text-white"
                                 onclick="return confirm('¿Confirmar compra?')">
                                 <i class="bi bi-check-circle me-2"></i>Finalizar Compra
                             </button>
