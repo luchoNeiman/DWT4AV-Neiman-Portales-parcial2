@@ -92,17 +92,18 @@
 <section class="py-5">
     <div class="container">
         <h2 class="text-center mb-5 text-umami">Combos umami</h2>
-        <div class="row g-4 container-combos-home">
+        <div class="row g-4 container-combos-home align-items-stretch">
             @foreach($combos as $combo)
-            <div class="col-12 col-sm-6 col-md-4">
-                <article class="hover-card">
+            <div class="col-12 col-sm-6 col-md-4 d-flex">
+                <article class="hover-card w-100 h-100">
                     <img src="{{ asset('storage/' . $combo->imagen) }}"
-                        alt="{{ $combo->nombre }}">
+                        alt="{{ $combo->nombre }}"
+                        class="img-combo-responsive">
                     <div class="hover-info">
-                        <h3>{{ $combo->nombre }}</h3>
-                        <p>{{ $combo->descripcion_corta ?: \Illuminate\Support\Str::limit($combo->descripcion, 120) }}</p>
-                        <span class="price">${{ number_format($combo->precio, 0, ',', '.') }}</span>
-                        <a href="{{ route('producto', $combo->producto_id) }}" class="btn-secundario">Ver más</a>
+                        <h3 class="text-center">{{ $combo->nombre }}</h3>
+                        <p class="text-center">{{ $combo->descripcion_corta ?: \Illuminate\Support\Str::limit($combo->descripcion, 80) }}</p>
+                        <span class="price fs-4">${{ number_format($combo->precio, 0, ',', '.') }}</span>
+                        <a href="{{ route('producto', $combo->producto_id) }}" class="btn-secundario mt-2">Ver más</a>
                     </div>
                 </article>
             </div>

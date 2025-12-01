@@ -1,40 +1,40 @@
-// // Igualar alturas de .hover-info en combos (respaldo)
-// function equalizeComboInfoHeights() {
-//     const infos = document.querySelectorAll('.container-combos-home .hover-info');
-//     if (!infos.length) return;
-//     // reset
-//     infos.forEach(i => i.style.minHeight = '0px');
-//     // recompute con las imágenes ya cargadas
-//     let maxH = 0;
-//     infos.forEach(i => {
-//         const h = i.getBoundingClientRect().height;
-//         if (h > maxH) maxH = h;
-//     });
-//     infos.forEach(i => i.style.minHeight = maxH + 'px');
-// }
+// Igualar alturas de .hover-info en combos (respaldo)
+function equalizeComboInfoHeights() {
+    const infos = document.querySelectorAll('.container-combos-home .hover-info');
+    if (!infos.length) return;
+    // reset
+    infos.forEach(i => i.style.minHeight = '0px');
+    // recompute con las imágenes ya cargadas
+    let maxH = 0;
+    infos.forEach(i => {
+        const h = i.getBoundingClientRect().height;
+        if (h > maxH) maxH = h;
+    });
+    infos.forEach(i => i.style.minHeight = maxH + 'px');
+}
 
-// // Ejecutar al load (asegura que las imágenes estén cargadas)
-// window.addEventListener('load', () => {
-//     equalizeComboInfoHeights();
-// });
+// Ejecutar al load (asegura que las imágenes estén cargadas)
+window.addEventListener('load', () => {
+    equalizeComboInfoHeights();
+});
 
-// // también al redimensionar (debounced)
-// let _combosResize;
-// window.addEventListener('resize', () => {
-//     clearTimeout(_combosResize);
-//     _combosResize = setTimeout(equalizeComboInfoHeights, 120);
-// });
+// también al redimensionar (debounced)
+let _combosResize;
+window.addEventListener('resize', () => {
+    clearTimeout(_combosResize);
+    _combosResize = setTimeout(equalizeComboInfoHeights, 120);
+});
 
-// // Observador: si algún nodo cambia dentro de la sección (p. ej. imágenes lazy-load),
-// // recalculamos. Esto ayuda en casos en que la carga ocurre después del 'load'.
-// const combosWrapper = document.querySelector('.container-combos-home');
-// if (combosWrapper && 'MutationObserver' in window) {
-//     const mo = new MutationObserver(() => {
-//         // pequeño delay para esperar render
-//         setTimeout(equalizeComboInfoHeights, 80);
-//     });
-//     mo.observe(combosWrapper, { childList: true, subtree: true, attributes: true });
-// }
+// Observador: si algún nodo cambia dentro de la sección (p. ej. imágenes lazy-load),
+// recalculamos. Esto ayuda en casos en que la carga ocurre después del 'load'.
+const combosWrapper = document.querySelector('.container-combos-home');
+if (combosWrapper && 'MutationObserver' in window) {
+    const mo = new MutationObserver(() => {
+        // pequeño delay para esperar render
+        setTimeout(equalizeComboInfoHeights, 80);
+    });
+    mo.observe(combosWrapper, { childList: true, subtree: true, attributes: true });
+}
 
 
 // Loader con animación de hongo rebotando

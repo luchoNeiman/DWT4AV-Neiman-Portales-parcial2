@@ -1072,6 +1072,10 @@ footer {
         margin-bottom: 0.6rem;
     }
 
+    .container-combos-home .hover-card img {
+        height: 40%;
+    }
+
     /* ---------------- MENÚ ---------------- */
     .banner-catalogo {
         height: 50vh;
@@ -1283,10 +1287,6 @@ footer {
     /* ---------------- HOME ---------------- */
     .banner-home {
         height: 75vh;
-    }
-
-    .container-combos-home .hover-card img {
-        height: 240px;
     }
 
     .container-combos-home .hover-card .hover-info {
