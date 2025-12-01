@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Models\Usuario;
 
 class PerfilController extends Controller
 {
@@ -17,27 +19,37 @@ class PerfilController extends Controller
     {
         $user = Auth::user();
 
-        $validated = $request->validate([
+        // 1. Reglas de validación (Nombre y Ubicación)
+        // El email lo ignoramos porque no permitimos cambiarlo
+        $rules = [
             'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255|unique:usuarios,email,' . $user->id,
             'ubicacion' => 'nullable|string|max:255',
+        ];
+
+        // 2. Si intenta cambiar la contraseña, exigimos la actual
+        if ($request->filled('password') || $request->filled('current_password')) {
+            $rules['current_password'] = 'required|current_password'; // Valida que coincida con la real
+            $rules['password'] = 'required|string|min:8|confirmed';   // Valida la nueva
+        }
+
+        $validated = $request->validate($rules, [
+            'current_password.required' => 'Para cambiar la contraseña, debés ingresar tu clave actual.',
+            'current_password.current_password' => 'La contraseña actual es incorrecta.',
+            'password.confirmed' => 'Las nuevas contraseñas no coinciden.',
+            'password.min' => 'La nueva contraseña debe tener al menos 8 caracteres.',
         ]);
 
-        $user->update($validated);
+        // 3. Actualizar datos básicos
+        $user->name = $validated['name'];
+        $user->ubicacion = $validated['ubicacion'] ?? null;
 
-        return back()->with('feedback.message', 'Perfil actualizado correctamente.');
-    }
+        // 4. Actualizar contraseña (solo si pasó la validación)
+        if ($request->filled('password')) {
+            $user->password = Hash::make($validated['password']);
+        }
 
-    public function updatePassword(Request $request)
-    {
-        $request->validate([
-            'password' => 'required|string|min:8|confirmed',
-        ]);
-
-        $user = Auth::user();
-        $user->password = bcrypt($request->input('password'));
         $user->save();
 
-        return back()->with('feedback.message', 'Contraseña actualizada correctamente.');
+        return back()->with('feedback.message', 'Tu perfil ha sido actualizado correctamente.');
     }
 }
