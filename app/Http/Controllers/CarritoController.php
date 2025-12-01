@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pedido;
+use App\Models\PedidoItem;
 use App\Models\CarritoItem;
 use App\Models\Producto;
 use Illuminate\Http\Request;
@@ -53,7 +55,7 @@ class CarritoController extends Controller
         if ($carritoItem) {
             // Si ya existe, actualizar cantidad
             $nuevaCantidad = $carritoItem->cantidad + $cantidad;
-            
+
             if ($producto->stock < $nuevaCantidad) {
                 return back()->with('feedback.error', 'No hay suficiente stock para agregar más unidades.');
             }
@@ -118,14 +120,14 @@ class CarritoController extends Controller
      */
     public function finalizarCompra()
     {
-        $items = CarritoItem::where('usuario_id', Auth::id())->get();
+        $items = CarritoItem::with('producto')->where('usuario_id', Auth::id())->get();
 
         if ($items->isEmpty()) {
             return redirect()->route('carrito.index')
                 ->with('feedback.error', 'Tu carrito está vacío.');
         }
 
-        // Verificar stock de todos los productos antes de procesar
+        // Verificar stock antes de empezar
         foreach ($items as $item) {
             if ($item->producto->stock < $item->cantidad) {
                 return redirect()->route('carrito.index')
@@ -133,21 +135,45 @@ class CarritoController extends Controller
             }
         }
 
-        // Usar transacción para asegurar integridad de datos
-        DB::transaction(function () use ($items) {
-            foreach ($items as $item) {
-                // Descontar stock
-                $producto = $item->producto;
-                $producto->stock -= $item->cantidad;
-                $producto->save();
+        try {
+            DB::transaction(function () use ($items) {
+                // Calcular total del pedido
+                $total = $items->sum(function ($item) {
+                    return $item->producto->precio * $item->cantidad;
+                });
 
-                // Eliminar item del carrito
-                $item->delete();
-            }
-        });
+                // Crear la cabecera del Pedido
+                $pedido = Pedido::create([
+                    'id' => Auth::id(), // ID del usuario
+                    'fecha' => now(),
+                    'total' => $total,
+                    'estado' => 'completado', // O 'pendiente' si tuvieras pago real
+                ]);
 
-        return redirect()->route('index')
-            ->with('feedback.message', '¡Gracias por tu compra!');
+                foreach ($items as $item) {
+                    // Crear cada Item del Pedido (Historial)
+                    PedidoItem::create([
+                        'pedido_id' => $pedido->pedido_id,
+                        'producto_id' => $item->producto_id,
+                        'nombre_producto' => $item->producto->nombre, // Guardamos el nombre por si cambia después
+                        'cantidad' => $item->cantidad,
+                        'precio_unitario' => $item->producto->precio, // Guardamos el precio histórico
+                    ]);
+
+                    // Descontar stock
+                    $item->producto->decrement('stock', $item->cantidad);
+
+                    // Eliminar del carrito
+                    $item->delete();
+                }
+            });
+
+            return redirect()->route('index')
+                ->with('feedback.message', '¡Gracias por tu compra! El pedido ha sido registrado.');
+        } catch (\Exception $e) {
+            return redirect()->route('carrito.index')
+                ->with('feedback.error', 'Ocurrió un error al procesar el pedido. Inténtalo nuevamente.');
+        }
     }
 
     /**
@@ -160,7 +186,7 @@ class CarritoController extends Controller
         }
 
         $count = CarritoItem::where('usuario_id', Auth::id())->sum('cantidad');
-        
+
         return response()->json(['count' => $count]);
     }
 }
