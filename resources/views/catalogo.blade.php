@@ -14,29 +14,72 @@
 <section class="py-5">
     <div class="container">
         <h2 class="text-center mb-5 text-umami">Hamburguesas</h2>
-        <div class="catalogo-grid">
+
+        <div class="row g-4">
             @foreach($hamburguesas as $hamburguesa)
-            {{-- Mantener el look de la maqueta: marcar como destacado el primer y tercer item, o cuando tenga etiqueta --}}
-            <article class="hover-card {{ ($loop->first || $loop->iteration == 3 || $hamburguesa->etiqueta) ? 'destacado' : '' }}">
-                <img src="{{ asset('storage/' . $hamburguesa->imagen) }}" alt="{{ $hamburguesa->nombre }}">
-                <div class="hover-info">
-                    <h3>{{ $hamburguesa->nombre }}</h3>
-                    <p>{{ $hamburguesa->descripcion_corta }}</p>
-                    @if(isset($hamburguesa->precio_anterior) && $hamburguesa->precio_anterior)
-                    <div class="d-flex align-items-center gap-2">
-                        <span class="price text-decoration-line-through">${{ number_format($hamburguesa->precio_anterior, 0, ',', '.') }}</span>
+            <div class="col-12 col-md-6 col-lg-4 d-flex">
+                <article class="hover-card w-100 {{ ($loop->first || $loop->iteration == 3 || $hamburguesa->etiqueta) ? 'destacado' : '' }}">
+                    <img src="{{ asset('storage/' . $hamburguesa->imagen) }}" alt="{{ $hamburguesa->nombre }}">
+                    <div class="hover-info">
+                        <h3>{{ $hamburguesa->nombre }}</h3>
+                        <p>{{ $hamburguesa->descripcion_corta }}</p>
+                        @if(isset($hamburguesa->precio_anterior) && $hamburguesa->precio_anterior)
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="price text-decoration-line-through">${{ number_format($hamburguesa->precio_anterior, 0, ',', '.') }}</span>
+                            <span class="price">${{ number_format($hamburguesa->precio, 0, ',', '.') }}</span>
+                        </div>
+                        @else
                         <span class="price">${{ number_format($hamburguesa->precio, 0, ',', '.') }}</span>
+                        @endif
+                        <div class="d-flex gap-2 mt-3">
+                            <a href="{{ route('producto', $hamburguesa->producto_id) }}" class="btn-secundario">Ver más</a>
+                            @auth
+                                @if($hamburguesa->stock > 0)
+                                <form action="{{ route('carrito.agregar') }}" method="POST" class="d-inline">
+                                    @csrf
+                                    <input type="hidden" name="producto_id" value="{{ $hamburguesa->producto_id }}">
+                                    <button type="submit" class="btn-primario">
+                                        <i class="bi bi-cart-plus"></i>
+                                    </button>
+                                </form>
+                                @endif
+                            @endauth
+                        </div>
+                    </div>
+                </article>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+
+<!-- Acompañamientos y Condimentos (sección 2 según maqueta) -->
+@if($acompaniamientos->isNotEmpty() || $condimentos->isNotEmpty())
+<section class="py-5 bg-umami">
+    <div class="container">
+        <h2 class="text-center mb-5">Acompañamientos y condimentos</h2>
+        <div class="catalogo-grid">
+            @foreach($acompaniamientos as $producto)
+            <article class="hover-card {{ $producto->etiqueta === 'destacado' ? 'destacado' : '' }}">
+                <img src="{{ asset('storage/' . $producto->imagen) }}" alt="{{ $producto->nombre }}">
+                <div class="hover-info">
+                    <h3>{{ $producto->nombre }}</h3>
+                    <p>{{ $producto->descripcion_corta }}</p>
+                    @if(isset($producto->precio_anterior) && $producto->precio_anterior)
+                    <div class="d-flex align-items-center gap-2">
+                        <span class="price text-decoration-line-through">${{ number_format($producto->precio_anterior, 0, ',', '.') }}</span>
+                        <span class="price">${{ number_format($producto->precio, 0, ',', '.') }}</span>
                     </div>
                     @else
-                    <span class="price">${{ number_format($hamburguesa->precio, 0, ',', '.') }}</span>
+                    <span class="price">${{ number_format($producto->precio, 0, ',', '.') }}</span>
                     @endif
                     <div class="d-flex gap-2 mt-3">
-                        <a href="{{ route('producto', $hamburguesa->producto_id) }}" class="btn-secundario">Ver más</a>
+                        <a href="{{ route('producto', $producto->producto_id) }}" class="btn-secundario">Ver más</a>
                         @auth
-                            @if($hamburguesa->stock > 0)
+                            @if($producto->stock > 0)
                             <form action="{{ route('carrito.agregar') }}" method="POST" class="d-inline">
                                 @csrf
-                                <input type="hidden" name="producto_id" value="{{ $hamburguesa->producto_id }}">
+                                <input type="hidden" name="producto_id" value="{{ $producto->producto_id }}">
                                 <button type="submit" class="btn-primario">
                                     <i class="bi bi-cart-plus"></i>
                                 </button>
@@ -47,16 +90,40 @@
                 </div>
             </article>
             @endforeach
-        </div>
-    </div>
-</section>
 
-<!-- Acompañamientos y Condimentos (sección 2 según maqueta) -->
-<section class="py-5 bg-umami">
-    <div class="container">
-        <h2 class="text-center mb-5">Acompañamientos y condimentos</h2>
-        <div class="catalogo-grid">
-            @foreach($acom_y_condimentos as $producto)
+            @foreach($condimentos as $producto)
+            <article class="hover-card {{ $producto->etiqueta === 'destacado' ? 'destacado' : '' }}">
+                <img src="{{ asset('storage/' . $producto->imagen) }}" alt="{{ $producto->nombre }}">
+                <div class="hover-info">
+                    <h3>{{ $producto->nombre }}</h3>
+                    <p>{{ $producto->descripcion_corta }}</p>
+                    @if(isset($producto->precio_anterior) && $producto->precio_anterior)
+                    <div class="d-flex align-items-center gap-2">
+                        <span class="price text-decoration-line-through">${{ number_format($producto->precio_anterior, 0, ',', '.') }}</span>
+                        <span class="price">${{ number_format($producto->precio, 0, ',', '.') }}</span>
+                    </div>
+                    @else
+                    <span class="price">${{ number_format($producto->precio, 0, ',', '.') }}</span>
+                    @endif
+                    <div class="d-flex gap-2 mt-3">
+                        <a href="{{ route('producto', $producto->producto_id) }}" class="btn-secundario">Ver más</a>
+                        @auth
+                            @if($producto->stock > 0)
+                            <form action="{{ route('carrito.agregar') }}" method="POST" class="d-inline">
+                                @csrf
+                                <input type="hidden" name="producto_id" value="{{ $producto->producto_id }}">
+                                <button type="submit" class="btn-primario">
+                                    <i class="bi bi-cart-plus"></i>
+                                </button>
+                            </form>
+                            @endif
+                        @endauth
+                    </div>
+                </div>
+            </article>
+            @endforeach
+
+            @foreach($wraps as $producto)
             <article class="hover-card {{ $producto->etiqueta === 'destacado' ? 'destacado' : '' }}">
                 <img src="{{ asset('storage/' . $producto->imagen) }}" alt="{{ $producto->nombre }}">
                 <div class="hover-info">
@@ -90,6 +157,7 @@
         </div>
     </div>
 </section>
+@endif
 
 <!-- Bebidas -->
 <section class="py-5">

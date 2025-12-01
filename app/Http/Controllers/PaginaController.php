@@ -29,17 +29,16 @@ class PaginaController extends Controller
         // Obtener productos por categoría
         // with('categoria') carga la relación para evitar N+1 queries (Clase 08)
         // Excluir productos especiales que queremos mostrar en "postres" (IDs 7 y 8)
-        $excludeFromHamburguesas = [7, 8];
-        $hamburguesas = Producto::where('categoria_id', 1)
-            ->whereNotIn('producto_id', $excludeFromHamburguesas)
-            ->with('categoria')
-            ->get();
-
+        $hamburguesas = Producto::where('categoria_id', 1)->whereNotIn('producto_id', [7, 8])->with('categoria')->get();
         $wraps = Producto::where('categoria_id', 2)->with('categoria')->get();
+        
+        // Acompañamientos (ID 3)
         $acompaniamientos = Producto::where('categoria_id', 3)->with('categoria')->get();
+        
+        // Condimentos (ID 4)
         $condimentos = Producto::where('categoria_id', 4)->with('categoria')->get();
 
-        // Sección 2: Acompañamientos y condimentos en el orden de la maqueta
+        // Sección 2: Acompañamientos y condimentos
         $sec2Ids = [10, 11, 12, 9, 13]; // combo papas, papas rústicas, bastones, wrap, sal
         $acom_y_condimentos = Producto::whereIn('producto_id', $sec2Ids)
             ->orderByRaw('FIELD(producto_id, ' . implode(',', $sec2Ids) . ')')
@@ -55,7 +54,7 @@ class PaginaController extends Controller
         return view('catalogo', [
             'hamburguesas' => $hamburguesas,
             'wraps' => $wraps,
-            'acompañamientos' => $acompaniamientos,
+            'acompaniamientos' => $acompaniamientos,
             'condimentos' => $condimentos,
             'acom_y_condimentos' => $acom_y_condimentos,
             'bebidas' => $bebidas,
