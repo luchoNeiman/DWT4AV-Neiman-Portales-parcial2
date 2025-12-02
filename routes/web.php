@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminProductoController;
 use App\Http\Controllers\Admin\AdminCategoriaController;
 use App\Http\Controllers\Admin\AdminUsuarioController;
 use App\Http\Controllers\Admin\AdminPerfilController;
+use App\Http\Controllers\CarritoController;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PaginaController;
@@ -40,6 +41,7 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/carrito/actualizar/{id}', [App\Http\Controllers\CarritoController::class, 'actualizar'])->name('carrito.actualizar');
     Route::delete('/carrito/eliminar/{id}', [App\Http\Controllers\CarritoController::class, 'eliminar'])->name('carrito.eliminar');
     Route::post('/carrito/finalizar', [App\Http\Controllers\CarritoController::class, 'finalizarCompra'])->name('carrito.finalizar');
+    Route::get('/carrito/count', [CarritoController::class, 'getCount'])->name('carrito.count');
     Route::get('/carrito/count', [App\Http\Controllers\CarritoController::class, 'getCount'])->name('carrito.count');
 
     // Perfil de usuario

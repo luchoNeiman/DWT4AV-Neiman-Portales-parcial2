@@ -14,7 +14,7 @@
     </header>
 
     <!-- Contenedor para mensajes flotantes -->
-    <div id="floating-messages" style="position: fixed; top: 20px; right: 20px; z-index: 1050;"></div>
+    <div id="floating-messages" class="position-fixed top-0 end-0 p-3" style="z-index: 2000"></div>
 
     <main>
         {{$slot ?? ''}}
@@ -22,11 +22,24 @@
     </main>
 
     @include('partials.footer')
-
+    
     {{-- Pasar mensajes de sesión y flags a JS de forma segura usando JSON script tags para evitar que el editor/TS procese Blade directives dentro de JS --}}
     <script type="application/json" id="__flash-data">@json(['message' => session('feedback.message'), 'error' => session('feedback.error')])</script>
     <script type="application/json" id="__auth-data">@json(Auth::check())</script>
     <script type="application/json" id="__routes-data">@json(['carritoCount' => route('carrito.count')])</script>
+
+    <script>
+        // Pasomos datos de PHP  a JavaScript
+        window.__auth = @json(Auth::check());
+        
+        window.__routes = {
+            carritoCount: "{{ route('carrito.count') }}"
+        };
+
+        // Pasomos los mensajes flash de la sesión (si existen)
+        window.__flash = @json(session('feedback')); 
+    </script>
+    <script src="{{ asset('js/index.js') }}"></script>
 </body>
 
 </html>
