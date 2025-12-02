@@ -166,7 +166,7 @@
                     <div class="accordion-item border-umami mb-3 rounded overflow-hidden">
                         <h2 class="accordion-header" id="heading-{{ $pedido->pedido_id }}">
                             <button class="accordion-button collapsed bg-white text-umami fw-bold shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ $pedido->pedido_id }}">
-                                <div class="d-flex justify-content-between w-100 me-3 align-items-center flex-wrap">
+                                <span class="d-flex justify-content-between w-100 me-3 align-items-center flex-wrap">
                                     <span>
                                         <i class="bi bi-receipt me-2"></i>Pedido #{{ $pedido->pedido_id }}
                                         <br class="d-sm-none">
@@ -180,7 +180,7 @@
                                         </span>
                                         ${{ number_format($pedido->total, 0, ',', '.') }}
                                     </span>
-                                </div>
+                                </span>
                             </button>
                         </h2>
                         <div id="collapse-{{ $pedido->pedido_id }}" class="accordion-collapse collapse" data-bs-parent="#accordionPedidos-{{ $usuario->id }}">

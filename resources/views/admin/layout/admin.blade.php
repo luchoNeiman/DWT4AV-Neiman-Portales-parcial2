@@ -14,7 +14,7 @@
             {{-- 3. Incluimos el Topbar del Admin --}}
             @include('admin.partials.topbar')
 
-            <section class="content-wrapper p-4">
+            <div class="content-wrapper p-4">
 
                 @if(session('feedback.message'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -44,7 +44,7 @@
                 {{-- AQUÍ SE CARGA CADA PÁGINA (Dashboard, Productos, etc.) --}}
                 @yield('content')
 
-            </section>
+            </div>
         </div>
     </main>
 
