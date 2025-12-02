@@ -68,19 +68,19 @@
     </div>
 </section>
 
-<!-- Modal de formulario enviado con éxito -->
-<div class="modal fade" id="modalformContacto" tabindex="-1" aria-labelledby="modalformContactoLabel"
-    aria-hidden="true">
+<div class="modal fade" id="modalformContacto" tabindex="-1" aria-labelledby="modalformContactoLabel" aria-hidden="true" role="dialog">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content text-center bg-cream">
             <div class="modal-header border-0">
                 <h5 class="modal-title w-100" id="modalformContactoLabel">¡Formulario enviado con éxito!</h5>
-                <button type="button" class="btn-close text-umami" data-bs-dismiss="modal"
-                    aria-label="Cerrar"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <i class="bi bi-check-circle-fill text-success" style="font-size: 2.5rem;"></i>
-                <p class="mt-3 mb-0">Gracias por contactarte con UMAMI. Te responderemos pronto.</p>
+                <p>Gracias por contactarnos. Te responderemos a la brevedad.</p>
+                <i class="bi bi-check-circle-fill text-success display-1"></i>
+            </div>
+            <div class="modal-footer border-0 justify-content-center">
+                <button type="button" class="btn btn-primario" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>

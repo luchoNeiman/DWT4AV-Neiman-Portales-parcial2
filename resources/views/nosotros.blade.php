@@ -22,7 +22,7 @@
         <div class="d-flex justify-content-center gap-4 flex-wrap">
             <img src="{{ asset('storage/UI/remera-cocinero-umami.webp') }}" alt="Remera umami" class="img-fluid rounded-5 shadow mt-4">
 
-            <img src="{{ asset('storage/UI/recibos-umami.webp') }}" alt="Recibos umami"class="img-fluid rounded-5 shadow mt-4">
+            <img src="{{ asset('storage/UI/recibos-umami.webp') }}" alt="Recibos umami" class="img-fluid rounded-5 shadow mt-4">
         </div>
     </div>
 </section>
