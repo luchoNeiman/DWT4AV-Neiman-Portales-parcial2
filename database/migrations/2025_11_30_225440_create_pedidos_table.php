@@ -14,7 +14,7 @@ return new class extends Migration
     Schema::create('pedidos', function (Blueprint $table) {
         $table->id('pedido_id');
         
-        $table->foreignId('id')->constrained('usuarios'); 
+        $table->foreignId('id')->constrained('usuarios')->onDelete('cascade');
         
         $table->dateTime('fecha');
         $table->unsignedInteger('total');

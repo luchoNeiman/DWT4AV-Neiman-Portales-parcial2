@@ -52,6 +52,8 @@ class AdminUsuarioController extends Controller
                 ->with('feedback.error', 'No puedes eliminar tu propia cuenta mientras estás logueado.');
         }
 
+        $usuario->pedidos()->delete(); 
+
         $usuario->delete();
 
         return redirect()
