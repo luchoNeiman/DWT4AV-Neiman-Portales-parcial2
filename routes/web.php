@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PaginaController;
 use App\Http\Controllers\AuthController;
 
+use App\Http\Controllers\PagoControlador;
+
 
 // VISTAS PRINCIPALES
 Route::get('/', [PaginaController::class, 'index'])->name('index');
@@ -76,3 +78,12 @@ Route::prefix('admin')
     Route::post('/perfil/actualizar', [AdminPerfilController::class, 'update'])->name('perfil.update');
     
 });
+
+
+// Ruta para iniciar el proceso de pago
+Route::get('/pago/procesar/{id}', [PagoControlador::class, 'crearPreferencia'])->name('pago.procesar');
+
+// Rutas de retorno (vistas que verá el alumno tras pagar)
+Route::get('/pago/exitoso', function () { return view('pago.exitoso'); })->name('pago.exitoso');
+Route::get('/pago/fallido', function () { return view('pago.fallido'); })->name('pago.fallido');
+Route::get('/pago/pendiente', function () { return view('pago.pendiente'); })->name('pago.pendiente');

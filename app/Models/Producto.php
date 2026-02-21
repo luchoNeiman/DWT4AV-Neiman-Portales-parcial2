@@ -12,10 +12,6 @@ class Producto extends Model
     protected $table = 'productos'; // Indica el nombre de la tabla
     protected $primaryKey = 'producto_id'; // Indica la clave primaria
 
-    /**
-     * Los atributos que se pueden asignar masivamente (para el CRUD admin).
-     * (Clase 05)
-     */
     protected $fillable = [
         'nombre',
         'descripcion_corta',
