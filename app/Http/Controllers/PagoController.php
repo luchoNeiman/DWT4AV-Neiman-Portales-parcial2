@@ -8,7 +8,7 @@ use MercadoPago\MercadoPagoConfig;
 use MercadoPago\Client\Preference\PreferenceClient;
 use MercadoPago\Exceptions\MPApiException;
 
-class PagoControlador extends Controller
+class PagoController extends Controller
 {
     public function crearPreferencia($id)
     {

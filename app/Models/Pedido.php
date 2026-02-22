@@ -12,7 +12,15 @@ class Pedido extends Model
     protected $table = 'pedidos';
     protected $primaryKey = 'pedido_id';
 
-    protected $fillable = ['id', 'fecha', 'total', 'estado'];
+    protected $fillable = [
+        'id', // ID del usuario
+        'fecha',
+        'total',
+        'estado',
+        'preference_id',
+        'payment_id',
+        'status',
+    ];
 
     // Un pedido pertenece a un usuario
     public function usuario()
