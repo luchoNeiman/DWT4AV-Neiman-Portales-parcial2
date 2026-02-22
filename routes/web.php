@@ -6,12 +6,12 @@ use App\Http\Controllers\Admin\AdminCategoriaController;
 use App\Http\Controllers\Admin\AdminUsuarioController;
 use App\Http\Controllers\Admin\AdminPerfilController;
 use App\Http\Controllers\CarritoController;
+use App\Http\Controllers\PagoController;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PaginaController;
 use App\Http\Controllers\AuthController;
 
-use App\Http\Controllers\PagoController;
 
 
 // VISTAS PRINCIPALES
@@ -38,13 +38,13 @@ Route::post('/cerrar-sesion', [AuthController::class, 'logout'])->name('auth.log
 // RUTAS DEL CARRITO y PERFIL (Protegidas - Solo usuarios autenticados)
 Route::middleware(['auth'])->group(function () {
     // Carrito
-    Route::get('/carrito', [App\Http\Controllers\CarritoController::class, 'index'])->name('carrito.index');
-    Route::post('/carrito/agregar', [App\Http\Controllers\CarritoController::class, 'agregar'])->name('carrito.agregar');
-    Route::put('/carrito/actualizar/{id}', [App\Http\Controllers\CarritoController::class, 'actualizar'])->name('carrito.actualizar');
-    Route::delete('/carrito/eliminar/{id}', [App\Http\Controllers\CarritoController::class, 'eliminar'])->name('carrito.eliminar');
-    Route::post('/carrito/finalizar', [App\Http\Controllers\CarritoController::class, 'finalizarCompra'])->name('carrito.finalizar');
+    Route::get('/carrito', [CarritoController::class, 'index'])->name('carrito.index');
+    Route::post('/carrito/agregar', [CarritoController::class, 'agregar'])->name('carrito.agregar');
+    Route::put('/carrito/actualizar/{id}', [CarritoController::class, 'actualizar'])->name('carrito.actualizar');
+    Route::delete('/carrito/eliminar/{id}', [CarritoController::class, 'eliminar'])->name('carrito.eliminar');
+    Route::post('/carrito/finalizar', [CarritoController::class, 'finalizarCompra'])->name('carrito.finalizar');
     Route::get('/carrito/count', [CarritoController::class, 'getCount'])->name('carrito.count');
-    Route::get('/carrito/count', [App\Http\Controllers\CarritoController::class, 'getCount'])->name('carrito.count');
+    Route::get('/carrito/count', [CarritoController::class, 'getCount'])->name('carrito.count');
 
     // Perfil de usuario
     Route::get('/perfil', [App\Http\Controllers\PerfilController::class, 'index'])->name('perfil.index');
@@ -83,7 +83,7 @@ Route::prefix('admin')
 // Ruta para iniciar el proceso de pago
 Route::get('/pago/procesar/{id}', [PagoController::class, 'crearPreferencia'])->name('pago.procesar');
 
-// Rutas de retorno (vistas que verá el alumno tras pagar)
-Route::get('/pago/exitoso', function () { return view('pago.exitoso'); })->name('pago.exitoso');
-Route::get('/pago/fallido', function () { return view('pago.fallido'); })->name('pago.fallido');
-Route::get('/pago/pendiente', function () { return view('pago.pendiente'); })->name('pago.pendiente');
+// Rutas de retorno desde Mercado Pago después del pago
+Route::get('/pago/exitoso', [PagoController::class, 'exitoso'])->name('pago.exitoso');
+Route::get('/pago/fallido', [PagoController::class, 'fallido'])->name('pago.fallido');
+Route::get('/pago/pendiente', [PagoController::class, 'pendiente'])->name('pago.pendiente');

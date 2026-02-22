@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pedido;
+use App\Models\CarritoItem;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use MercadoPago\MercadoPagoConfig;
 use MercadoPago\Client\Preference\PreferenceClient;
 use MercadoPago\Exceptions\MPApiException;
@@ -52,5 +55,60 @@ class PagoController extends Controller
         } catch (MPApiException $error) {
             return back()->with('error', 'Error al conectar con Mercado Pago: ' . $error->getMessage());
         }
+    }
+
+    public function exitoso(Request $solicitud)
+    {
+        // Mercado Pago envía datos por la URL al volver
+        $pago_id = $solicitud->input('payment_id'); // ID de pago [cite: 46]
+        $estado = $solicitud->input('status');     // Estado (approved) [cite: 48]
+        $referencia_externa = $solicitud->input('external_reference');
+
+        // Busco el pedido para actualizarlo
+        $pedido = Pedido::findOrFail($referencia_externa);
+
+        $pedido->update([
+            'payment_id' => $pago_id,
+            'status' => $estado,
+            'estado' => 'completado' // Mi estado interno del pedido
+        ]);
+
+        // Ahora que el pago es exitoso, vacío el carrito del usuario logueado 
+        CarritoItem::where('usuario_id', Auth::id())->delete();
+
+        return view('pago.exitoso', [
+            'pedido' => $pedido,
+            'pago_id' => $pago_id
+        ]);
+    }
+
+    public function fallido(Request $solicitud)
+    {
+        $referencia_externa = $solicitud->input('external_reference');
+        $pedido = Pedido::findOrFail($referencia_externa);
+
+        $pedido->update([
+            'status' => 'rejected', // [cite: 48]
+            'estado' => 'cancelado'
+        ]);
+
+        // En caso de fallo, NO vacío el carrito para que el usuario pueda reintentar
+        return view('pago.fallido', ['pedido' => $pedido]);
+    }
+
+    public function pendiente(Request $solicitud)
+    {
+        $referencia_externa = $solicitud->input('external_reference');
+        $pedido = Pedido::findOrFail($referencia_externa);
+
+        $pedido->update([
+            'status' => 'pending', // [cite: 48]
+            'payment_id' => $solicitud->input('payment_id')
+        ]);
+
+        // Vacío el carrito porque el pago ya entró en proceso
+        CarritoItem::where('usuario_id', Auth::id())->delete();
+
+        return view('pago.pendiente', ['pedido' => $pedido]);
     }
 }
