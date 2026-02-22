@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\AdminUsuarioController;
 use App\Http\Controllers\Admin\AdminPerfilController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\PagoController;
+use App\Http\Controllers\PerfilController;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PaginaController;
@@ -43,14 +44,20 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/carrito/actualizar/{id}', [CarritoController::class, 'actualizar'])->name('carrito.actualizar');
     Route::delete('/carrito/eliminar/{id}', [CarritoController::class, 'eliminar'])->name('carrito.eliminar');
     Route::post('/carrito/finalizar', [CarritoController::class, 'finalizarCompra'])->name('carrito.finalizar');
+    Route::get('/pago/checkout/{id}', [PagoController::class, 'crearPreferencia'])->name('pago.procesar');
     Route::get('/carrito/count', [CarritoController::class, 'getCount'])->name('carrito.count');
-    Route::get('/carrito/count', [CarritoController::class, 'getCount'])->name('carrito.count');
-
+    
     // Perfil de usuario
-    Route::get('/perfil', [App\Http\Controllers\PerfilController::class, 'index'])->name('perfil.index');
-    Route::post('/perfil/actualizar', [App\Http\Controllers\PerfilController::class, 'update'])->name('perfil.update');
-    Route::post('/perfil/password', [App\Http\Controllers\PerfilController::class, 'updatePassword'])->name('perfil.password');
+    Route::get('/perfil', [PerfilController::class, 'index'])->name('perfil.index');
+    Route::post('/perfil/actualizar', [PerfilController::class, 'update'])->name('perfil.update');
+    Route::post('/perfil/password', [PerfilController::class, 'updatePassword'])->name('perfil.password');
 });
+
+// Rutas de retorno desde Mercado Pago después del pago
+Route::get('/pago/exitoso', [PagoController::class, 'exitoso'])->name('pago.exitoso');
+Route::get('/pago/fallido', [PagoController::class, 'fallido'])->name('pago.fallido');
+Route::get('/pago/pendiente', [PagoController::class, 'pendiente'])->name('pago.pendiente');
+Route::get('/pago/procesar/{id}', [PagoController::class, 'crearPreferencia'])->name('pago.procesar');
 
 
 // RUTAS DE ADMINISTRACIÓN (Protegidas)
@@ -79,11 +86,3 @@ Route::prefix('admin')
     
 });
 
-
-// Ruta para iniciar el proceso de pago
-Route::get('/pago/procesar/{id}', [PagoController::class, 'crearPreferencia'])->name('pago.procesar');
-
-// Rutas de retorno desde Mercado Pago después del pago
-Route::get('/pago/exitoso', [PagoController::class, 'exitoso'])->name('pago.exitoso');
-Route::get('/pago/fallido', [PagoController::class, 'fallido'])->name('pago.fallido');
-Route::get('/pago/pendiente', [PagoController::class, 'pendiente'])->name('pago.pendiente');

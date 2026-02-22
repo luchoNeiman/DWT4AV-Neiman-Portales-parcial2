@@ -36,12 +36,10 @@ class PagoController extends Controller
                 "items" => $items_pago,
                 // URLs de retorno obligatorias según la consigna [cite: 38]
                 "back_urls" => [
-                    "success" => route('pago.exitoso'),
-                    "failure" => route('pago.fallido'),
-                    "pending" => route('pago.pendiente'),
+                    "success" => url('/pago/exitoso'),
+                    "failure" => url('/pago/fallido'),
+                    "pending" => url('/pago/pendiente'),
                 ],
-                "auto_return" => "approved",
-                "external_reference" => (string) $pedido->id, // ID interno para vincular el pago
             ]);
 
             // Guardar el preference_id en la base de datos como pide el final [cite: 44, 56]
@@ -53,6 +51,7 @@ class PagoController extends Controller
                 'pedido' => $pedido
             ]);
         } catch (MPApiException $error) {
+            dd($error->getApiResponse()->getContent()); // Debug
             return back()->with('error', 'Error al conectar con Mercado Pago: ' . $error->getMessage());
         }
     }

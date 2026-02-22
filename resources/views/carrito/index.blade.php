@@ -4,6 +4,27 @@
 
 @section('content')
 
+@if(session('feedback.message'))
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{ session('feedback.message') }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+</div>
+@endif
+
+@if(session('feedback.error'))
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{ session('feedback.error') }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+</div>
+@endif
+
+@if(session('error'))
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{ session('error') }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+</div>
+@endif
+
 <!-- Banner -->
 <section class="banner-catalogo text-light">
     <div class="container-titulo-menu text-center">
@@ -145,8 +166,7 @@
 
                         <form action="{{ route('carrito.finalizar') }}" method="POST">
                             @csrf
-                            <button type="submit"
-                                class="btn bg-umami w-100 mb-3 hover: text-white">
+                            <button type="submit" class="btn bg-umami w-100 mb-3 hover: text-white">
                                 <i class="bi bi-check-circle me-2"></i>Finalizar Compra
                             </button>
                         </form>

@@ -115,67 +115,6 @@ class CarritoController extends Controller
         return back()->with('feedback.message', 'Producto eliminado del carrito.');
     }
 
-    /**
-     * Finalizar la compra (sin pasarela de pago).
-     */
-    // public function finalizarCompra()
-    // {
-    //     $items = CarritoItem::with('producto')->where('usuario_id', Auth::id())->get();
-
-    //     if ($items->isEmpty()) {
-    //         return redirect()->route('carrito.index')
-    //             ->with('feedback.error', 'Tu carrito está vacío.');
-    //     }
-
-    //     // Verificar stock antes de empezar
-    //     foreach ($items as $item) {
-    //         if ($item->producto->stock < $item->cantidad) {
-    //             return redirect()->route('carrito.index')
-    //                 ->with('feedback.error', "No hay suficiente stock de {$item->producto->nombre}.");
-    //         }
-    //     }
-
-    //     try {
-    //         DB::transaction(function () use ($items) {
-    //             // Calcular total del pedido
-    //             $total = $items->sum(function ($item) {
-    //                 return $item->producto->precio * $item->cantidad;
-    //             });
-
-    //             // Crear la cabecera del Pedido
-    //             $pedido = Pedido::create([
-    //                 'id' => Auth::id(), // ID del usuario
-    //                 'fecha' => now(),
-    //                 'total' => $total,
-    //                 'estado' => 'completado', // O 'pendiente' si tuvieras pago real
-    //             ]);
-
-    //             foreach ($items as $item) {
-    //                 // Crear cada Item del Pedido (Historial)
-    //                 PedidoItem::create([
-    //                     'pedido_id' => $pedido->pedido_id,
-    //                     'producto_id' => $item->producto_id,
-    //                     'nombre_producto' => $item->producto->nombre, // Guardamos el nombre por si cambia después
-    //                     'cantidad' => $item->cantidad,
-    //                     'precio_unitario' => $item->producto->precio, // Guardamos el precio histórico
-    //                 ]);
-
-    //                 // Descontar stock
-    //                 $item->producto->decrement('stock', $item->cantidad);
-
-    //                 // Eliminar del carrito
-    //                 $item->delete();
-    //             }
-    //         });
-
-    //         return redirect()->route('index')
-    //             ->with('feedback.message', '¡Gracias por tu compra! El pedido ha sido registrado.');
-    //     } catch (\Exception $e) {
-    //         return redirect()->route('carrito.index')
-    //             ->with('feedback.error', 'Ocurrió un error al procesar el pedido. Inténtalo nuevamente.');
-    //     }
-    // }
-
     public function finalizarCompra()
     {
         // Traigo los productos que tengo en el carrito
@@ -229,10 +168,13 @@ class CarritoController extends Controller
             // Paso el ID del pedido que acabo de crear
             return redirect()->route('pago.procesar', ['id' => $id_pedido]);
         } catch (\Exception $e) {
+            // dd("Error en el controlador: " . $e->getMessage());
             return redirect()->route('carrito.index')
-                ->with('feedback.error', 'Ocurrió un error al registrar el pedido. Inténtalo nuevamente.');
+                ->with('feedback.error', 'Ocurrió un error al registrar el pedido. Inténtalo nuevamente.' . $e->getMessage());
+            // return dd($e->getMessage());
         }
     }
+
 
     /**
      * Obtener el conteo de items en el carrito (para el navbar).
