@@ -24,7 +24,7 @@
                 <li class="nav-item dropdown ms-2">
                     <a class="nav-link dropdown-toggle text-umami-cream d-flex align-items-center" href="#" id="navbarPerfil" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="bi bi-person-circle fs-5 me-1"></i>
-                        <span class="d-none d-lg-inline">{{ Auth::user()->name }}</span>
+                        <span class="d-none d-lg-inline">{{ Auth::user()->nombre }}</span>
                     </a>
                     <!-- perfil -->
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarPerfil">

@@ -35,11 +35,11 @@ class AuthController extends Controller
             // Redirigir al dashboard si es admin, sino al index.
             if ($usuario->rol === 'admin') {
                 return redirect()->intended(route('admin.dashboard'))
-                    ->with('feedback.message', '¡Sesión iniciada como Admin! Bienvenido, ' . $usuario->name . '.');
+                    ->with('feedback.message', '¡Sesión iniciada como Admin! Bienvenido, ' . $usuario->nombre . '.');
             }
 
             return redirect()->route('index') // O a 'perfil.index'
-                ->with('feedback.message', '¡Sesión iniciada con éxito! Bienvenido de nuevo, ' . $usuario->name . '.');
+                ->with('feedback.message', '¡Sesión iniciada con éxito! Bienvenido de nuevo, ' . $usuario->nombre . '.');
         }
 
         return back()
@@ -92,7 +92,7 @@ class AuthController extends Controller
 
         // Redirigir
         return redirect()->route('index') // O a 'perfil.index' cuando exista
-            ->with('feedback.message', '¡Cuenta creada con éxito! Bienvenido a UMAMI, ' . $usuario->name . '.');
+            ->with('feedback.message', '¡Cuenta creada con éxito! Bienvenido a UMAMI, ' . $usuario->nombre . '.');
     }
 
 

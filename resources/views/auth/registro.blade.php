@@ -24,10 +24,10 @@
 
         <div class="mb-3 text-start">
             <label for="nombre" class="form-label">Nombre</label>
-            <input type="text" id="nombre" name="name"
-                class="form-control borde-verde {{ $errors->has('name') ? 'is-invalid' : '' }}"
-                placeholder="Tu nombre" value="{{ old('name') }}" required>
-            @error('name')
+            <input type="text" id="nombre" name="nombre"
+                class="form-control borde-verde {{ $errors->has('nombre') ? 'is-invalid' : '' }}"
+                placeholder="Tu nombre" value="{{ old('nombre') }}" required>
+            @error('nombre')
             <div class="invalid-feedback d-block">{{ $message }}</div>
             @enderror
         </div>

@@ -21,6 +21,7 @@ class UsuarioSeeder extends Seeder
                 'email' => 'admin@umami.com',
                 'password' => Hash::make('12345678'), // Contraseña hasheada
                 'rol' => 'admin', // Rol de admin
+                'ubicacion' => 'Sede Central',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -30,7 +31,7 @@ class UsuarioSeeder extends Seeder
                 'email' => 'luciano.neiman@davinci.edu.ar',
                 'password' => Hash::make('12345678'), // Contraseña hasheada
                 'rol' => 'usuario', // Rol de usuario
-                'ubicacion' => 'Angel Gallardo 97, CABA', // Ubicación de ejemplo
+                'ubicacion' => 'Angel Gallardo 97, CABA',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

@@ -30,10 +30,11 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="email" class="form-label fw-bold text-umami">Email</label>
-                                {{-- INPUT DESHABILITADO --}}
-                                <input type="email" id="email" class="form-control bg-light"
-                                    value="{{ $usuario->email }}" disabled readonly>
-                                <div class="form-text">El email no se puede modificar.</div>
+                                <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror"
+                                    value="{{ old('email', $usuario->email) }}">
+                                @error('email')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
 

@@ -6,7 +6,7 @@
         <h1 class="h4 text-umami m-0">@yield('titulo-seccion', 'Dashboard')</h1>
     </div>
     <div class="d-flex align-items-center">
-        <span class="d-none d-md-block me-3 text-umami">Hola, <strong>{{ Auth::user()->name }}</strong></span>
+        <span class="d-none d-md-block me-3 text-umami">Hola, <strong>{{ Auth::user()->nombre }}</strong></span>
         <a href="{{ route('admin.perfil.index') }}" class="text-umami">
             <img src="{{ asset('storage/UI/logo-umami-green.svg') }}" alt="Avatar" class="avatar-admin">
         </a>

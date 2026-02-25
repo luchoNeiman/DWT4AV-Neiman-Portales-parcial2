@@ -51,7 +51,7 @@ class AdminPerfilController extends Controller
         ]);
 
         // Actualizar datos básicos
-        $usuario->name = $datosValidados['nombre'];
+        $usuario->nombre = $datosValidados['nombre'];
         $usuario->ubicacion = $datosValidados['ubicacion'] ?? null;
 
         // Actualizar contraseña si corresponde
