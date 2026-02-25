@@ -17,19 +17,20 @@ class UsuarioSeeder extends Seeder
         DB::table('usuarios')->insert([
             // Usuario Administrador
             [
-                'name' => 'Admin Umami',
+                'nombre' => 'Admin Umami',
                 'email' => 'admin@umami.com',
-                'password' => Hash::make('123456'), // Contraseña hasheada
+                'password' => Hash::make('12345678'), // Contraseña hasheada
                 'rol' => 'admin', // Rol de admin
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             // Usuario Cliente de prueba
             [
-                'name' => 'Luciano Neiman',
+                'nombre' => 'Luciano Neiman',
                 'email' => 'luciano.neiman@davinci.edu.ar',
-                'password' => Hash::make('123456'), // Contraseña hasheada
+                'password' => Hash::make('12345678'), // Contraseña hasheada
                 'rol' => 'usuario', // Rol de usuario
+                'ubicacion' => 'Angel Gallardo 97, CABA', // Ubicación de ejemplo
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

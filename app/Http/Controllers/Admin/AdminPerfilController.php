@@ -31,34 +31,35 @@ class AdminPerfilController extends Controller
 
     public function update(Request $request)
     {
-        $user = Auth::user();
+        /** @var \App\Models\Usuario $usuario */
+        $usuario = Auth::user();
 
-        $rules = [
-            'name' => 'required|string|max:255',
+        $reglas = [
+            'nombre' => 'required|string|max:255',
             'ubicacion' => 'nullable|string|max:255',
         ];
 
         // Validación de contraseña (si intenta cambiarla)
         if ($request->filled('password') || $request->filled('current_password')) {
-            $rules['current_password'] = 'required|current_password'; // Verifica la pass actual
-            $rules['password'] = 'required|string|min:8|confirmed';   // Verifica la nueva
+            $reglas['current_password'] = 'required|current_password'; // Verifica la pass actual
+            $reglas['password'] = 'required|string|min:8|confirmed';   // Verifica la nueva
         }
 
-        $validated = $request->validate($rules, [
+        $datosValidados = $request->validate($reglas, [
             'current_password.current_password' => 'La contraseña actual es incorrecta.',
             'password.confirmed' => 'La confirmación de la nueva contraseña no coincide.',
         ]);
 
         // Actualizar datos básicos
-        $user->name = $validated['name'];
-        $user->ubicacion = $validated['ubicacion'] ?? null;
+        $usuario->name = $datosValidados['nombre'];
+        $usuario->ubicacion = $datosValidados['ubicacion'] ?? null;
 
         // Actualizar contraseña si corresponde
         if ($request->filled('password')) {
-            $user->password = Hash::make($validated['password']);
+            $usuario->password = Hash::make($datosValidados['password']);
         }
 
-        $user->save();
+        $usuario->save();
 
         return redirect()->route('admin.perfil.index')
             ->with('feedback.message', 'Perfil actualizado correctamente.');

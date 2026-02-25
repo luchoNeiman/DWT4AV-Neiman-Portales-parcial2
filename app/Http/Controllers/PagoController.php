@@ -24,9 +24,9 @@ class PagoController extends Controller
         $items_pago = [];
         foreach ($pedido->items as $item) {
             $items_pago[] = [
-                "title" => $item->producto->nombre,      // Título del producto [cite: 33]
-                "quantity" => (int) $item->cantidad,    // Cantidad [cite: 36]
-                "unit_price" => (float) $item->precio_unitario, // Precio real de BD [cite: 37]
+                "title" => $item->producto->nombre,      // Título del producto
+                "quantity" => (int) $item->cantidad,    // Cantidad 
+                "unit_price" => (float) $item->precio_unitario, // Precio real de BD 
             ];
         }
 
@@ -34,7 +34,7 @@ class PagoController extends Controller
             $cliente = new PreferenceClient();
             $preferencia = $cliente->create([
                 "items" => $items_pago,
-                // URLs de retorno obligatorias según la consigna [cite: 38]
+                // URLs de retorno obligatorias según la consigna 
                 "back_urls" => [
                     "success" => url('/pago/exitoso'),
                     "failure" => url('/pago/fallido'),
@@ -42,7 +42,7 @@ class PagoController extends Controller
                 ],
             ]);
 
-            // Guardar el preference_id en la base de datos como pide el final [cite: 44, 56]
+            // Guardar el preference_id en la base de datos como pide el final
             $pedido->update(['preference_id' => $preferencia->id]);
 
             // Retornar la vista donde el usuario verá el botón de Mercado Pago
@@ -59,8 +59,8 @@ class PagoController extends Controller
     public function exitoso(Request $solicitud)
     {
         // Mercado Pago envía datos por la URL al volver
-        $pago_id = $solicitud->input('payment_id'); // ID de pago [cite: 46]
-        $estado = $solicitud->input('status');     // Estado (approved) [cite: 48]
+        $pago_id = $solicitud->input('payment_id'); // ID de pago
+        $estado = $solicitud->input('status');     // Estado (approved)
         $referencia_externa = $solicitud->input('external_reference');
 
         // Busco el pedido para actualizarlo
@@ -87,7 +87,7 @@ class PagoController extends Controller
         $pedido = Pedido::findOrFail($referencia_externa);
 
         $pedido->update([
-            'status' => 'rejected', // [cite: 48]
+            'status' => 'rejected',
             'estado' => 'cancelado'
         ]);
 
@@ -101,7 +101,7 @@ class PagoController extends Controller
         $pedido = Pedido::findOrFail($referencia_externa);
 
         $pedido->update([
-            'status' => 'pending', // [cite: 48]
+            'status' => 'pending',
             'payment_id' => $solicitud->input('payment_id')
         ]);
 

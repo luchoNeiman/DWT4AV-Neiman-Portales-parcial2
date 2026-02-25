@@ -27,8 +27,8 @@ class PaginaController extends Controller
     public function catalogo()
     {
         // Obtener productos por categoría
-        // with('categoria') carga la relación para evitar N+1 queries (Clase 08)
-        // Excluir productos especiales que queremos mostrar en "postres" (IDs 7 y 8)
+        // with('categoria') carga la relación para evitar N+1 queries
+        // Excluir productos especiales que queremos mostrar en "postres"
         $hamburguesas = Producto::where('categoria_id', 1)->whereNotIn('producto_id', [7, 8])->with('categoria')->get();
         $wraps = Producto::where('categoria_id', 2)->with('categoria')->get();
         

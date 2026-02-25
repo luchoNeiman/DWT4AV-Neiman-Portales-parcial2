@@ -20,11 +20,11 @@
 
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <label for="name" class="form-label fw-bold text-umami">Nombre completo</label>
-                                <input type="text" id="name" name="name"
-                                    class="form-control @error('name') is-invalid @enderror"
-                                    value="{{ old('name', $usuario->name) }}">
-                                @error('name')
+                                <label for="nombre" class="form-label fw-bold text-umami">Nombre completo</label>
+                                <input type="text" id="nombre" name="nombre"
+                                    class="form-control @error('nombre') is-invalid @enderror"
+                                    value="{{ old('nombre', $usuario->nombre) }}">
+                                @error('nombre')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -91,7 +91,7 @@
                         <div class="bg-cream text-umami rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px; font-size: 2.5rem;">
                             <i class="bi bi-person-fill"></i>
                         </div>
-                        <h4 class="fw-bold">{{ $usuario->name }}</h4>
+                        <h4 class="fw-bold">{{ $usuario->nombre }}</h4>
                         <p class="small opacity-75">{{ $usuario->email }}</p>
                     </div>
 

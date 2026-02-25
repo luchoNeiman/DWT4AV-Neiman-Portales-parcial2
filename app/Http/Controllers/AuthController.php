@@ -18,27 +18,28 @@ class AuthController extends Controller
 
     public function doLogin(Request $request)
     {
-        $credentials = $request->validate([
+        $credenciales = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($credenciales)) {
             $request->session()->regenerate();
 
+            /** @var \App\Models\Usuario $usuario */
             // Registrar última conexión
-            $user = Auth::user();
-            $user->last_login_at = now();
-            $user->save();
+            $usuario = Auth::user();
+            $usuario->last_login_at = now();
+            $usuario->save();
 
             // Redirigir al dashboard si es admin, sino al index.
-            if ($user->rol === 'admin') {
+            if ($usuario->rol === 'admin') {
                 return redirect()->intended(route('admin.dashboard'))
-                    ->with('feedback.message', '¡Sesión iniciada como Admin! Bienvenido, ' . $user->name . '.');
+                    ->with('feedback.message', '¡Sesión iniciada como Admin! Bienvenido, ' . $usuario->name . '.');
             }
 
-            return redirect()->route('index') // O a 'perfil.index' cuando exista
-                ->with('feedback.message', '¡Sesión iniciada con éxito! Bienvenido de nuevo, ' . $user->name . '.');
+            return redirect()->route('index') // O a 'perfil.index'
+                ->with('feedback.message', '¡Sesión iniciada con éxito! Bienvenido de nuevo, ' . $usuario->name . '.');
         }
 
         return back()
@@ -58,7 +59,7 @@ class AuthController extends Controller
     public function doRegistro(Request $request)
     {
         $messages = [
-            'name.required' => 'El campo nombre es obligatorio.',
+            'nombre.required' => 'El campo nombre es obligatorio.',
             'email.required' => 'El campo de correo electrónico es obligatorio.',
             'email.email' => 'Debe ingresar un correo electrónico válido.',
             'email.unique' => 'Este correo electrónico ya está registrado.',
@@ -69,29 +70,29 @@ class AuthController extends Controller
 
         // Validación
         $request->validate([
-            'name' => 'required|string|max:255',
+            'nombre' => 'required|string|max:255',
             'apellido' => 'nullable|string|max:255',
             'email' => 'required|string|email|max:255|unique:usuarios,email',
             'password' => 'required|string|min:8|confirmed',
         ], $messages);
 
         // Concatenar nombre + apellido (si viene)
-        $fullName = trim($request->input('name') . ' ' . $request->input('apellido'));
+        $fullName = trim($request->input('nombre') . ' ' . $request->input('apellido'));
 
         // Creación del usuario
-        $user = Usuario::create([
-            'name' => $fullName ?: $request->input('name'),
+        $usuario = Usuario::create([
+            'nombre' => $fullName ?: $request->input('nombre'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
             'rol' => 'usuario',
         ]);
 
         // Autenticar al usuario recién registrado
-        Auth::login($user);
+        Auth::login($usuario);
 
         // Redirigir
         return redirect()->route('index') // O a 'perfil.index' cuando exista
-            ->with('feedback.message', '¡Cuenta creada con éxito! Bienvenido a UMAMI, ' . $user->name . '.');
+            ->with('feedback.message', '¡Cuenta creada con éxito! Bienvenido a UMAMI, ' . $usuario->name . '.');
     }
 
 

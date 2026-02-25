@@ -29,15 +29,15 @@
     <script type="application/json" id="__routes-data">@json(['carritoCount' => route('carrito.count')])</script>
 
     <script>
-        // Paso datos de PHP  a JavaScript
-        window.__auth = @json(Auth::check());
-        
+        // Paso datos de PHP a JavaScript
+        window.__auth = {!! json_encode(Auth::check()) !!};
+
         window.__routes = {
             carritoCount: "{{ route('carrito.count') }}"
         };
 
         // Paso los mensajes flash de la sesión (si existen)
-        window.__flash = @json(session('feedback')); 
+        window.__flash = {!! json_encode(session('feedback')) !!};
     </script>
     <script src="{{ asset('js/index.js') }}"></script>
 </body>
