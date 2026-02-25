@@ -32,13 +32,14 @@ class AdminUsuarioController extends Controller
             'nombre' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:usuarios,email,' . $usuario->id,
             'rol' => 'required|in:usuario,admin',
+            'ubicacion' => 'nullable|string|max:255',
         ]);
 
         $usuario->update($data);
 
         return redirect()
             ->route('admin.usuarios.index')
-            ->with('feedback.message', 'Usuario actualizado correctamente.');
+            ->with('feedback.message', 'Usuario "' . $usuario->nombre . '" actualizado correctamente.');
     }
 
     public function destroy(string $id)

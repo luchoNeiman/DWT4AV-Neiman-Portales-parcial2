@@ -17,6 +17,7 @@
                             <th class="py-3 ps-4">ID</th>
                             <th class="py-3">Nombre</th>
                             <th class="py-3">Email</th>
+                            <th class="py-3">Ubicación</th>
                             <th class="py-3">Rol</th>
                             <th class="py-3 text-end pe-4">Acciones</th>
                         </tr>
@@ -30,10 +31,11 @@
                                     <div class="bg-light rounded-circle d-flex align-items-center justify-content-center me-2 border" style="width: 35px; height: 35px;">
                                         <i class="bi bi-person-fill text-muted"></i>
                                     </div>
-                                    {{ $usuario->name }}
+                                    {{ $usuario->nombre }}
                                 </div>
                             </td>
                             <td>{{ $usuario->email }}</td>
+                            <td>{{ $usuario->ubicacion ?? '-' }}</td>
                             <td>
                                 @if($usuario->rol === 'admin')
                                 <span class="badge bg-umami border border-white">Admin</span>
@@ -114,8 +116,9 @@
                                 <i class="bi bi-person-fill text-muted fs-3"></i>
                             </div>
                             <div>
-                                <h5 class="card-title text-umami fw-bold mb-0">{{ $usuario->name }}</h5>
-                                <small class="text-muted">{{ $usuario->email }}</small>
+                                <h5 class="card-title text-umami fw-bold mb-0">{{ $usuario->nombre }}</h5>
+                                <small class="text-muted">{{ $usuario->email }}</small><br>
+                                <small class="text-muted">{{ $usuario->ubicacion ?? '-' }}</small>
                             </div>
                         </div>
 
@@ -149,7 +152,7 @@
         <div class="modal-content bg-cream border-0 shadow">
             <div class="modal-header border-bottom-0">
                 <h5 class="modal-title text-umami fw-bold">
-                    <i class="bi bi-clock-history me-2"></i>Historial: {{ $usuario->name }}
+                    <i class="bi bi-clock-history me-2"></i>Historial: {{ $usuario->nombre }}
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
@@ -233,7 +236,7 @@
                 <div class="text-danger mb-3">
                     <i class="bi bi-exclamation-triangle-fill display-4"></i>
                 </div>
-                <p class="fs-5 mb-1">¿Eliminar al usuario <strong>"{{ $usuario->name }}"</strong>?</p>
+                <p class="fs-5 mb-1">¿Eliminar al usuario <strong>"{{ $usuario->nombre }}"</strong>?</p>
                 <p class="small text-muted">Esta acción no se puede deshacer.</p>
             </div>
             <div class="modal-footer border-top-0 justify-content-center pb-4">

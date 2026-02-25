@@ -1,6 +1,6 @@
 @extends('admin.layout.admin')
 @section('titulo', 'Editar Usuario - Admin UMAMI')
-@section('titulo-seccion', 'Editar Usuario: ' . $usuario->name)
+@section('titulo-seccion', 'Editar Usuario: ' . $usuario->nombre)
 
 @section('content')
 <div class="container-fluid">
@@ -12,12 +12,16 @@
                         @csrf
                         @method('PUT')
                         <div class="mb-3">
-                            <label for="name" class="form-label">Nombre</label>
-                            <input type="text" id="name" name="name" class="form-control" value="{{ old('name', $usuario->name) }}">
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <input type="text" id="nombre" name="nombre" class="form-control" value="{{ old('nombre', $usuario->nombre) }}">
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
                             <input type="email" id="email" name="email" class="form-control" value="{{ old('email', $usuario->email) }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="ubicacion" class="form-label">Ubicación</label>
+                            <input type="text" id="ubicacion" name="ubicacion" class="form-control" value="{{ old('ubicacion', $usuario->ubicacion) }}">
                         </div>
                         <div class="mb-3">
                             <label for="rol" class="form-label">Rol</label>

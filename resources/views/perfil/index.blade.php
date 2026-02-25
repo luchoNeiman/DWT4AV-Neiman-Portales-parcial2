@@ -11,6 +11,55 @@
                 <div class="card-header bg-umami text-umami-cream">
                     <h5 class="mb-0 card-title">Editar mis datos</h5>
                 </div>
+                    <!-- Mis Compras -->
+                    <div class="row justify-content-center mt-5">
+                        <div class="col-lg-8">
+                            <div class="card shadow-sm border-umami mb-4">
+                                <div class="card-header bg-umami text-umami-cream">
+                                    <h5 class="mb-0 card-title">Mis Compras</h5>
+                                </div>
+                                <div class="card-body p-4">
+                                    @if($pedidos->isEmpty())
+                                        <div class="text-center py-5">
+                                            <i class="bi bi-bag-x display-1 text-umami opacity-25 mb-3"></i>
+                                            <p class="text-muted fw-semibold">Aún no has realizado compras.</p>
+                                        </div>
+                                    @else
+                                        <div class="table-responsive">
+                                            <table class="table table-hover table-striped align-middle">
+                                                <thead class="bg-umami text-umami-cream">
+                                                    <tr>
+                                                        <th>ID Pedido</th>
+                                                        <th>Fecha</th>
+                                                        <th>Total</th>
+                                                        <th>Estado Pago</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach($pedidos as $pedido)
+                                                    <tr>
+                                                        <td class="fw-bold">#{{ $pedido->pedido_id }}</td>
+                                                        <td>{{ \Carbon\Carbon::parse($pedido->fecha)->format('d/m/Y H:i') }}</td>
+                                                        <td>${{ number_format($pedido->total, 0, ',', '.') }}</td>
+                                                        <td>
+                                                            @if($pedido->estado_pago)
+                                                                <span class="badge {{ $pedido->estado_pago == 'approved' ? 'bg-success' : ($pedido->estado_pago == 'pending' ? 'bg-warning text-dark' : 'bg-secondary') }}">
+                                                                    {{ ucfirst($pedido->estado_pago) }}
+                                                                </span>
+                                                            @else
+                                                                <span class="badge bg-secondary">Sin estado</span>
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 <div class="card-body p-4">
 
                     <form action="{{ route('perfil.update') }}" method="POST">
