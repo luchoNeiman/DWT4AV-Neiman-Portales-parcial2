@@ -34,12 +34,13 @@ class PagoController extends Controller
             $cliente = new PreferenceClient();
             $preferencia = $cliente->create([
                 "items" => $items_pago,
-                // URLs de retorno obligatorias según la consigna 
                 "back_urls" => [
-                    "success" => url('/pago/exitoso'),
-                    "failure" => url('/pago/fallido'),
-                    "pending" => url('/pago/pendiente'),
+                    "success" => route('pago.exitoso'),
+                    "failure" => route('pago.fallido'),
+                    "pending" => route('pago.pendiente'),
                 ],
+                "auto_return" => "approved",
+                "external_reference" => (string) $pedido->pedido_id, // Usá 'pedido_id' para que findOrFail no falle
             ]);
 
             // Guardar el preference_id en la base de datos como pide el final
@@ -60,25 +61,22 @@ class PagoController extends Controller
     {
         // Mercado Pago envía datos por la URL al volver
         $pago_id = $solicitud->input('payment_id'); // ID de pago
-        $estado = $solicitud->input('status');     // Estado (approved)
+        $estado = $solicitud->input('status');
         $referencia_externa = $solicitud->input('external_reference');
 
         // Busco el pedido para actualizarlo
-        $pedido = Pedido::findOrFail($referencia_externa);
+        $pedido = Pedido::where('pedido_id', $referencia_externa)->firstOrFail();
 
         $pedido->update([
-            'payment_id' => $pago_id,
-            'status' => $estado,
+            'payment_id' => $solicitud->input('payment_id'),
+            'status' => $solicitud->input('status'),
             'estado' => 'completado' // Mi estado interno del pedido
         ]);
 
-        // Ahora que el pago es exitoso, vacío el carrito del usuario logueado 
+        // vacío el carrito del usuario logueado 
         CarritoItem::where('usuario_id', Auth::id())->delete();
 
-        return view('pago.exitoso', [
-            'pedido' => $pedido,
-            'pago_id' => $pago_id
-        ]);
+        return view('pago.exitoso', compact('pedido')); //compact es igual a ['pedido' => $pedido, 'pago_id' => $pago_id]
     }
 
     public function fallido(Request $solicitud)

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Usuario;
+use App\Models\Pedido;
 
 class PerfilController extends Controller
 {
@@ -13,7 +14,7 @@ class PerfilController extends Controller
     {
         // Cargo el usuario con sus pedidos para el historial
         $usuario = Auth::user();
-        $pedidos = \App\Models\Pedido::where('id', $usuario->usuario_id)
+        $pedidos = Pedido::where('id', $usuario->id)
             ->orderBy('fecha', 'desc')
             ->get();
 
