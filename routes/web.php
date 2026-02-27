@@ -37,6 +37,7 @@ Route::post('/cerrar-sesion', [AuthController::class, 'logout'])->name('auth.log
 
 
 // RUTAS DEL CARRITO y PERFIL (Protegidas - Solo usuarios autenticados)
+
 Route::middleware(['auth'])->group(function () {
     // Carrito
     Route::get('/carrito', [CarritoController::class, 'index'])->name('carrito.index');
@@ -44,14 +45,18 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/carrito/actualizar/{id}', [CarritoController::class, 'actualizar'])->name('carrito.actualizar');
     Route::delete('/carrito/eliminar/{id}', [CarritoController::class, 'eliminar'])->name('carrito.eliminar');
     Route::post('/carrito/finalizar', [CarritoController::class, 'finalizarCompra'])->name('carrito.finalizar');
-    Route::get('/pago/checkout/{id}', [PagoController::class, 'crearPreferencia'])->name('pago.procesar');
     Route::get('/carrito/count', [CarritoController::class, 'getCount'])->name('carrito.count');
-    
     // Perfil de usuario
     Route::get('/perfil', [PerfilController::class, 'index'])->name('perfil.index');
     Route::post('/perfil/actualizar', [PerfilController::class, 'update'])->name('perfil.update');
     Route::post('/perfil/password', [PerfilController::class, 'updatePassword'])->name('perfil.password');
 });
+
+// Rutas de Mercado Pago (públicas, para que Mercado Pago pueda acceder)
+Route::get('/pago/procesar/{id}', [PagoController::class, 'crearPreferencia'])->name('pago.procesar');
+Route::get('/pago/exitoso', [PagoController::class, 'exitoso'])->name('pago.exitoso');
+Route::get('/pago/fallido', [PagoController::class, 'fallido'])->name('pago.fallido');
+Route::get('/pago/pendiente', [PagoController::class, 'pendiente'])->name('pago.pendiente');
 
 // Rutas de retorno desde Mercado Pago después del pago
 Route::get('/pago/exitoso', [PagoController::class, 'exitoso'])->name('pago.exitoso');

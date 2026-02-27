@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use MercadoPago\MercadoPagoConfig;
 use MercadoPago\Client\Preference\PreferenceClient;
+use MercadoPago\Preference;
 use MercadoPago\Exceptions\MPApiException;
 
 class PagoController extends Controller
@@ -19,7 +20,7 @@ class PagoController extends Controller
         MercadoPagoConfig::setAccessToken(config('services.mercadopago.token'));
 
         // Cargar el pedido con sus productos
-        $pedido = Pedido::with('items.producto')->findOrFail($id);
+        $pedido = Pedido::with('items.producto')->where('pedido_id', $id)->firstOrFail();
 
         $items_pago = [];
         foreach ($pedido->items as $item) {

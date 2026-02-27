@@ -47,8 +47,14 @@
     bricksBuilder.create("wallet", "wallet_container", {
         initialization: {
             preferenceId: "{{ $preferencia->id }}",
-            redirectMode: "self" // Abre el pago en la misma pestaña como suele gustarle a los profes
+            redirectMode: "self" // Abre el pago en la misma pestaña
         },
+        customization: {
+            texts: {
+                action: "pay",
+                valueProp: "security_safety",
+            }
+        }
     });
 </script>
 @endsection
