@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layout.app')
 @section('content')
 <div class="container text-center mt-5">
     <h1>Pago fallido</h1>

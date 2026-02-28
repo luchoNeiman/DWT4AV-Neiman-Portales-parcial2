@@ -15,47 +15,74 @@
                     <div class="row justify-content-center mt-5">
                         <div class="col-lg-8">
                             <div class="card shadow-sm border-umami mb-4">
-                                <div class="card-header bg-umami text-umami-cream">
+                                <div class="card-header bg-umami text-umami-cream d-flex justify-content-between align-items-center">
                                     <h5 class="mb-0 card-title">Mis Compras</h5>
+                                    <button class="btn btn-sm btn-outline-umami" type="button" data-bs-toggle="collapse" data-bs-target="#comprasCollapse" aria-expanded="true" aria-controls="comprasCollapse">
+                                        <span class="collapse-icon text-umami-cream">
+                                            <i class="bi bi-chevron-down" id="comprasCollapseIcon"></i>
+                                        </span>
+                                    </button>
                                 </div>
-                                <div class="card-body p-4">
-                                    @if($pedidos->isEmpty())
-                                        <div class="text-center py-5">
-                                            <i class="bi bi-bag-x display-1 text-umami opacity-25 mb-3"></i>
-                                            <p class="text-muted fw-semibold">Aún no has realizado compras.</p>
-                                        </div>
-                                    @else
-                                        <div class="table-responsive">
-                                            <table class="table table-hover table-striped align-middle">
-                                                <thead class="bg-umami text-umami-cream">
-                                                    <tr>
-                                                        <th>ID Pedido</th>
-                                                        <th>Fecha</th>
-                                                        <th>Total</th>
-                                                        <th>Estado Pago</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @foreach($pedidos as $pedido)
-                                                    <tr>
-                                                        <td class="fw-bold">#{{ $pedido->pedido_id }}</td>
-                                                        <td>{{ \Carbon\Carbon::parse($pedido->fecha)->format('d/m/Y H:i') }}</td>
-                                                        <td>${{ number_format($pedido->total, 0, ',', '.') }}</td>
-                                                        <td>
-                                                            @if($pedido->estado_pago)
-                                                                <span class="badge {{ $pedido->estado_pago == 'approved' ? 'bg-success' : ($pedido->estado_pago == 'pending' ? 'bg-warning text-dark' : 'bg-secondary') }}">
-                                                                    {{ ucfirst($pedido->estado_pago) }}
+                                <div class="collapse show" id="comprasCollapse">
+                                    <div class="card-body p-4">
+                                        @if($pedidos->isEmpty())
+                                            <div class="text-center py-5">
+                                                <i class="bi bi-bag-x display-1 text-umami opacity-25 mb-3"></i>
+                                                <p class="text-muted fw-semibold">Aún no has realizado compras.</p>
+                                            </div>
+                                        @else
+                                            <div class="table-responsive">
+                                                <table class="table table-hover table-striped align-middle">
+                                                    <thead class="bg-umami text-umami-cream">
+                                                        <tr>
+                                                            <th>ID Pedido</th>
+                                                            <th>Fecha</th>
+                                                            <th>Total</th>
+                                                            <th>Estado Pago</th>
+                                                            <th>Detalles</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach($pedidos as $pedido)
+                                                        <tr>
+                                                            <td class="fw-bold">#{{ $pedido->pedido_id }}</td>
+                                                            <td>{{ \Carbon\Carbon::parse($pedido->fecha)->setTimezone(config('app.timezone'))->format('d/m/Y H:i') }}</td>
+                                                            <td>${{ number_format($pedido->total, 0, ',', '.') }}</td>
+                                                            <td>
+                                                                @if($pedido->status)
+                                                                    <span class="badge {{ $pedido->status == 'approved' ? 'bg-success' : ($pedido->status == 'pending' ? 'bg-warning text-dark' : 'bg-secondary') }}">
+                                                                    {{ ucfirst($pedido->status) }}
                                                                 </span>
-                                                            @else
-                                                                <span class="badge bg-secondary">Sin estado</span>
-                                                            @endif
-                                                        </td>
-                                                    </tr>
-                                                    @endforeach
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    @endif
+                                                                @else
+                                                                    <span class="badge bg-secondary">Sin estado</span>
+                                                                @endif
+                                                            </td>
+                                                            <td>
+                                                                <button class="btn btn-sm btn-outline-umami" type="button" data-bs-toggle="collapse" data-bs-target="#pedido-{{ $pedido->pedido_id }}" aria-expanded="false" aria-controls="pedido-{{ $pedido->pedido_id }}">
+                                                                    Ver detalles
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="collapse" id="pedido-{{ $pedido->pedido_id }}">
+                                                            <td colspan="5">
+                                                                <div class="p-3">
+                                                                    <strong>Items del pedido:</strong>
+                                                                    <ul class="mb-2">
+                                                                        @foreach($pedido->items as $item)
+                                                                            <li>{{ $item->nombre_producto }} x{{ $item->cantidad }} - ${{ number_format($item->precio_unitario, 0, ',', '.') }}</li>
+                                                                        @endforeach
+                                                                    </ul>
+                                                                    <strong>Estado del pedido:</strong> {{ ucfirst($pedido->estado) }}<br>
+                                                                    <strong>ID de pago:</strong> {{ $pedido->payment_id ?? 'No disponible' }}
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -165,3 +192,16 @@
     </div>
 </div>
 @endsection
+
+<script>
+    const comprasCollapse = document.getElementById('comprasCollapse');
+    const comprasCollapseIcon = document.getElementById('comprasCollapseIcon');
+    comprasCollapse.addEventListener('show.bs.collapse', function () {
+        comprasCollapseIcon.classList.remove('bi-chevron-up');
+        comprasCollapseIcon.classList.add('bi-chevron-down');
+    });
+    comprasCollapse.addEventListener('hide.bs.collapse', function () {
+        comprasCollapseIcon.classList.remove('bi-chevron-down');
+        comprasCollapseIcon.classList.add('bi-chevron-up');
+    });
+</script>

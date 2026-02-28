@@ -158,6 +158,21 @@
             </div>
 
             <div class="modal-body p-4">
+                <form method="GET" class="mb-3">
+                    <div class="row g-2 align-items-center">
+                        <div class="col-auto">
+                            <label for="filtroEstado-{{ $usuario->id }}" class="form-label mb-0">Filtrar por estado:</label>
+                        </div>
+                        <div class="col-auto">
+                            <select id="filtroEstado-{{ $usuario->id }}" class="form-select form-select-sm" onchange="filtrarPedidos({{ $usuario->id }})">
+                                <option value="">Todos</option>
+                                <option value="approved">Aprobado</option>
+                                <option value="rejected">Fallado</option>
+                                <option value="pending">Pendiente</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
                 @if($usuario->pedidos->isEmpty())
                 <div class="text-center py-5">
                     <i class="bi bi-bag-x display-1 text-umami opacity-25 mb-3"></i>
@@ -166,7 +181,7 @@
                 @else
                 <div class="accordion" id="accordionPedidos-{{ $usuario->id }}">
                     @foreach($usuario->pedidos as $pedido)
-                    <div class="accordion-item border-umami mb-3 rounded overflow-hidden">
+                    <div class="accordion-item border-umami mb-3 rounded overflow-hidden pedido-estado-{{ $pedido->status }}">
                         <h2 class="accordion-header" id="heading-{{ $pedido->pedido_id }}">
                             <button class="accordion-button collapsed bg-white text-umami fw-bold shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ $pedido->pedido_id }}">
                                 <span class="d-flex justify-content-between w-100 me-3 align-items-center flex-wrap">
@@ -253,3 +268,17 @@
 
 @endforeach
 @endsection
+
+<script>
+function filtrarPedidos(usuarioId) {
+    var estado = document.getElementById('filtroEstado-' + usuarioId).value;
+    var pedidos = document.querySelectorAll('#accordionPedidos-' + usuarioId + ' .accordion-item');
+    pedidos.forEach(function(pedido) {
+        if (!estado || pedido.classList.contains('pedido-estado-' + estado)) {
+            pedido.style.display = '';
+        } else {
+            pedido.style.display = 'none';
+        }
+    });
+}
+</script>

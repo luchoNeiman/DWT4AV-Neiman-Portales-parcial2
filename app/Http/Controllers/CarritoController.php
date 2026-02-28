@@ -143,11 +143,16 @@ class CarritoController extends Controller
 
                 // Creo el registro del Pedido. 
                 // Lo guardo con estado 'pendiente' porque todavía no se pagó.
+                $detalle_productos = $items_carrito->map(function ($item) {
+                    return $item->producto->nombre . ' x' . $item->cantidad . ' ($' . number_format($item->producto->precio, 0, ',', '.') . ')';
+                })->implode(', ');
+
                 $pedido = Pedido::create([
                     'id' => Auth::id(),
                     'fecha' => now(),
                     'total' => $total_pedido,
-                    'estado' => 'pendiente', // Cambié 'completado' por 'pendiente' como pide la consigna 
+                    'estado' => 'pendiente',
+                    'detalle_productos' => $detalle_productos,
                 ]);
 
                 foreach ($items_carrito as $item) {

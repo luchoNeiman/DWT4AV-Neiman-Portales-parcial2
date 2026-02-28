@@ -8,10 +8,12 @@ use App\Http\Controllers\Admin\AdminPerfilController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\PagoController;
 use App\Http\Controllers\PerfilController;
+use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PaginaController;
 use App\Http\Controllers\AuthController;
+use Illuminate\Support\Facades\Log;
 
 
 
@@ -89,5 +91,13 @@ Route::prefix('admin')
     Route::get('/perfil', [AdminPerfilController::class, 'index'])->name('perfil.index');
     Route::post('/perfil/actualizar', [AdminPerfilController::class, 'update'])->name('perfil.update');
     
+});
+
+// Ruta oficial para Webhooks de Mercado Pago
+Route::post('/webhook/mercadopago', [PagoController::class, 'recibirWebhook'])->name('webhook.mercadopago');
+
+Route::post('/webhook/mercadopago', function(Request $request) {
+    Log::info('Webhook Mercado Pago:', $request->all());
+    return response()->json(['status' => 'received'], 200);
 });
 

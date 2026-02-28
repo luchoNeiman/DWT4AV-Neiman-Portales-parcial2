@@ -11,6 +11,8 @@ use MercadoPago\MercadoPagoConfig;
 use MercadoPago\Client\Preference\PreferenceClient;
 use MercadoPago\Preference;
 use MercadoPago\Exceptions\MPApiException;
+use MercadoPago\Client\Payment\PaymentClient;
+use Illuminate\Support\Facades\Log;
 
 class PagoController extends Controller
 {
@@ -108,5 +110,39 @@ class PagoController extends Controller
         CarritoItem::where('usuario_id', Auth::id())->delete();
 
         return view('pago.pendiente', ['pedido' => $pedido]);
+    }
+
+    public function recibirWebhook(Request $request)
+    {
+        $tipo_evento = $request->input('type');
+        if ($tipo_evento === 'payment') {
+            $id_pago = $request->input('data.id');
+            try {
+                \MercadoPago\MercadoPagoConfig::setAccessToken(config('services.mercadopago.token'));
+                $clientePago = new PaymentClient();
+                $pagoInfo = $clientePago->get($id_pago);
+                $pedido_id = $pagoInfo->external_reference;
+                if ($pedido_id) {
+                    $pedido = \App\Models\Pedido::where('pedido_id', $pedido_id)->first();
+                    if ($pedido) {
+                        if ($pagoInfo->status === 'approved') {
+                            $pedido->update([
+                                'payment_id' => $pagoInfo->id,
+                                'status'     => $pagoInfo->status,
+                                'estado'     => 'completado'
+                            ]);
+                        } elseif ($pagoInfo->status === 'rejected') {
+                            $pedido->update([
+                                'status' => 'rejected',
+                                'estado' => 'cancelado'
+                            ]);
+                        }
+                    }
+                }
+            } catch (\Exception $e) {
+                Log::error('Error procesando Webhook de Mercado Pago: ' . $e->getMessage());
+            }
+        }
+        return response()->json(['status' => 'success'], 200);
     }
 }

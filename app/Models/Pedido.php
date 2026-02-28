@@ -20,6 +20,7 @@ class Pedido extends Model
         'preference_id',
         'payment_id',
         'status',
+        'detalle_productos',
     ];
 
     // Un pedido pertenece a un usuario
