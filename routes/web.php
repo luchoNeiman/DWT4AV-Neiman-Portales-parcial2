@@ -94,7 +94,12 @@ Route::prefix('admin')
 });
 
 // Ruta oficial para Webhooks de Mercado Pago
-Route::post('/webhook/mercadopago', [PagoController::class, 'recibirWebhook'])->name('webhook.mercadopago');
+// Route::post('/webhook/mercadopago', [PagoController::class, 'recibirWebhook'])->name('webhook.mercadopago');
+
+// routes/web.php
+
+Route::post('/webhook/mercadopago', [\App\Http\Controllers\PagoController::class, 'recibirWebhook'])
+    ->withoutMiddleware([\Illuminate\Foundation\Http\Middleware\ValidateCsrfToken::class]);
 
 Route::post('/webhook/mercadopago', function(Request $request) {
     Log::info('Webhook Mercado Pago:', $request->all());

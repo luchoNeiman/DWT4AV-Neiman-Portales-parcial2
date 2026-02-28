@@ -17,7 +17,9 @@ return Application::configure(basePath: dirname(__DIR__))
 
         // Le decimos a Laravel que no bloquee los envíos de Mercado Pago a esta URL
         $middleware->validateCsrfTokens(except: [
-            '/webhooks/mercadopago',
+            'webhook/mercadopago',
+            'webhook/mercadopago/*',
+            '*webhook/mercadopago*'
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
