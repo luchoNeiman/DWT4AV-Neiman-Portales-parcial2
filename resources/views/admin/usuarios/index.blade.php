@@ -116,7 +116,7 @@
                                 <i class="bi bi-person-fill text-muted fs-3"></i>
                             </div>
                             <div>
-                                <h5 class="card-title text-umami fw-bold mb-0">{{ $usuario->nombre }}</h5>
+                                <h3 class="card-title text-umami fw-bold mb-0">{{ $usuario->nombre }}</h3>
                                 <small class="text-muted">{{ $usuario->email }}</small><br>
                                 <small class="text-muted">{{ $usuario->ubicacion ?? '-' }}</small>
                             </div>
@@ -151,9 +151,9 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content bg-cream border-0 shadow">
             <div class="modal-header border-bottom-0">
-                <h5 class="modal-title text-umami fw-bold">
+                <h3 class="modal-title text-umami fw-bold">
                     <i class="bi bi-clock-history me-2"></i>Historial: {{ $usuario->nombre }}
-                </h5>
+                </h3>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
 
@@ -244,7 +244,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content bg-cream border-0 shadow">
             <div class="modal-header border-bottom-0">
-                <h5 class="modal-title text-umami fw-bold">Eliminar Usuario</h5>
+                <h3 class="modal-title text-umami fw-bold">Eliminar Usuario</h3>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body text-center py-4">
@@ -268,6 +268,14 @@
 
 @endforeach
 @endsection
+
+<!--  Esto hace que los scripts se carguen en el footer -->
+
+<!-- no se porque no funciona el script --> 
+<script src="{{ asset('js/index.js') }}"></script>
+
+
+
 
 <script>
 function filtrarPedidos(usuarioId) {

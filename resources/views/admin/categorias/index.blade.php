@@ -77,9 +77,9 @@
                     </div>
 
                     <div class="card-body d-flex flex-column p-3">
-                        <h5 class="card-title text-umami fw-bold mb-2">
+                        <h3 class="card-title text-umami fw-bold mb-2">
                             <i class="bi bi-tag-fill me-2 opacity-50"></i>{{ $categoria->nombre }}
-                        </h5>
+                        </h3>
                         <p class="card-text text-muted small mb-0 flex-grow-1">
                             {{ $categoria->descripcion ?? 'Sin descripción disponible.' }}
                         </p>
@@ -103,7 +103,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content bg-cream border-0 shadow">
             <div class="modal-header border-bottom-0">
-                <h5 class="modal-title text-umami fw-bold">Crear Nueva Categoría</h5>
+                <h3 class="modal-title text-umami fw-bold">Crear Nueva Categoría</h3>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
@@ -132,7 +132,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content bg-cream border-0 shadow">
                 <div class="modal-header border-bottom-0">
-                    <h5 class="modal-title text-umami fw-bold">Editar Categoría</h5>
+                    <h3 class="modal-title text-umami fw-bold">Editar Categoría</h3>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
@@ -161,7 +161,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content bg-cream border-0 shadow">
                 <div class="modal-header border-bottom-0">
-                    <h5 class="modal-title text-umami fw-bold">Eliminar Categoría</h5>
+                    <h3 class="modal-title text-umami fw-bold">Eliminar Categoría</h3>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body text-center py-4">

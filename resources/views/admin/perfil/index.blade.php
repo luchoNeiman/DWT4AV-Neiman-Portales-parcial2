@@ -11,15 +11,15 @@
                 <div class="card-body p-4">
                     <div class="row text-center">
                         <div class="col-4">
-                            <h3 class="h2 text-umami fw-bold">{{ $metricas['productos'] }}</h3>
+                            <h2 class="h2 text-umami fw-bold">{{ $metricas['productos'] }}</h2>
                             <p class="text-muted small">Productos</p>
                         </div>
                         <div class="col-4 border-start border-end">
-                            <h3 class="h2 text-umami fw-bold">{{ $metricas['categorias'] }}</h3>
+                            <h2 class="h2 text-umami fw-bold">{{ $metricas['categorias'] }}</h2>
                             <p class="text-muted small">Categorías</p>
                         </div>
                         <div class="col-4">
-                            <h3 class="h2 text-umami fw-bold">{{ $metricas['usuarios'] }}</h3>
+                            <h2 class="h2 text-umami fw-bold">{{ $metricas['usuarios'] }}</h2>
                             <p class="text-muted small">Usuarios</p>
                         </div>
                     </div>
@@ -35,7 +35,7 @@
                     <form action="{{ route('admin.perfil.update') }}" method="POST">
                         @csrf
 
-                        <h5 class="text-umami mb-3 pb-2 border-bottom">Datos Personales</h5>
+                        <h3 class="text-umami mb-3 pb-2 border-bottom">Datos Personales</h3>
 
                         <div class="row mb-3 text-umami">
                             <div class="col-md-6">
@@ -68,7 +68,7 @@
                             @enderror
                         </div>
 
-                        <h5 class="text-umami mb-3 pb-2 border-bottom pt-3">Cambiar Contraseña</h5>
+                        <h3 class="text-umami mb-3 pb-2 border-bottom pt-3">Cambiar Contraseña</h3>
 
                         <div class="mb-3 text-umami">
                             <label for="current_password" class="form-label">Contraseña Actual</label>

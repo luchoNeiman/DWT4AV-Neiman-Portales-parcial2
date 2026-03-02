@@ -63,7 +63,7 @@
                     </a>
                 @endauth
 
-                <h4 class="text-umami">Descripción</h4>
+                <h2 class="text-umami">Descripción</h2>
                 <p class="text-umami">{{ $producto->descripcion_corta }}</p>
 
                 <!-- categoría y etiquetas -->

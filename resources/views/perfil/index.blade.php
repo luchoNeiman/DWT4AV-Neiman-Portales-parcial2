@@ -193,6 +193,8 @@
 </div>
 @endsection
 
+@section('scripts')
+
 <script>
     const comprasCollapse = document.getElementById('comprasCollapse');
     const comprasCollapseIcon = document.getElementById('comprasCollapseIcon');
@@ -205,3 +207,5 @@
         comprasCollapseIcon.classList.add('bi-chevron-up');
     });
 </script>
+
+@endsection

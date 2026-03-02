@@ -24,21 +24,21 @@
                     @endif
                     <h2 class="card-title text-umami mb-3">{{ $producto->nombre }}</h2>
                     <div class="mb-3">
-                        <h5 class="text-umami">Descripción Corta</h5>
+                        <h3 class="text-umami h5">Descripción Corta</h3>
                         <p>{{ $producto->descripcion_corta }}</p>
                     </div>
                     <div class="mb-3">
-                        <h5 class="text-umami">Descripción Larga</h5>
+                        <h3 class="text-umami h5">Descripción Larga</h3>
                         <p>{{ $producto->descripcion }}</p>
                     </div>
                     <hr>
                     <div class="row">
                         <div class="col-md-6">
-                            <h5 class="text-umami">Precio</h5>
+                            <h3 class="text-umami h5">Precio</h3>
                             <p class="h4 text-umami">${{ number_format($producto->precio, 0, ',', '.') }}</p>
                         </div>
                         <div class="col-md-6">
-                            <h5 class="text-umami">Stock</h5>
+                            <h3 class="text-umami h5">Stock</h3>
                             <p class="h4 text-umami">{{ $producto->stock }} unidades</p>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content bg-cream">
             <div class="modal-header">
-                <h5 class="modal-title text-umami">Eliminar Producto</h5>
+                <h3 class="modal-title text-umami">Eliminar Producto</h3>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">

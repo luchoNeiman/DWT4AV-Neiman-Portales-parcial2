@@ -10,7 +10,7 @@
         <div class="col-12 col-md-4">
             <div class="card-metricas card text-center shadow-sm h-100 border-0 shadow-md hover:shadow-lg transition-all duration-300 ">
                 <div class="card-body d-flex flex-column justify-content-center">
-                    <h5 class="card-title text-umami uppercase font-bold"><i class="bi bi-journal-text me-2"></i> Ventas Totales</h5>
+                    <h2 class="card-title text-umami uppercase font-bold h5"><i class="bi bi-journal-text me-2"></i> Ventas Totales</h2>
                     <p class="card-text display-5 text-umami fw-bold">${{ number_format($ventasTotales, 0, ',', '.') }}</p>
                     <span class="text-success small fw-semibold"><i class="bi bi-arrow-up"></i> 100% vs mes anterior</span>
                 </div>
@@ -20,7 +20,7 @@
         <div class="col-12 col-md-4">
             <div class="card-metricas card text-center shadow-sm h-100 border-0 shadow-md hover:shadow-lg transition-all duration-300">
                 <div class="card-body d-flex flex-column justify-content-center">
-                    <h5 class="card-title text-umami uppercase font-bold"><i class="bi bi-people me-2"></i> Nuevos Usuarios</h5>
+                    <h2 class="card-title text-umami uppercase font-bold h5"><i class="bi bi-people me-2"></i> Nuevos Usuarios</h2>
                     <p class="card-text display-5 text-umami fw-bold">{{ $nuevosUsuarios }}</p>
 
                     @if($porcentajeUsuarios >= 0)
@@ -39,7 +39,7 @@
         <div class="col-12 col-md-4">
             <div class="card-metricas card text-center shadow-sm h-100 border-0 shadow-md hover:shadow-lg transition-all duration-300">
                 <div class="card-body d-flex flex-column justify-content-center">
-                    <h5 class="card-title text-umami uppercase font-bold"><i class="bi bi-box-seam me-2"></i> Productos Activos</h5>
+                    <h2 class="card-title text-umami uppercase font-bold h5"><i class="bi bi-box-seam me-2"></i> Productos Activos</h2>
                     <p class="card-text display-5 text-umami fw-bold">{{ $productosActivos }}</p>
                     <span class="text-muted small fw-semibold"><i class="bi bi-check-circle"></i> En stock</span>
                 </div>

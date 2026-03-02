@@ -51,7 +51,7 @@
             <div class="col-lg-8">
                 <div class="card shadow-sm mb-4">
                     <div class="card-header bg-umami text-white">
-                        <h4 class="mb-0">Productos en tu carrito</h4>
+                        <h2 class="mb-0 h4">Productos en tu carrito</h2>
                     </div>
                     <div class="card-body p-0">
                         <div class="table-responsive">
@@ -77,7 +77,7 @@
                                                     style="width: 60px; height: 60px; object-fit: cover;">
                                                 @endif
                                                 <div>
-                                                    <h6 class="mb-0 text-umami">{{ $item->producto->nombre }}</h6>
+                                                    <h3 class="mb-0 text-umami h6">{{ $item->producto->nombre }}</h3>
                                                     <small class="text-muted">{{ $item->producto->categoria->nombre }}</small>
                                                 </div>
                                             </div>
@@ -151,7 +151,7 @@
             <div class="col-lg-4">
                 <div class="card shadow-sm sticky-top" style="top: 100px;">
                     <div class="card-header bg-umami text-white">
-                        <h5 class="mb-0">Resumen del pedido</h5>
+                        <h4 class="mb-0">Resumen del pedido</h4>
                     </div>
                     <div class="card-body">
                         <div class="d-flex justify-content-between mb-3">

@@ -15,7 +15,7 @@
                         @foreach ($pedido->items as $item)
                         <li class="list-group-item d-flex justify-content-between align-items-center px-0">
                             <div>
-                                <h6 class="mb-0">{{ $item->nombre_producto }}</h6>
+                                <h5 class="mb-0">{{ $item->nombre_producto }}</h5>
                                 <small class="text-muted">Cantidad: {{ $item->cantidad }}</small>
                             </div>
                             <span class="fw-bold">${{ number_format($item->precio_unitario * $item->cantidad, 0, ',', '.') }}</span>

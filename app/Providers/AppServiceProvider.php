@@ -19,7 +19,7 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrapFive();
 
         // Forzar HTTPS en producción para evitar Mixed Content con ngrok
-        if (env('APP_ENV') !== 'local') {
+        if (env('APP_ENV') === 'local') {
             URL::forceScheme('https');
         }
     }

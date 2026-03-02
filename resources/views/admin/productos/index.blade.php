@@ -112,9 +112,9 @@
                                 @endif
                             </div>
                             <div>
-                                <h5 class="card-title text-umami fw-bold mb-1">{{ $producto->nombre }}</h5>
+                                <h3 class="card-title text-umami fw-bold mb-1">{{ $producto->nombre }}</h3>
                                 <p class="card-subtitle text-muted small mb-2">{{ $producto->categoria->nombre }}</p>
-                                <h6 class="text-umami fw-bold mb-0">${{ number_format($producto->precio, 0, ',', '.') }}</h6>
+                                <h4 class="text-umami fw-bold mb-0">${{ number_format($producto->precio, 0, ',', '.') }}</h4>
                             </div>
                         </div>
 
@@ -150,7 +150,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content bg-cream">
             <div class="modal-header">
-                <h5 class="modal-title text-umami">Eliminar Producto</h5>
+                <h3 class="modal-title text-umami">Eliminar Producto</h3>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
