@@ -1,3 +1,15 @@
+Nota sobre la integración de Mercado Pago y Webhooks:
+
+Para el sistema de pagos implementé el flujo completo de Mercado Pago (SDK v2). El circuito de compra principal funciona perfecto en local: usé auto_return y back_urls, así que una vez que terminás de hacer el pago de prueba, te redirige solo a la vista de éxito y el pedido pasa automáticamente a estado "completado" en la base de datos.
+
+Además de eso, dejé programada la ruta y la lógica de los Webhooks (PagoController@recibirWebhook) para mayor seguridad. Como sabemos, Mercado Pago no le puede pegar a un localhost directamente, así que para desarrollar y testear esto usé túneles con Ngrok. Obviamente ese link de Ngrok ya expiró al cerrar la consola, por lo que el webhook no se va a disparar en tu máquina local. Sin embargo, el código está 100% funcional, validando el pago contra la API de Mercado Pago y listo para ser usado en un servidor de producción.
+
+NOTA GENERAL:
+Usé la consigna de Bruno Cano pero la modalidad de entrega que indicó usted.
+
+
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
