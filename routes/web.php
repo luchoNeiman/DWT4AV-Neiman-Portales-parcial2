@@ -8,12 +8,10 @@ use App\Http\Controllers\Admin\AdminPerfilController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\PagoController;
 use App\Http\Controllers\PerfilController;
-use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PaginaController;
 use App\Http\Controllers\AuthController;
-use Illuminate\Support\Facades\Log;
 
 
 
@@ -60,12 +58,6 @@ Route::get('/pago/exitoso', [PagoController::class, 'exitoso'])->name('pago.exit
 Route::get('/pago/fallido', [PagoController::class, 'fallido'])->name('pago.fallido');
 Route::get('/pago/pendiente', [PagoController::class, 'pendiente'])->name('pago.pendiente');
 
-// Rutas de retorno desde Mercado Pago después del pago
-Route::get('/pago/exitoso', [PagoController::class, 'exitoso'])->name('pago.exitoso');
-Route::get('/pago/fallido', [PagoController::class, 'fallido'])->name('pago.fallido');
-Route::get('/pago/pendiente', [PagoController::class, 'pendiente'])->name('pago.pendiente');
-Route::get('/pago/procesar/{id}', [PagoController::class, 'crearPreferencia'])->name('pago.procesar');
-
 
 // RUTAS DE ADMINISTRACIÓN (Protegidas)
 Route::prefix('admin')
@@ -94,15 +86,7 @@ Route::prefix('admin')
 });
 
 // Ruta oficial para Webhooks de Mercado Pago
-// Route::post('/webhook/mercadopago', [PagoController::class, 'recibirWebhook'])->name('webhook.mercadopago');
-
-// routes/web.php
-
-Route::post('/webhook/mercadopago', [\App\Http\Controllers\PagoController::class, 'recibirWebhook'])
-    ->withoutMiddleware([\Illuminate\Foundation\Http\Middleware\ValidateCsrfToken::class]);
-
-Route::post('/webhook/mercadopago', function(Request $request) {
-    Log::info('Webhook Mercado Pago:', $request->all());
-    return response()->json(['status' => 'received'], 200);
-});
+Route::post('/webhook/mercadopago', [PagoController::class, 'recibirWebhook'])
+    ->withoutMiddleware([\Illuminate\Foundation\Http\Middleware\ValidateCsrfToken::class])
+    ->name('webhook.mercadopago');
 
