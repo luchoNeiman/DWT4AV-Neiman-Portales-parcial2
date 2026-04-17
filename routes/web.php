@@ -14,11 +14,23 @@ use App\Http\Controllers\PaginaController;
 use App\Http\Controllers\AuthController;
 
 Route::get('/health', function () {
-    return response()->json([
-        'ok' => true,
-        'app_env' => app()->environment(),
-    ]);
-});
+    try {
+        \Illuminate\Support\Facades\DB::connection()->getPdo();
+
+        return response()->json([
+            'ok' => true,
+            'app_env' => app()->environment(),
+            'db' => 'connected',
+        ]);
+    } catch (\Throwable $e) {
+        return response()->json([
+            'ok' => false,
+            'app_env' => app()->environment(),
+            'db' => 'error',
+            'error' => $e->getMessage(),
+        ], 500);
+    }
+})->withoutMiddleware([\Illuminate\Session\Middleware\StartSession::class]);
 
 
 
