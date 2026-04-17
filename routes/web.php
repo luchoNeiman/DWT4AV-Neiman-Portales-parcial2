@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PaginaController;
 use App\Http\Controllers\AuthController;
 
+Route::get('/health', function () {
+    return response()->json([
+        'ok' => true,
+        'app_env' => app()->environment(),
+    ]);
+});
+
 
 
 // VISTAS PRINCIPALES
