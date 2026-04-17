@@ -13,24 +13,27 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PaginaController;
 use App\Http\Controllers\AuthController;
 
-Route::get('/health', function () {
-    try {
-        \Illuminate\Support\Facades\DB::connection()->getPdo();
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
-        return response()->json([
-            'ok' => true,
-            'app_env' => app()->environment(),
-            'db' => 'connected',
-        ]);
-    } catch (\Throwable $e) {
-        return response()->json([
-            'ok' => false,
-            'app_env' => app()->environment(),
-            'db' => 'error',
-            'error' => $e->getMessage(),
-        ], 500);
+Route::get('/health', function () {
+    $report = [
+        'php_version' => PHP_VERSION,
+        'env' => app()->environment(),
+        'db_connection' => false,
+        'db_error' => null,
+    ];
+
+    try {
+        DB::connection()->getPdo();
+        $report['db_connection'] = true;
+    } catch (\Exception $e) {
+        $report['db_error'] = $e->getMessage();
+        Log::error("Health check DB fail: " . $e->getMessage());
     }
-})->withoutMiddleware([\Illuminate\Session\Middleware\StartSession::class]);
+
+    return response()->json($report);
+});
 
 
 
