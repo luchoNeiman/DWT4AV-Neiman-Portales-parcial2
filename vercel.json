@@ -13,6 +13,20 @@
             "use": "vercel-php@0.7.4"
         }
     ],
+    "headers": [
+        {
+            "source": "/storage/(.*)\\.webp",
+            "headers": [{ "key": "Content-Type", "value": "image/webp" }]
+        },
+        {
+            "source": "/storage/(.*)\\.jpg",
+            "headers": [{ "key": "Content-Type", "value": "image/jpeg" }]
+        },
+        {
+            "source": "/storage/(.*)\\.svg",
+            "headers": [{ "key": "Content-Type", "value": "image/svg+xml" }]
+        }
+    ],
     "routes": [
         {
             "src": "/build/(.*)",
