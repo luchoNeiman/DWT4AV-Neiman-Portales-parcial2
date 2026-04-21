@@ -381,6 +381,14 @@ footer {
     border-radius: .75em;
     box-shadow: 0 .25em .75em rgba(0, 0, 0, 0.15);
     cursor: pointer;
+
+    /* FIX SAFARI: Previene que el navegador borre la imagen en el scroll */
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
 }
 
 .hover-card img {
@@ -388,6 +396,11 @@ footer {
     height: 100%;
     object-fit: cover;
     transition: transform .5s ease;
+
+    /* FIX SAFARI: Fuerza el renderizado por hardware de la imagen */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    will-change: transform;
 }
 
 .hover-card .hover-info {
@@ -683,6 +696,14 @@ footer {
     margin-bottom: 10px;
     /* Espacio entre mensajes */
     transition: opacity 0.5s ease;
+}
+
+/* Fix para Safari Scroll Animations */
+.hover-card img,
+.card-producto img {
+    /* Forzamos a Safari a renderizar por hardware y no "olvidarse" de la imagen */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
 }
 
 
